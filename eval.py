@@ -134,10 +134,16 @@ def bulk_evaluate(dataset, split, code, num_processes):
         or num_processes is None
     )
 
+    # Wrap evaluate in a try except so that we don't lose all our results if
+    # there's an unexpected error on the Google Cloud side (e.g. an evaluation
+    # times out, etc.):
+    def _evaluate(i):
+        try:
+            return evaluate(dataset, split, task_id=i, code=code[i])
+        except:
+            return "ERROR"
+
     # For efficiency run the individual evaluations in parallel:
-    results = Pool(num_processes).map(
-        lambda i: evaluate(dataset, split, task_id=i, code=code[i]),
-        range(num_tasks)
-    )
+    results = Pool(num_processes).map(_evaluate, range(num_tasks))
 
     return results
