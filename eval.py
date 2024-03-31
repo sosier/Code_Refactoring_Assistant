@@ -4,6 +4,7 @@ from multiprocess import Pool
 import radon
 from radon.complexity import cc_visit
 from radon.metrics import h_visit, mi_visit
+import time
 
 # Load datasets
 DATA = {
@@ -57,7 +58,11 @@ def safely_check_correctness(code, test_code):
     # Run in a while loop because sometimes logging result isn't immediately
     # available
     logging_result = []
+    first_iteration = True
     while len(logging_result) < 1:
+        if not first_iteration:
+            time.sleep(5)  # Wait 5 seconds
+
         # By default returns a generator so we have to turn it into a list
         logging_result = list(client.list_entries(
             resource_names=[f"projects/{project}"],
@@ -69,6 +74,7 @@ def safely_check_correctness(code, test_code):
             ''',
             max_results=1
         ))
+        first_iteration = False        
 
     result = logging_result[0].payload
     return result
