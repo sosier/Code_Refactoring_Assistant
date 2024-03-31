@@ -58,10 +58,12 @@ def safely_check_correctness(code, test_code):
     # Run in a while loop because sometimes logging result isn't immediately
     # available
     logging_result = []
-    first_iteration = True
+    i = 0
     while len(logging_result) < 1:
-        if not first_iteration:
+        if i > 0:
             time.sleep(5)  # Wait 5 seconds
+        elif i > 60/5 * 10:  # If it's been 10 minutes give up and let it error
+            break
 
         # By default returns a generator so we have to turn it into a list
         logging_result = list(client.list_entries(
@@ -74,7 +76,7 @@ def safely_check_correctness(code, test_code):
             ''',
             max_results=1
         ))
-        first_iteration = False        
+        i += 1
 
     result = logging_result[0].payload
     return result
