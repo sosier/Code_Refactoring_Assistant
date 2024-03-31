@@ -88,8 +88,8 @@ def check_correctness(
                     avg_test_time = min(
                         Timer(
                             lambda: exec(test_code, exec_globals)
-                        ).repeat(3, 1000)
-                    ) / 1000
+                        ).repeat(3, 30)
+                    ) / 30
 
             result = "passed"
         except TimeoutException:

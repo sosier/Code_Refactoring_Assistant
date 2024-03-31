@@ -54,18 +54,23 @@ def safely_check_correctness(code, test_code):
     client = logging_v2.Client(project=project)
 
     # Fetch the actual result (stdout)
-    # (by default is a generator so we have to call next on it)
-    result = next(client.list_entries(
-        resource_names=[f"projects/{project}"],
-        filter_=f'''
-            resource.type = "cloud_run_job"
-            AND resource.labels.job_name = "{job}"
-            AND labels."run.googleapis.com/execution_name" = "{execution_name}"
-            AND log_name="projects/{project}/logs/run.googleapis.com%2Fstdout"
-        ''',
-        max_results=1
-    )).payload
-    
+    # Run in a while loop because sometimes logging result isn't immediately
+    # available
+    logging_result = []
+    while len(logging_result) < 1:
+        # By default returns a generator so we have to turn it into a list
+        logging_result = list(client.list_entries(
+            resource_names=[f"projects/{project}"],
+            filter_=f'''
+                resource.type = "cloud_run_job"
+                AND resource.labels.job_name = "{job}"
+                AND labels."run.googleapis.com/execution_name" = "{execution_name}"
+                AND log_name="projects/{project}/logs/run.googleapis.com%2Fstdout"
+            ''',
+            max_results=1
+        ))
+
+    result = logging_result[0].payload
     return result
 
 def build_MBPP_tests(task):
@@ -140,7 +145,9 @@ def bulk_evaluate(dataset, split, code, num_processes):
     def _evaluate(i):
         try:
             return evaluate(dataset, split, task_id=i, code=code[i])
-        except:
+        except Exception as e:
+            # Print the error message
+            print("ERROR:", e)
             return "ERROR"
 
     # For efficiency run the individual evaluations in parallel:
