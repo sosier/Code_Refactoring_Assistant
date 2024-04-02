@@ -1,0 +1,2828 @@
+,dataset,split,task_id,model,code,result,compiled,passed_tests,avg_test_time,loc,lloc,sloc,comments,multi,blank,single_comments,CC,h1,h2,N1,N2,vocabulary,length,calculated_length,volume,difficulty,effort,time,bugs,MI
+0,mbpp,train,0,canonical_solution,"# Write a function to find the longest chain which can be formed from the given set of pairs.
+class Pair(object): 
+	def __init__(self, a, b): 
+		self.a = a 
+		self.b = b 
+def max_chain_length(arr, n): 
+	max = 0
+	mcl = [1 for i in range(n)] 
+	for i in range(1, n): 
+		for j in range(0, i): 
+			if (arr[i].a > arr[j].b and
+				mcl[i] < mcl[j] + 1): 
+				mcl[i] = mcl[j] + 1
+	for i in range(n): 
+		if (max < mcl[i]): 
+			max = mcl[i] 
+	return max",passed,True,True,0.00010681143333310198,17,15,16,1,0,0,1,8,4,11,6,12,15,18,46.053747805010275,70.32403072095333,2.1818181818181817,153.43424884571635,8.52412493587313,0.02344134357365111,74.67919633550191
+1,mbpp,train,1,canonical_solution,"# Write a python function to find the first repeated character in a given string.
+def first_repeated_char(str1):
+  for index,c in enumerate(str1):
+    if str1[:index+1].count(c) > 1:
+      return c 
+  return ""None""",passed,True,True,2.9416966666910107e-05,6,5,5,1,0,0,1,3,2,3,2,4,5,6,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,99.71957616324164
+2,mbpp,train,2,canonical_solution,"# Write a function to get a lucid number smaller than or equal to n.
+def get_ludic(n):
+	ludics = []
+	for i in range(1, n + 1):
+		ludics.append(i)
+	index = 1
+	while(index != len(ludics)):
+		first_ludic = ludics[index]
+		remove_index = index + first_ludic
+		while(remove_index < len(ludics)):
+			ludics.remove(ludics[remove_index])
+			remove_index = remove_index + first_ludic - 1
+		index += 1
+	return ludics",passed,True,True,8.382863333433003e-05,14,13,13,1,0,0,1,4,4,8,7,14,12,21,32.0,75.28421251514429,3.5,263.494743803005,14.638596877944723,0.025094737505048096,77.9157871089953
+3,mbpp,train,3,canonical_solution,"# Write a function to reverse words in a given string.
+def reverse_words(s):
+        return ' '.join(reversed(s.split()))",passed,True,True,3.235133333040115e-05,3,2,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+4,mbpp,train,4,canonical_solution,"# Write a function to check if the given integer is a prime number.
+def prime_num(num):
+  if num >=1:
+   for i in range(2, num//2):
+     if (num % i) == 0:
+                return False
+     else:
+                return True
+  else:
+          return False",passed,True,True,2.62007333276415e-05,10,9,9,1,0,0,1,4,4,6,4,8,10,12,23.509775004326936,39.863137138648355,2.6666666666666665,106.3016990363956,5.905649946466422,0.013287712379549451,86.0667731565632
+5,mbpp,train,5,canonical_solution,"# Write a function to convert degrees to radians.
+import math
+def radian_degree(degree):
+ radian = degree*(math.pi/180)
+ return radian",passed,True,True,3.226386666786614e-05,5,4,4,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+6,mbpp,train,6,canonical_solution,"# Write a function to search a literals string in a string and also find the location within the original string where the pattern occurs by using regex.
+import re
+pattern = 'fox'
+text = 'The quick brown fox jumps over the lazy dog.'
+def find_literals(text, pattern):
+  match = re.search(pattern, text)
+  s = match.start()
+  e = match.end()
+  return (match.re.pattern, s, e)",passed,True,True,4.702913333479349e-05,9,8,8,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+7,mbpp,train,7,canonical_solution,"# Write a python function to find nth bell number.
+def bell_Number(n): 
+    bell = [[0 for i in range(n+1)] for j in range(n+1)] 
+    bell[0][0] = 1
+    for i in range(1, n+1):
+        bell[i][0] = bell[i-1][i-1]
+        for j in range(1, i+1): 
+            bell[i][j] = bell[i-1][j-1] + bell[i][j-1] 
+    return bell[n][0] ",passed,True,True,3.907790000046892e-05,9,8,8,1,0,0,1,5,2,6,10,20,8,30,17.509775004326936,90.0,3.3333333333333335,300.0,16.666666666666668,0.03,85.4993700520134
+8,mbpp,train,8,canonical_solution,"# Write a python function to find minimum possible value for the given periodic function.
+def floor_Min(A,B,N):
+    x = max(B - 1,N)
+    return (A*x) // B",passed,True,True,3.343183333299748e-05,4,3,3,1,0,0,1,1,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,100.0
+9,mbpp,train,9,canonical_solution,"# Write a python function to remove the k'th element from a given list.
+def remove_kth_element(list1, L):
+    return  list1[:L-1] + list1[L:]",passed,True,True,0.00011763920000002296,3,3,2,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+10,mbpp,train,10,canonical_solution,"# Write a function to find the maximum of nth column from the given tuple list.
+def max_of_nth(test_list, N):
+  res = max([sub[N] for sub in test_list])
+  return (res) ",passed,True,True,7.990389999955975e-05,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+11,mbpp,train,11,canonical_solution,"# Write a python function to merge the first and last elements separately in a list of lists.
+def merge(lst):  
+    return [list(ele) for ele in list(zip(*lst))] ",passed,True,True,0.00011463190000000622,3,2,2,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+12,mbpp,train,12,canonical_solution,"# Write a function to find the maximum value in record list as tuple attribute in the given tuple list.
+def maximum_value(test_list):
+  res = [(key, max(lst)) for key, lst in test_list]
+  return (res) ",passed,True,True,0.000135260066666613,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+13,mbpp,train,13,canonical_solution,"# Write a function to find the cumulative sum of all the values that are present in the given tuple list.
+def cummulative_sum(test_list):
+  res = sum(map(sum, test_list))
+  return (res)",passed,True,True,6.893739999895843e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+14,mbpp,train,14,canonical_solution,"# Write a function to find average value of the numbers in a given tuple of tuples.
+def average_tuple(nums):
+    result = [sum(x) / len(x) for x in zip(*nums)]
+    return result",passed,True,True,0.00014515133332982562,4,3,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+15,mbpp,train,15,canonical_solution,"# Write a function to perfom the modulo of tuple elements in the given two tuples.
+def tuple_modulo(test_tup1, test_tup2):
+  res = tuple(ele1 % ele2 for ele1, ele2 in zip(test_tup1, test_tup2)) 
+  return (res) ",passed,True,True,7.922679999978754e-05,4,3,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+16,mbpp,train,16,canonical_solution,"# Write a function to check for the number of jumps required of given length to reach a point of form (d, 0) from origin in a 2d plane.
+def min_Jumps(a, b, d): 
+    temp = a 
+    a = min(a, b) 
+    b = max(temp, b) 
+    if (d >= b): 
+        return (d + b - 1) / b 
+    if (d == 0): 
+        return 0
+    if (d == a): 
+        return 1
+    else:
+        return 2",passed,True,True,3.5699566666735906e-05,13,12,12,1,0,0,1,4,5,7,6,12,12,18,31.26112492884004,64.52932501298082,4.285714285714286,276.55425005563205,15.36412500309067,0.02150977500432694,79.71434779276923
+17,mbpp,train,17,canonical_solution,"# Write a function to divide two lists using map and lambda function.
+def div_list(nums1,nums2):
+  result = map(lambda x, y: x / y, nums1, nums2)
+  return list(result)",passed,True,True,4.7847099999861105e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+18,mbpp,train,18,canonical_solution,"# Write a function to move all the numbers in it to the given string.
+def move_num(test_str):
+  res = ''
+  dig = ''
+  for ele in test_str:
+    if ele.isdigit():
+      dig += ele
+    else:
+      res += ele
+  res += dig
+  return (res) ",passed,True,True,3.548779999960061e-05,11,10,10,1,0,0,1,3,1,3,3,6,4,9,4.754887502163469,18.0,1.0,18.0,1.0,0.006,86.81053524944028
+19,mbpp,train,19,canonical_solution,"# Write a function to find the largest subset where each pair is divisible.
+def largest_subset(a, n):
+	dp = [0 for i in range(n)]
+	dp[n - 1] = 1; 
+	for i in range(n - 2, -1, -1):
+		mxm = 0;
+		for j in range(i + 1, n):
+			if a[j] % a[i] == 0 or a[i] % a[j] == 0:
+				mxm = max(mxm, dp[j])
+		dp[i] = 1 + mxm
+	return max(dp)",passed,True,True,7.212733333403776e-05,11,10,10,1,0,0,1,6,6,14,11,20,20,31,68.81274391313339,133.97977094150824,4.285714285714286,574.1990183207496,31.899945462263865,0.04465992364716941,80.30290440079402
+20,mbpp,train,20,canonical_solution,"# Write a function to increment the numeric values in the given strings by k.
+def increment_numerics(test_list, K):
+  res = [str(int(ele) + K) if ele.isdigit() else ele for ele in test_list]
+  return res ",passed,True,True,7.377486666655386e-05,4,3,3,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+21,mbpp,train,21,canonical_solution,"# Write a function to find the median of two sorted arrays of same size.
+def get_median(arr1, arr2, n):
+  i = 0
+  j = 0
+  m1 = -1
+  m2 = -1
+  count = 0
+  while count < n + 1:
+    count += 1
+    if i == n:
+      m1 = m2
+      m2 = arr2[0]
+      break
+    elif j == n:
+      m1 = m2
+      m2 = arr1[0]
+      break
+    if arr1[i] <= arr2[j]:
+      m1 = m2
+      m2 = arr1[i]
+      i += 1
+    else:
+      m1 = m2
+      m2 = arr2[j]
+      j += 1
+  return (m1 + m2)/2",passed,True,True,7.690896666569339e-05,26,25,25,1,0,0,1,5,6,12,12,22,18,34,58.52932501298082,141.7774500490386,5.5,779.7759752697124,43.32088751498402,0.0472591500163462,65.5408341745524
+22,mbpp,train,22,canonical_solution,"# Write a function to find the n-th power of individual elements in a list using lambda function.
+def nth_nums(nums,n):
+ nth_nums = list(map(lambda x: x ** n, nums))
+ return nth_nums",passed,True,True,7.74460333332172e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+23,mbpp,train,23,canonical_solution,"# Write a python function to convert the given string to upper case.
+def is_upper(string):
+  return (string.upper())",passed,True,True,2.643683333332092e-05,3,2,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+24,mbpp,train,24,canonical_solution,"# Write a python function to interchange first and last elements in a given list.
+def swap_List(newList): 
+    size = len(newList) 
+    temp = newList[0] 
+    newList[0] = newList[size - 1] 
+    newList[size - 1] = temp   
+    return newList ",passed,True,True,5.539576666630334e-05,7,6,6,1,0,0,1,1,1,2,2,4,3,6,2.0,9.509775004326938,1.0,9.509775004326938,0.5283208335737188,0.003169925001442313,97.93016845803552
+25,mbpp,train,25,canonical_solution,"# Write a python function to find the largest triangle that can be inscribed in the semicircle.
+def triangle_area(r) :  
+    if r < 0 : 
+        return -1
+    return r * r ",passed,True,True,2.480693333382078e-05,5,4,4,1,0,0,1,2,3,3,3,5,6,8,9.509775004326938,20.67970000576925,2.5,51.69925001442312,2.87218055635684,0.006893233335256416,100.0
+26,mbpp,train,26,canonical_solution,"# Write a python function to find the smallest missing number from the given array.
+def find_First_Missing(array,start,end): 
+    if (start > end): 
+        return end + 1
+    if (start != array[start]): 
+        return start; 
+    mid = int((start + end) / 2) 
+    if (array[mid] == mid): 
+        return find_First_Missing(array,mid+1,end) 
+    return find_First_Missing(array,start,mid) ",passed,True,True,8.297109999754563e-05,10,9,9,1,0,0,1,4,5,8,7,14,13,21,35.60964047443681,77.70923408096293,4.375,339.97789910421284,18.887661061345156,0.025903078026987644,84.0368814590983
+27,mbpp,train,27,canonical_solution,"# Write a function to replace all spaces in the given string with character * list item * list item * list item * list item '%20'.
+MAX=1000;
+def replace_spaces(string):
+  string=string.strip()
+  i=len(string)
+  space_count=string.count(' ')
+  new_length = i + space_count*2
+  if new_length > MAX:
+    return -1
+  index = new_length-1
+  string=list(string)
+  for f in range(i-2, new_length-2):
+    string.append('0')
+  for j in range(i-1, 0, -1):
+    if string[j] == ' ':
+      string[index] = '0'
+      string[index-1] = '2'
+      string[index-2] = '%'
+      index=index-3
+    else:
+      string[index] = string[j]
+      index -= 1
+  return ''.join(string)",passed,True,True,3.851693333369137e-05,23,22,22,1,0,0,1,5,6,11,14,26,17,40,53.563522809337215,163.4985136500136,7.090909090909091,1159.3530967910056,64.40850537727809,0.05449950455000453,67.04601257962284
+28,mbpp,train,28,canonical_solution,"# Write a python function to find even numbers from a mixed list.
+def Split(list): 
+    ev_li = [] 
+    for i in list: 
+        if (i % 2 == 0): 
+            ev_li.append(i)  
+    return ev_li",passed,True,True,6.609813333350682e-05,7,6,6,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,96.17368815601037
+29,mbpp,train,29,canonical_solution,"# Write a function to extract all the adjacent coordinates of the given coordinate tuple.
+def adjac(ele, sub = []): 
+  if not ele: 
+     yield sub 
+  else: 
+     yield from [idx for j in range(ele[0] - 1, ele[0] + 2) 
+                for idx in adjac(ele[1:], sub + [j])] 
+def get_coordinates(test_tup):
+  res = list(adjac(test_tup))
+  return (res) ",passed,True,True,0.00017021976666455884,10,9,9,1,0,0,1,4,3,7,4,7,10,11,24.406371956566698,36.541209043760986,1.5,54.81181356564148,3.0451007536467487,0.012180403014586996,86.33136915676556
+30,mbpp,train,30,canonical_solution,"# Write a function to replace whitespaces with an underscore and vice versa in a given string by using regex.
+import re
+text = 'Python Exercises'
+def replace_spaces(text):
+  text =text.replace ("" "", ""_"")
+  return (text)
+  text =text.replace (""_"", "" "")
+  return (text)",passed,True,True,2.7315900000720226e-05,8,7,7,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+31,mbpp,train,31,canonical_solution,"# Write a python function to move all zeroes to the end of the given list.
+def move_zero(num_list):
+    a = [0 for i in range(num_list.count(0))]
+    x = [ i for i in num_list if i != 0]
+    x.extend(a)
+    return (x)",passed,True,True,8.006886666862556e-05,6,5,5,1,0,0,1,4,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+32,mbpp,train,32,canonical_solution,"# Write a python function to find the sum of xor of all pairs of numbers in the given array.
+def pair_OR_Sum(arr,n) : 
+    ans = 0 
+    for i in range(0,n) :    
+        for j in range(i + 1,n) :   
+            ans = ans + (arr[i] ^ arr[j])          
+    return ans ",passed,True,True,3.893083333347628e-05,7,6,6,1,0,0,1,3,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,94.48789560855883
+33,mbpp,train,33,canonical_solution,"# Write a python function to find the sum of fourth power of first n even natural numbers.
+def even_Power_Sum(n): 
+    sum = 0; 
+    for i in range(1,n + 1): 
+        j = 2*i; 
+        sum = sum + (j*j*j*j); 
+    return sum; ",passed,True,True,2.674410000054195e-05,7,6,6,1,0,0,1,2,2,9,6,12,11,18,30.529325012980813,62.26976913547136,1.3333333333333333,83.02635884729514,4.612575491516397,0.020756589711823786,92.08127349390071
+34,mbpp,train,34,canonical_solution,"# Write a function to push all values into a heap and then pop off the smallest values one at a time.
+import heapq as hq
+def heap_sort(iterable):
+    h = []
+    for value in iterable:
+        hq.heappush(h, value)
+    return [hq.heappop(h) for i in range(len(h))]",passed,True,True,0.00010438820000520839,7,6,6,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+35,mbpp,train,35,canonical_solution,"# Write a python function to check if roots of a quadratic equation are reciprocal of each other or not.
+def Check_Solution(a,b,c): 
+    if (a == c): 
+        return (""Yes""); 
+    else: 
+        return (""No""); ",passed,True,True,3.372806666751179e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+36,mbpp,train,36,canonical_solution,"# Write a function to check whether the given amount has no profit and no loss
+def noprofit_noloss(actual_cost,sale_amount): 
+  if(sale_amount == actual_cost):
+    return True
+  else:
+    return False",passed,True,True,3.009790001063569e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+37,mbpp,train,37,canonical_solution,"# Write a function to calculate wind chill index.
+import math
+def wind_chill(v,t):
+ windchill = 13.12 + 0.6215*t -  11.37*math.pow(v, 0.16) + 0.3965*t*math.pow(v, 0.16)
+ return int(round(windchill, 0))",passed,True,True,3.223769999938971e-05,5,4,4,1,0,0,1,1,3,13,7,14,16,21,52.860603837997665,84.0,1.6153846153846154,135.6923076923077,7.538461538461539,0.028,98.41602853739441
+38,mbpp,train,38,canonical_solution,"# Write a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.
+def sample_nam(sample_names):
+  sample_names=list(filter(lambda el:el[0].isupper() and el[1:].islower(),sample_names))
+  return len(''.join(sample_names))",passed,True,True,5.4202066666183174e-05,4,4,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+39,mbpp,train,39,canonical_solution,"# Write a function to remove the parenthesis area in a string.
+import re
+def remove_parenthesis(items):
+ for item in items:
+    return (re.sub(r"" ?\([^)]+\)"", """", item))",passed,True,True,3.957080000039544e-05,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+40,mbpp,train,40,canonical_solution,"# Write a function to find the nth nonagonal number.
+def is_nonagonal(n): 
+	return int(n * (7 * n - 5) / 2) ",passed,True,True,2.60449333344089e-05,3,2,2,1,0,0,1,1,3,7,4,8,10,12,24.406371956566698,39.863137138648355,1.7142857142857142,68.33680652339717,3.796489251299843,0.013287712379549451,100.0
+41,mbpp,train,41,canonical_solution,"# Write a function to remove similar rows from the given tuple matrix.
+def remove_similar_row(test_list):
+  res = set(sorted([tuple(sorted(set(sub))) for sub in test_list]))
+  return (res) ",passed,True,True,0.00017484870000004094,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+42,mbpp,train,42,canonical_solution,"# Write a function that matches a word containing 'z', not at the start or end of the word.
+import re
+def text_match_wordz_middle(text):
+        patterns = '\Bz\B'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')",passed,True,True,3.284546666672365e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+43,mbpp,train,43,canonical_solution,"# Write a python function to reverse an array upto a given position.
+def reverse_Array_Upto_K(input, k): 
+  return (input[k-1::-1] + input[k:]) ",passed,True,True,6.909866666688913e-05,3,3,2,1,0,0,1,1,3,4,3,5,7,8,12.75488750216347,22.458839376460833,1.875,42.11032383086406,2.3394624350480036,0.007486279792153611,100.0
+44,mbpp,train,44,canonical_solution,"# Write a function to find the product of it’s kth index in the given tuples.
+def get_product(val) : 
+	res = 1
+	for ele in val: 
+		res *= ele 
+	return res 
+def find_k_product(test_list, K):
+  res = get_product([sub[K] for sub in test_list])
+  return (res) ",passed,True,True,7.949680000010061e-05,9,8,8,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,94.71066273856995
+45,mbpp,train,45,canonical_solution,"# Write a python function to count number of cubes of size k in a cube of size n.
+def No_of_cubes(N,K):
+    No = 0
+    No = (N - K + 1)
+    No = pow(No, 3)
+    return No",passed,True,True,2.943600000027876e-05,6,5,5,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,99.66224982150547
+46,mbpp,train,46,canonical_solution,"# Write a function to split a string at uppercase letters.
+import re
+def split_upperstring(text):
+ return (re.findall('[A-Z][^A-Z]*', text))",passed,True,True,9.664073333321236e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+47,mbpp,train,47,canonical_solution,"# Write a function to exchange the position of every n-th value with (n+1)th value and (n+1)th value with n-th value in a given list.
+from itertools import zip_longest, chain, tee
+def exchange_elements(lst):
+    lst1, lst2 = tee(iter(lst), 2)
+    return list(chain.from_iterable(zip_longest(lst[1::2], lst[::2])))",passed,True,True,7.849840000062613e-05,5,5,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+48,mbpp,train,48,canonical_solution,"# Write a python function to calculate the sum of the numbers in a list between the indices of a specified range.
+def sum_Range_list(nums, m, n):                                                                                                                                                                                                
+    sum_range = 0                                                                                                                                                                                                         
+    for i in range(m, n+1, 1):                                                                                                                                                                                        
+        sum_range += nums[i]                                                                                                                                                                                                  
+    return sum_range   ",passed,True,True,6.638873333410326e-05,6,5,5,1,0,0,1,2,1,4,2,4,5,6,8.0,13.931568569324174,0.5,6.965784284662087,0.3869880158145604,0.004643856189774725,99.85407908721824
+49,mbpp,train,49,canonical_solution,"# Write a python function to check whether the given two arrays are equal or not.
+def are_Equal(arr1,arr2,n,m):
+    if (n != m):
+        return False
+    arr1.sort()
+    arr2.sort()
+    for i in range(0,n - 1):
+        if (arr1[i] != arr2[i]):
+            return False
+    return True",passed,True,True,6.0325299999893406e-05,10,9,9,1,0,0,1,4,2,5,3,6,7,9,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,87.45339331856998
+50,mbpp,train,50,canonical_solution,"# Write a function to check if one tuple is a subset of another tuple.
+def check_subset(test_tup1, test_tup2):
+  res = set(test_tup2).issubset(test_tup1)
+  return (res) ",passed,True,True,5.65069999993284e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+51,mbpp,train,51,canonical_solution,"# Write a function to flatten the given tuple matrix into the tuple list with each tuple representing each column.
+def matrix_to_list(test_list):
+  temp = [ele for sub in test_list for ele in sub]
+  res = list(zip(*temp))
+  return (str(res))",passed,True,True,0.00012659953333316783,5,4,4,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+52,mbpp,train,52,canonical_solution,"# Write a function to group a sequence of key-value pairs into a dictionary of lists using collections module.
+from collections import defaultdict
+def grouping_dictionary(l):
+    d = defaultdict(list)
+    for k, v in l:
+        d[k].append(v)
+    return d",passed,True,True,0.00014796589999832577,7,6,6,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+53,mbpp,train,53,canonical_solution,"# Write a function to find the perimeter of a rectangle.
+def rectangle_perimeter(l,b):
+  perimeter=2*(l+b)
+  return perimeter",passed,True,True,3.3527399999873826e-05,4,3,3,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+54,mbpp,train,54,canonical_solution,"# Write a python function to find the sum of fifth power of n natural numbers.
+def fifth_Power_Sum(n) : 
+    sm = 0 
+    for i in range(1,n+1) : 
+        sm = sm + (i*i*i*i*i) 
+    return sm ",passed,True,True,2.855946666689609e-05,6,5,5,1,0,0,1,2,2,8,6,12,10,18,26.0,59.794705707972525,1.5,89.69205856195879,4.9828921423310435,0.019931568569324175,95.42416643186002
+55,mbpp,train,55,canonical_solution,"# Write a python function to find the minimum sum of absolute differences of two arrays.
+def find_Min_Sum(a,b,n): 
+    a.sort() 
+    b.sort() 
+    sum = 0  
+    for i in range(n): 
+        sum = sum + abs(a[i] - b[i]) 
+    return sum",passed,True,True,6.241760002012597e-05,8,7,7,1,0,0,1,2,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,93.5889813210104
+56,mbpp,train,56,canonical_solution,"# Write a python function to find the first digit in factorial of a given number.
+import math 
+def first_Digit(n) : 
+    fact = 1
+    for i in range(2,n + 1) : 
+        fact = fact * i 
+        while (fact % 10 == 0) :  
+            fact = int(fact / 10) 
+    while (fact >= 10) : 
+        fact = int(fact / 10) 
+    return math.floor(fact) ",passed,True,True,2.178546666679419e-05,11,10,10,1,0,0,1,4,6,7,7,14,13,21,35.161259458730164,77.70923408096293,6.0,466.2554044857776,25.903078026987643,0.025903078026987644,82.22835270978145
+57,mbpp,train,57,canonical_solution,"# Write a function to find the item with maximum occurrences in a given list.
+def max_occurrences(list1):
+    max_val = 0
+    result = list1[0] 
+    for i in list1:
+        occu = list1.count(i)
+        if occu > max_val:
+            max_val = occu
+            result = i 
+    return result",passed,True,True,9.001429999860496e-05,10,9,9,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,92.66715367674213
+58,mbpp,train,58,canonical_solution,"# Write a python function to print duplicants from a list of integers.
+def Repeat(x): 
+    _size = len(x) 
+    repeated = [] 
+    for i in range(_size): 
+        k = i + 1
+        for j in range(k, _size): 
+            if x[i] == x[j] and x[i] not in repeated: 
+                repeated.append(x[i]) 
+    return repeated ",passed,True,True,7.490073333353091e-05,10,9,9,1,0,0,1,5,4,8,4,8,12,12,32.0,43.01955000865388,2.0,86.03910001730776,4.779950000961542,0.014339850002884626,85.7005428815864
+59,mbpp,train,59,canonical_solution,"# Write a python function to choose points from two ranges such that no point lies in both the ranges.
+def find_Points(l1,r1,l2,r2): 
+    x = min(l1,l2) if (l1 != l2) else -1
+    y = max(r1,r2) if (r1 != r2) else -1
+    return (x,y)",passed,True,True,4.548969999783973e-05,5,4,4,1,0,0,1,3,2,5,4,6,7,10,13.60964047443681,28.07354922057604,1.2,33.688259064691245,1.8715699480384025,0.009357849740192013,100.0
+60,mbpp,train,60,canonical_solution,"# Write a function to find the maximum sum that can be formed which has no three consecutive elements present.
+def max_sum_of_three_consecutive(arr, n): 
+	sum = [0 for k in range(n)] 
+	if n >= 1: 
+		sum[0] = arr[0] 
+	if n >= 2: 
+		sum[1] = arr[0] + arr[1] 
+	if n > 2: 
+		sum[2] = max(sum[1], max(arr[1] + arr[2], arr[0] + arr[2])) 
+	for i in range(3, n): 
+		sum[i] = max(max(sum[i-1], sum[i-2] + arr[i]), arr[i] + arr[i-1] + sum[i-3]) 
+	return sum[n-1]",passed,True,True,5.4400800000090994e-05,12,11,11,1,0,0,1,6,4,17,14,28,21,42,77.48686830125578,184.47733175670794,3.2941176470588234,607.6900340220967,33.76055744567204,0.06149244391890265,77.71221974691106
+61,mbpp,train,61,canonical_solution,"# Write a function to sort a list in a dictionary.
+def sorted_dict(dict1):
+  sorted_dict = {x: sorted(y) for x, y in dict1.items()}
+  return sorted_dict",passed,True,True,0.0002591033999995792,4,4,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+62,mbpp,train,62,canonical_solution,"# Write a function to find the largest possible value of k such that k modulo x is y.
+import sys 
+def find_max_val(n, x, y): 
+	ans = -sys.maxsize 
+	for k in range(n + 1): 
+		if (k % x == y): 
+			ans = max(ans, k) 
+	return (ans if (ans >= 0 and
+					ans <= n) else -1) ",passed,True,True,4.964666666751327e-05,9,7,8,1,0,0,1,5,7,11,8,14,18,22,57.705232259413506,91.73835003173087,4.454545454545454,408.6526501413466,22.70292500785259,0.030579450010576957,86.70622866416429
+63,mbpp,train,63,canonical_solution,"# Write a python function to find the average of even numbers till a given even number.
+def average_Even(n) : 
+    if (n% 2!= 0) : 
+        return (""Invalid Input"") 
+        return -1  
+    sm = 0
+    count = 0
+    while (n>= 2) : 
+        count = count+1
+        sm = sm+n 
+        n = n-2
+    return sm // count ",passed,True,True,2.7311900036390096e-05,12,11,11,1,0,0,1,3,7,7,8,15,14,23,39.302968908806456,87.56916320732489,7.5,656.7687240549367,36.487151336385374,0.029189721069108297,80.38152261836811
+64,mbpp,train,64,canonical_solution,"# Write a python function to shift first element to the end of given list.
+def move_last(num_list):
+    a = [num_list[0] for i in range(num_list.count(num_list[0]))]
+    x = [ i for i in num_list if i != num_list[0]]
+    x.extend(a)
+    return (x)",passed,True,True,6.902173333334834e-05,6,5,5,1,0,0,1,4,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+65,mbpp,train,65,canonical_solution,"# Write a function to count occurrence of a character in a string.
+def count_char(string,char):
+ count = 0
+ for i in range(len(string)):
+    if(string[i] == char):
+        count = count + 1
+ return count",passed,True,True,2.7194199999295656e-05,7,6,6,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,96.17368815601037
+66,mbpp,train,66,canonical_solution,"# Write a python function to count number of vowels in the string.
+def Check_Vow(string, vowels): 
+    final = [each for each in string if each in vowels] 
+    return(len(final)) 
+",passed,True,True,2.6942833333502373e-05,4,3,3,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+67,mbpp,train,67,canonical_solution,"# Write a python function to replace multiple occurence of character by single.
+import re 
+def replace(string, char): 
+    pattern = char + '{2,}'
+    string = re.sub(pattern, char, string) 
+    return string ",passed,True,True,4.1517433333145465e-05,6,5,5,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+68,mbpp,train,68,canonical_solution,"# Write a function to check whether the given ip address is valid or not using regex.
+import re 
+regex = '''^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
+			25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
+			25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
+			25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$'''
+def check_IP(Ip): 
+	if(re.search(regex, Ip)): 
+		return (""Valid IP address"") 
+	else: 
+		return (""Invalid IP address"") ",passed,True,True,3.0044000000846913e-05,11,7,10,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+69,mbpp,train,69,canonical_solution,"# Write a python function to check whether a sequence of numbers has a decreasing trend or not.
+def decreasing_trend(nums):
+    if (sorted(nums)== nums):
+        return True
+    else:
+        return False",passed,True,True,4.098460000060792e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+70,mbpp,train,70,canonical_solution,"# Write a python function to set the right most unset bit.
+import math 
+def get_Pos_Of_Right_most_Set_Bit(n): 
+    return int(math.log2(n&-n)+1)   
+def set_Right_most_Unset_Bit(n): 
+    if (n == 0): 
+        return 1
+    if ((n & (n + 1)) == 0):     
+        return n 
+    pos = get_Pos_Of_Right_most_Set_Bit(~n)      
+    return ((1 << (pos - 1)) | n) ",passed,True,True,2.5611400000021454e-05,11,10,10,1,0,0,1,1,8,12,11,20,20,31,67.01955000865388,133.97977094150824,6.666666666666667,893.1984729433883,49.6221373857438,0.04465992364716941,80.70641317272384
+71,mbpp,train,71,canonical_solution,"# Write a function to find maximum of three numbers.
+def max_of_three(num1,num2,num3): 
+    if (num1 >= num2) and (num1 >= num3):
+       lnum = num1
+    elif (num2 >= num1) and (num2 >= num3):
+       lnum = num2
+    else:
+       lnum = num3
+    return lnum",passed,True,True,3.491170000036921e-05,9,8,8,1,0,0,1,5,2,7,6,12,9,18,21.651484454403228,57.058650025961626,1.7142857142857142,97.8148286159342,5.434157145329678,0.019019550008653876,86.88521561640762
+72,mbpp,train,72,canonical_solution,"# Write a python function to convert a list of multiple integers into a single integer.
+def convert(list): 
+    s = [str(i) for i in list] 
+    res = int("""".join(s))  
+    return (res) ",passed,True,True,3.977736666532413e-05,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+73,mbpp,train,73,canonical_solution,"# Write a function to remove duplicate words from a given string using collections module.
+from collections import OrderedDict
+def remove_duplicate(string):
+  result = ' '.join(OrderedDict((w,w) for w in string.split()).keys())
+  return result",passed,True,True,3.8306999999804245e-05,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+74,mbpp,train,74,canonical_solution,"# Write a function to add two integers. however, if the sum is between the given range it will return 20.
+def sum_nums(x, y,m,n):
+    sum_nums= x + y
+    if sum_nums in range(m, n):
+        return 20
+    else:
+        return sum_nums",passed,True,True,3.7602233332260465e-05,7,6,6,1,0,0,1,2,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,96.30819107998695
+75,mbpp,train,75,canonical_solution,"# Write a function to remove everything except alphanumeric characters from the given string by using regex.
+import re
+def remove_extra_char(text1):
+  pattern = re.compile('[\W_]+')
+  return (pattern.sub('', text1))",passed,True,True,2.355066666742308e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+76,mbpp,train,76,canonical_solution,"# Write a function to check if the triangle is valid or not.
+def validity_triangle(a,b,c):
+ total = a + b + c
+ if total == 180:
+    return True
+ else:
+    return False",passed,True,True,3.431403332948927e-05,7,6,6,1,0,0,1,2,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,94.62239853253543
+77,mbpp,train,77,canonical_solution,"# Write a python function to remove spaces from a given string.
+def remove_spaces(str1):
+  str1 = str1.replace(' ','')
+  return str1",passed,True,True,2.619303333328086e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+78,mbpp,train,78,canonical_solution,"# Write a function to access dictionary key’s element by index.
+def access_key(ditionary,key):
+  return list(ditionary)[key]",passed,True,True,5.5519099998946333e-05,3,2,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+79,mbpp,train,79,canonical_solution,"# Write a python function to check whether a sequence of numbers has an increasing trend or not.
+def increasing_trend(nums):
+    if (sorted(nums)== nums):
+        return True
+    else:
+        return False",passed,True,True,4.329403333448075e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+80,mbpp,train,80,canonical_solution,"# Write a python function to find the smallest prime divisor of a number.
+def smallest_Divisor(n): 
+    if (n % 2 == 0): 
+        return 2; 
+    i = 3;  
+    while (i*i <= n): 
+        if (n % i == 0): 
+            return i; 
+        i += 2; 
+    return n; ",passed,True,True,2.4997800005621683e-05,10,9,9,1,0,0,1,4,5,7,7,14,12,21,31.26112492884004,75.28421251514429,5.0,376.42106257572146,20.912281254206746,0.025094737505048096,84.1332901931278
+81,mbpp,train,81,canonical_solution,"# Write a function to multiply two lists using map and lambda function.
+def mul_list(nums1,nums2):
+  result = map(lambda x, y: x * y, nums1, nums2)
+  return list(result)",passed,True,True,6.518250000008645e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+82,mbpp,train,82,canonical_solution,"# Write a python function to check whether the given number can be represented by sum of two squares or not.
+def sum_Square(n) : 
+    i = 1 
+    while i*i <= n : 
+        j = 1
+        while (j*j <= n) : 
+            if (i*i+j*j == n) : 
+                return True
+            j = j+1
+        i = i+1     
+    return False",passed,True,True,2.960386666662392e-05,11,10,10,1,0,0,1,4,4,9,10,20,13,30,36.52932501298081,111.01319154423277,4.444444444444445,493.39196241881234,27.410664578822907,0.03700439718141092,81.14372714926601
+83,mbpp,train,83,canonical_solution,"# Write a python function to count occurences of a character in a repeated string.
+def count_Char(str,x): 
+    count = 0
+    for i in range(len(str)):  
+        if (str[i] == x) : 
+            count += 1
+    n = 10
+    repititions = n // len(str)  
+    count = count * repititions  
+    l = n % len(str)  
+    for i in range(l): 
+        if (str[i] == x):  
+            count += 1
+    return count  ",passed,True,True,3.4742299999379614e-05,14,13,13,1,0,0,1,5,5,9,7,14,14,21,40.13896548741762,79.95445336320968,3.888888888888889,310.93398530137097,17.27411029452061,0.026651484454403226,77.59826033873647
+84,mbpp,train,84,canonical_solution,"# Write a python function to find sum of prime numbers between 1 to n.
+def sum_Of_Primes(n): 
+    prime = [True] * (n + 1)  
+    p = 2
+    while p * p <= n: 
+        if prime[p] == True:  
+            i = p * 2
+            while i <= n: 
+                prime[i] = False
+                i += p 
+        p += 1    
+    sum = 0
+    for i in range (2,n + 1): 
+        if(prime[i]): 
+            sum += i 
+    return sum",passed,True,True,2.8604633333391877e-05,16,15,15,1,0,0,1,6,4,10,11,22,14,33,41.219280948873624,125.64271242790092,4.4,552.8279346827641,30.712663037931335,0.04188090414263364,73.74742726801777
+85,mbpp,train,85,canonical_solution,"# Write a function to find the frequency of each element in the given list.
+from collections import defaultdict 
+def freq_element(test_tup):
+  res = defaultdict(int)
+  for ele in test_tup:
+    res[ele] += 1
+  return (str(dict(res))) ",passed,True,True,8.517916666429907e-05,7,6,6,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.90348152172656
+86,mbpp,train,86,canonical_solution,"# Write a function to find the greatest common divisor (gcd) of two integers by using recursion.
+def recur_gcd(a, b):
+	low = min(a, b)
+	high = max(a, b)
+	if low == 0:
+		return high
+	elif low == 1:
+		return 1
+	else:
+		return recur_gcd(low, high%low)",passed,True,True,3.205363332957252e-05,10,9,9,1,0,0,1,3,2,4,3,6,6,9,10.0,23.264662506490403,1.5,34.89699375973561,1.938721875540867,0.007754887502163467,87.83886992379642
+87,mbpp,train,87,canonical_solution,"# Write a function to get the length of a complex number.
+import cmath
+def len_complex(a,b):
+  cn=complex(a,b)
+  length=abs(cn)
+  return length",passed,True,True,3.4609766665501714e-05,6,5,5,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+88,mbpp,train,88,canonical_solution,"# ## write a function to find the minimum number of jumps to reach the end of the array for the given array of integers where each element represents the max number of steps that can be made forward from that element. > indented block > indented block
+def min_jumps(arr, n):
+	jumps = [0 for i in range(n)]
+	if (n == 0) or (arr[0] == 0):
+		return float('inf')
+	jumps[0] = 0
+	for i in range(1, n):
+		jumps[i] = float('inf')
+		for j in range(i):
+			if (i <= j + arr[j]) and (jumps[j] != float('inf')):
+				jumps[i] = min(jumps[i], jumps[j] + 1)
+				break
+	return jumps[n-1]",passed,True,True,7.864943333212674e-05,13,12,12,1,0,0,1,8,7,15,9,18,22,27,78.25484338853101,120.40465370320703,4.2,505.69954555346953,28.094419197414975,0.04013488456773568,77.27958770856814
+89,mbpp,train,89,canonical_solution,"# Write a function to multiply consecutive numbers of a given list.
+def mul_consecutive_nums(nums):
+    result = [b*a for a, b in zip(nums[:-1], nums[1:])]
+    return result",passed,True,True,6.37547333335912e-05,4,4,3,1,0,0,1,2,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,100.0
+90,mbpp,train,90,canonical_solution,"# Write a function to group the 1st elements on the basis of 2nd elements in the given tuple list.
+from itertools import groupby 
+def group_element(test_list):
+  res = dict()
+  for key, val in groupby(sorted(test_list, key = lambda ele: ele[1]), key = lambda ele: ele[1]):
+    res[key] = [ele[0] for ele in val] 
+  return (res)
+",passed,True,True,0.00015800573333422108,7,6,6,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+91,mbpp,train,91,canonical_solution,"# Write a python function to find the last two digits in factorial of a given number.
+def last_Two_Digits(N): 
+    if (N >= 10): 
+        return
+    fac = 1
+    for i in range(1,N + 1): 
+        fac = (fac * i) % 100
+    return (fac) ",passed,True,True,2.7349066658644006e-05,8,7,7,1,0,0,1,3,4,7,4,8,11,12,27.651484454403228,41.51317942364757,2.2857142857142856,94.88726725405158,5.27151484744731,0.01383772647454919,90.46055412215364
+92,mbpp,train,92,canonical_solution,"# Write a function to remove multiple spaces in a string by using regex.
+import re
+def remove_multiple_spaces(text1):
+  return (re.sub(' +',' ',text1))",passed,True,True,3.133213333512685e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+93,mbpp,train,93,canonical_solution,"# Write a function to extract unique values from the given dictionary values.
+def extract_unique(test_dict):
+  res = list(sorted({ele for val in test_dict.values() for ele in val}))
+  return res",passed,True,True,0.00017791386666961748,4,3,3,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+94,mbpp,train,94,canonical_solution,"# Write a function to check if each element of the second tuple is greater than its corresponding index in the first tuple.
+def check_greater(test_tup1, test_tup2):
+  res = all(x < y for x, y in zip(test_tup1, test_tup2))
+  return (res) ",passed,True,True,5.7166633333357215e-05,4,3,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+95,mbpp,train,95,canonical_solution,"# Write a function to zip two given lists of lists.
+def zip_list(list1,list2):  
+ result = list(map(list.__add__, list1, list2)) 
+ return result",passed,True,True,0.00015986203333303214,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+96,mbpp,train,96,canonical_solution,"# Write a function to find number of even elements in the given list using lambda function.
+def count_even(array_nums):
+   count_even = len(list(filter(lambda x: (x%2 == 0) , array_nums)))
+   return count_even",passed,True,True,5.919683333483287e-05,4,4,3,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+97,mbpp,train,97,canonical_solution,"# Write a function to sort dictionary items by tuple product of keys for the given dictionary with tuple keys.
+def sort_dict_item(test_dict):
+  res = {key: test_dict[key] for key in sorted(test_dict.keys(), key = lambda ele: ele[1] * ele[0])}
+  return  (res) 
+",passed,True,True,0.0001167078999998239,4,4,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+98,mbpp,train,98,canonical_solution,"# Write a python function to find the minimum number of swaps required to convert one binary string to another.
+def min_Swaps(str1,str2) : 
+    count = 0
+    for i in range(len(str1)) : 
+        if str1[i] != str2[i] : 
+            count += 1
+    if count % 2 == 0 : 
+        return (count // 2) 
+    else : 
+        return (""Not Possible"") ",passed,True,True,3.3755033333212246e-05,10,9,9,1,0,0,1,4,5,7,5,10,12,15,31.26112492884004,53.77443751081735,3.5714285714285716,192.0515625386334,10.6695312521463,0.017924812503605784,85.15648062028004
+99,mbpp,train,99,canonical_solution,"# Write a function to count the number of elements in a list which are within a specific range.
+def count_range_in_list(li, min, max):
+	ctr = 0
+	for x in li:
+		if min <= x <= max:
+			ctr += 1
+	return ctr",passed,True,True,6.0014199999613996e-05,7,6,6,1,0,0,1,3,2,5,3,5,7,8,13.60964047443681,22.458839376460833,1.0,22.458839376460833,1.2477132986922685,0.007486279792153611,95.04789179829898
+100,mbpp,train,100,canonical_solution,"# Write a function to find the equilibrium index of the given array.
+def equilibrium_index(arr):
+  total_sum = sum(arr)
+  left_sum=0
+  for i, num in enumerate(arr):
+    total_sum -= num
+    if left_sum == total_sum:
+      return i
+    left_sum += num
+  return -1",passed,True,True,4.9611166666352347e-05,10,9,9,1,0,0,1,3,4,4,4,7,8,11,16.0,33.0,3.5,115.5,6.416666666666667,0.011,86.7758440112918
+101,mbpp,train,101,canonical_solution,"# Write a function to find the minimum number of elements that should be removed such that amax-amin<=k.
+def find_ind(key, i, n, 
+			k, arr):
+	ind = -1
+	start = i + 1
+	end = n - 1;
+	while (start < end):
+		mid = int(start +
+				(end - start) / 2)
+		if (arr[mid] - key <= k):
+			ind = mid
+			start = mid + 1
+		else:
+			end = mid
+	return ind
+def removals(arr, n, k):
+	ans = n - 1
+	arr.sort()
+	for i in range(0, n):
+		j = find_ind(arr[i], i, 
+					n, k, arr)
+		if (j != -1):
+			ans = min(ans, n -
+						(j - i + 1))
+	return ans",passed,True,True,7.880956666668955e-05,25,20,24,1,0,0,1,3,7,20,16,30,27,46,106.09004635215048,218.7248250995196,5.25,1148.3053317724778,63.79474065402654,0.0729082750331732,66.56469648601298
+102,mbpp,train,102,canonical_solution,"# Write a function to check whether the given key is present in the dictionary or not.
+def is_key_present(d,x):
+  if x in d:
+    return True
+  else:
+     return False",passed,True,True,7.96245000003637e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+103,mbpp,train,103,canonical_solution,"# Write a function to calculate the harmonic sum of n-1.
+def harmonic_sum(n):
+  if n < 2:
+    return 1
+  else:
+    return 1 / n + (harmonic_sum(n - 1))",passed,True,True,3.634199999851262e-05,6,5,5,1,0,0,1,2,4,5,4,8,9,12,19.60964047443681,38.03910001730775,3.2,121.72512005538482,6.762506669743601,0.012679700005769252,96.79958937626544
+104,mbpp,train,104,canonical_solution,"# Write a function to sort a list of lists by length and value.
+def sort_sublists(list1):
+      list1.sort()  
+      list1.sort(key=len)
+      return  list1",passed,True,True,0.0001496751999980006,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+105,mbpp,train,105,canonical_solution,"# Write a function to find whether an array is subset of another array.
+def is_subset(arr1, m, arr2, n): 
+	hashset = set() 
+	for i in range(0, m): 
+		hashset.add(arr1[i]) 
+	for i in range(0, n): 
+		if arr2[i] in hashset: 
+			continue
+		else: 
+			return False
+	return True		",passed,True,True,8.00063999993957e-05,11,10,10,1,0,0,1,4,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,90.7241220034487
+106,mbpp,train,106,canonical_solution,"# Write a python function to count the total set bits from 1 to n.
+def count_Set_Bits(n) :  
+    n += 1; 
+    powerOf2 = 2;   
+    cnt = n // 2;  
+    while (powerOf2 <= n) : 
+        totalPairs = n // powerOf2;  
+        cnt += (totalPairs // 2) * powerOf2;  
+        if (totalPairs & 1) : 
+            cnt += (n % powerOf2) 
+        else : 
+            cnt += 0
+        powerOf2 <<= 1;    
+    return cnt;  ",passed,True,True,3.14610333324102e-05,14,13,13,1,0,0,1,3,7,10,12,24,17,36,52.87076540327685,147.14866228501225,8.4,1236.048763194103,68.66937573300572,0.04904955409500408,76.01233725686714
+107,mbpp,train,107,canonical_solution,"# Write a python function to convert a string to a list.
+def Convert(string): 
+    li = list(string.split("" "")) 
+    return li ",passed,True,True,4.0764800000185154e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+108,mbpp,train,108,canonical_solution,"# Write a function to count unique keys for each value present in the tuple.
+from collections import defaultdict 
+def get_unique(test_list):
+  res = defaultdict(list)
+  for sub in test_list:
+    res[sub[1]].append(sub[0])
+  res = dict(res)
+  res_dict = dict()
+  for key in res:
+    res_dict[key] = len(list(set(res[key])))
+  return (str(res_dict)) ",passed,True,True,0.00015371206666827674,11,10,10,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+109,mbpp,train,109,canonical_solution,"# Write a function to access the initial and last data of the given tuple record.
+def front_and_rear(test_tup):
+  res = (test_tup[0], test_tup[-1])
+  return (res) ",passed,True,True,5.4492400000090883e-05,4,3,3,1,0,0,1,1,1,1,1,1,2,2,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,100.0
+110,mbpp,train,110,canonical_solution,"# Write a python function to check whether the product of digits of a number at even and odd places is equal or not.
+def product_Equal(n): 
+    if n < 10: 
+        return False
+    prodOdd = 1; prodEven = 1
+    while n > 0: 
+        digit = n % 10
+        prodOdd *= digit 
+        n = n//10
+        if n == 0: 
+            break; 
+        digit = n % 10
+        prodEven *= digit 
+        n = n//10
+    if prodOdd == prodEven: 
+        return True
+    return False",passed,True,True,2.771433334298005e-05,17,17,16,1,0,0,1,5,6,6,10,20,12,30,31.019550008653873,107.5488750216347,10.0,1075.488750216347,59.74937501201927,0.03584962500721157,72.73956569129695
+111,mbpp,train,111,canonical_solution,"# Write a function to remove duplicates from a list of lists.
+import itertools
+def remove_duplicate(list1):
+ list.sort(list1)
+ remove_duplicate = list(list1 for list1,_ in itertools.groupby(list1))
+ return remove_duplicate",passed,True,True,0.00010190503333357507,6,5,5,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+112,mbpp,train,112,canonical_solution,"# Write a function to check if the given tuple contains all valid values or not.
+def check_valid(test_tup):
+  res = not any(map(lambda ele: not ele, test_tup))
+  return (res) ",passed,True,True,4.54841333333178e-05,4,4,3,1,0,0,1,1,1,2,2,2,3,4,2.0,6.339850002884625,0.5,3.1699250014423126,0.17610694452457293,0.002113283334294875,100.0
+113,mbpp,train,113,canonical_solution,"# Write a python function to count the number of distinct power of prime factor of given number.
+def count_Fac(n):  
+    m = n 
+    count = 0
+    i = 2
+    while((i * i) <= m): 
+        total = 0
+        while (n % i == 0): 
+            n /= i 
+            total += 1 
+        temp = 0
+        j = 1
+        while((temp + j) <= total): 
+            temp += j 
+            count += 1
+            j += 1 
+        i += 1
+    if (n != 1): 
+        count += 1 
+    return count ",passed,True,True,2.8708466667618875e-05,20,19,19,1,0,0,1,5,7,12,14,28,19,42,62.67103446305711,178.41295556463058,8.166666666666666,1457.0391371111496,80.9466187283972,0.059470985188210194,69.05030604174526
+114,mbpp,train,114,canonical_solution,"# Write a function to convert the given string of integers into a tuple.
+def str_to_tuple(test_str):
+  res = tuple(map(int, test_str.split(', ')))
+  return (res) ",passed,True,True,5.0587366666832166e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+115,mbpp,train,115,canonical_solution,"# Write a function to find the perimeter of a rombus.
+def rombus_perimeter(a):
+  perimeter=4*a
+  return perimeter",passed,True,True,2.5389433335476497e-05,4,3,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+116,mbpp,train,116,canonical_solution,"# Write a function to calculate the standard deviation.
+import math
+import sys
+def sd_calc(data):
+    n = len(data)
+    if n <= 1:
+        return 0.0
+    mean, sd = avg_calc(data), 0.0
+    for el in data:
+        sd += (float(el) - mean)**2
+    sd = math.sqrt(sd / float(n-1))
+    return sd
+def avg_calc(ls):
+    n, mean = len(ls), 0.0
+    if n <= 1:
+        return ls[0]
+    for el in ls:
+        mean = mean + float(el)
+    mean = mean / float(n)
+    return mean",passed,True,True,5.978136666667429e-05,20,19,19,1,0,0,1,3,5,14,9,18,19,27,64.91260938324326,114.6940428629768,3.2142857142857144,368.65942348813974,20.48107908267443,0.03823134762099227,70.3938910194359
+117,mbpp,train,117,canonical_solution,"# Write a function to create a list taking alternate elements from another given list.
+def alternate_elements(list1):
+    result=[]
+    for item in list1[::2]:
+        result.append(item)
+    return result ",passed,True,True,9.504646666679643e-05,6,5,5,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+118,mbpp,train,118,canonical_solution,"# Write a function that matches a string that has an a followed by zero or more b's.
+import re
+def text_match(text):
+        patterns = 'ab*?'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')",passed,True,True,3.191449999917495e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+119,mbpp,train,119,canonical_solution,"# Write a function to add a dictionary to the tuple.
+def add_dict_to_tuple(test_tup, test_dict):
+  test_tup = list(test_tup)
+  test_tup.append(test_dict)
+  test_tup = tuple(test_tup)
+  return (test_tup) ",passed,True,True,0.00011279883333372708,6,5,5,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+120,mbpp,train,120,canonical_solution,"# Write a function to find a path with the maximum average over all existing paths for the given square matrix of size n*n.
+M = 100
+def maxAverageOfPath(cost, N): 
+	dp = [[0 for i in range(N + 1)] for j in range(N + 1)] 
+	dp[0][0] = cost[0][0] 
+	for i in range(1, N): 
+		dp[i][0] = dp[i - 1][0] + cost[i][0] 
+	for j in range(1, N): 
+		dp[0][j] = dp[0][j - 1] + cost[0][j] 
+	for i in range(1, N): 
+		for j in range(1, N): 
+			dp[i][j] = max(dp[i - 1][j], 
+						dp[i][j - 1]) + cost[i][j] 
+	return dp[N - 1][N - 1] / (2 * N - 1)",passed,True,True,0.00010026889999608102,14,12,13,1,0,0,1,7,4,14,14,28,18,42,61.30296890880645,175.1368500605771,4.0,700.5474002423084,38.91930001346158,0.05837895002019237,75.70312414755116
+121,mbpp,train,121,canonical_solution,"# Write a function to filter the height and width of students which are stored in a dictionary.
+def filter_data(students,h,w):
+    result = {k: s for k, s in students.items() if s[0] >=h and s[1] >=w}
+    return result    ",passed,True,True,0.00014993569999811976,4,4,3,1,0,0,1,4,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,100.0
+122,mbpp,train,122,canonical_solution,"# Write a function to count the same pair in two given lists using map function.
+from operator import eq
+def count_same_pair(nums1, nums2):
+    result = sum(map(eq, nums1, nums2))
+    return result",passed,True,True,7.797936666615139e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+123,mbpp,train,123,canonical_solution,"# Write a function to calculate the sum of all digits of the base to the specified power.
+def power_base_sum(base, power):
+    return sum([int(i) for i in str(pow(base, power))])",passed,True,True,4.00216333332537e-05,3,2,2,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+124,mbpp,train,124,canonical_solution,"# Write a function to extract values between quotation marks of the given string by using regex.
+import re
+def extract_quotation(text1):
+  return (re.findall(r'""(.*?)""', text1))",passed,True,True,4.665293333800946e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+125,mbpp,train,125,canonical_solution,"# Write a function to multiply the adjacent elements of the given tuple.
+def multiply_elements(test_tup):
+  res = tuple(i * j for i, j in zip(test_tup, test_tup[1:]))
+  return (res) ",passed,True,True,6.297013333096401e-05,4,4,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+126,mbpp,train,126,canonical_solution,"# Write a function to remove all characters except letters and numbers using regex
+import re 
+def remove_char(S):
+  result = re.sub('[\W_]+', '', S) 
+  return result",passed,True,True,3.250083333341536e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+127,mbpp,train,127,canonical_solution,"# Write a function to sum elements in two lists.
+def sum_list(lst1,lst2):
+  res_list = [lst1[i] + lst2[i] for i in range(len(lst1))] 
+  return res_list",passed,True,True,7.302079999741788e-05,4,3,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+128,mbpp,train,128,canonical_solution,"# Write a function to add two lists using map and lambda function.
+def add_list(nums1,nums2):
+  result = map(lambda x, y: x + y, nums1, nums2)
+  return list(result)",passed,True,True,5.957713333373249e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+129,mbpp,train,129,canonical_solution,"# Write a function to remove consecutive duplicates of a given list.
+from itertools import groupby
+def consecutive_duplicates(nums):
+    return [key for key, group in groupby(nums)] ",passed,True,True,0.00011213340000040261,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+130,mbpp,train,130,canonical_solution,"# Write a function to find the lateral surface area of a cone.
+import math
+def lateralsurface_cone(r,h):
+  l = math.sqrt(r * r + h * h)
+  LSA = math.pi * r  * l
+  return LSA",passed,True,True,3.596823333206582e-05,6,5,5,1,0,0,1,1,2,7,5,10,9,15,21.651484454403228,47.548875021634686,1.4285714285714286,67.92696431662098,3.7737202398122767,0.01584962500721156,96.25552711495908
+131,mbpp,train,131,canonical_solution,"# Write a function to replace all occurrences of spaces, commas, or dots with a colon.
+import re
+def replace_specialchar(text):
+ return (re.sub(""[ ,.]"", "":"", text))",passed,True,True,2.9556799999378804e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+132,mbpp,train,132,canonical_solution,"# Write a function to find the index of the first occurrence of a given number in a sorted array.
+def find_first_occurrence(A, x):
+    (left, right) = (0, len(A) - 1)
+    result = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if x == A[mid]:
+            result = mid
+            right = mid - 1
+        elif x < A[mid]:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return result",passed,True,True,6.828190000002602e-05,14,13,13,1,0,0,1,4,7,10,10,19,17,29,52.87076540327685,118.53642239625987,6.65,788.2672089351281,43.792622718618226,0.03951214079875329,76.53535489665786
+133,mbpp,train,133,canonical_solution,"# Write a python function to find sum of products of all possible subarrays.
+def sum_Of_Subarray_Prod(arr,n):
+    ans = 0
+    res = 0
+    i = n - 1
+    while (i >= 0):
+        incr = arr[i]*(1 + res)
+        ans += incr
+        res = incr
+        i -= 1
+    return (ans)",passed,True,True,4.402883332659258e-05,11,10,10,1,0,0,1,2,4,9,6,12,13,18,36.52932501298081,66.60791492653966,2.6666666666666665,177.62110647077242,9.867839248376246,0.022202638308846556,82.96612085896375
+134,mbpp,train,134,canonical_solution,"# Write a python function to toggle bits of the number except the first and the last bit.
+def set_middle_bits(n):  
+    n |= n >> 1; 
+    n |= n >> 2; 
+    n |= n >> 4; 
+    n |= n >> 8; 
+    n |= n >> 16;  
+    return (n >> 1) ^ 1
+def toggle_middle_bits(n): 
+    if (n == 1): 
+        return 1
+    return n ^ set_middle_bits(n) ",passed,True,True,2.647049999999022e-05,12,11,11,1,0,0,1,1,4,15,14,28,19,42,66.60335893412778,178.41295556463058,3.7333333333333334,666.0750341079541,37.00416856155301,0.059470985188210194,78.35187701186841
+135,mbpp,train,135,canonical_solution,"# Write a function to locate the left insertion point for a specified value in sorted order.
+import bisect
+def left_insertion(a, x):
+    i = bisect.bisect_left(a, x)
+    return i",passed,True,True,4.43008000000115e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+136,mbpp,train,136,canonical_solution,"# Write a function to check whether the given string is starting with a vowel or not using regex.
+import re 
+regex = '^[aeiouAEIOU][A-Za-z0-9_]*'
+def check_str(string): 
+	if(re.search(regex, string)): 
+		return (""Valid"") 
+	else: 
+		return (""Invalid"") ",passed,True,True,2.9969900000044922e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+137,mbpp,train,137,canonical_solution,"# Write a function to calculate the geometric sum of n-1.
+def geometric_sum(n):
+  if n < 0:
+    return 0
+  else:
+    return 1 / (pow(2, n)) + geometric_sum(n - 1)",passed,True,True,3.045566666438996e-05,6,5,5,1,0,0,1,2,4,6,4,8,10,12,23.509775004326936,39.863137138648355,2.6666666666666665,106.3016990363956,5.905649946466422,0.013287712379549451,96.65715974306615
+138,mbpp,train,138,canonical_solution,"# Write a python function to find the index of smallest triangular number with n digits.
+import math 
+def find_Index(n): 
+    x = math.sqrt(2 * math.pow(10,(n - 1))); 
+    return round(x); ",passed,True,True,2.552496666794468e-05,5,4,4,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+139,mbpp,train,139,canonical_solution,"# Write a function to convert the given tuple to a key-value dictionary using adjacent elements.
+def tuple_to_dict(test_tup):
+  res = dict(test_tup[idx : idx + 2] for idx in range(0, len(test_tup), 2))
+  return (res) ",passed,True,True,8.373596666615413e-05,4,4,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+140,mbpp,train,140,canonical_solution,"# Write a python function to check whether all the characters are same or not.
+def all_Characters_Same(s) :
+    n = len(s)
+    for i in range(1,n) :
+        if s[i] != s[0] :
+            return False
+    return True",passed,True,True,2.8451766665208802e-05,7,6,6,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.76897859774995
+141,mbpp,train,141,canonical_solution,"# Write a function to caluclate the area of a tetrahedron.
+import math
+def area_tetrahedron(side):
+  area = math.sqrt(3)*(side*side)
+  return area",passed,True,True,3.042623333347668e-05,5,4,4,1,0,0,1,1,1,3,2,4,4,6,4.754887502163469,12.0,0.6666666666666666,8.0,0.4444444444444444,0.004,100.0
+142,mbpp,train,142,canonical_solution,"# Write a function to rotate a given list by specified number of items to the right direction.
+def rotate_right(list1,m,n):
+  result =  list1[-(m):]+list1[:-(n)]
+  return result",passed,True,True,0.00011113629999878563,4,4,3,1,0,0,1,1,2,4,3,4,6,7,10.0,18.094737505048094,1.0,18.094737505048094,1.0052631947248942,0.006031579168349364,100.0
+143,mbpp,train,143,canonical_solution,"# Write a function to check if the given tuple has any none value or not.
+def check_none(test_tup):
+  res = any(map(lambda ele: ele is None, test_tup))
+  return (res) ",passed,True,True,4.6201233332491634e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+144,mbpp,train,144,canonical_solution,"# Write a function to find numbers within a given range where every number is divisible by every digit it contains.
+def divisible_by_digits(startnum, endnum):
+    return [n for n in range(startnum, endnum+1) \
+                if not any(map(lambda x: int(x) == 0 or n%int(x) != 0, str(n)))]",passed,True,True,0.00011189723333207743,4,3,3,1,0,0,1,4,6,10,6,11,16,17,48.72905595320056,68.0,3.3,224.39999999999998,12.466666666666665,0.02266666666666667,100.0
+145,mbpp,train,145,canonical_solution,"# Write a function to find area of a sector.
+def sector_area(r,a):
+    pi=22/7
+    if a >= 360:
+        return None
+    sectorarea = (pi*r**2) * (a/360)
+    return sectorarea",passed,True,True,3.3494300002227346e-05,7,6,6,1,0,0,1,2,4,10,6,12,14,18,41.219280948873624,68.53238859703687,2.4,164.4777326328885,9.13765181293825,0.022844129532345624,91.78985941703573
+146,mbpp,train,146,canonical_solution,"# Write a function to find the longest common subsequence for the given three string sequence.
+def lcs_of_three(X, Y, Z, m, n, o): 
+	L = [[[0 for i in range(o+1)] for j in range(n+1)] 
+		for k in range(m+1)] 
+	for i in range(m+1): 
+		for j in range(n+1): 
+			for k in range(o+1): 
+				if (i == 0 or j == 0 or k == 0): 
+					L[i][j][k] = 0
+				elif (X[i-1] == Y[j-1] and
+					X[i-1] == Z[k-1]): 
+					L[i][j][k] = L[i-1][j-1][k-1] + 1
+				else: 
+					L[i][j][k] = max(max(L[i-1][j][k], 
+					L[i][j-1][k]), 
+									L[i][j][k-1]) 
+	return L[m][n][o]",passed,True,True,0.0007833966666680681,17,12,16,1,0,0,1,12,5,18,24,49,23,73,86.66829050039843,330.22002279216196,6.805555555555555,2247.33071066888,124.8517061482711,0.11007334093072065,71.68642933491307
+147,mbpp,train,147,canonical_solution,"# Write a function to put spaces between words starting with capital letters in a given string by using regex.
+import re
+def capital_words_spaces(str1):
+  return re.sub(r""(\w)([A-Z])"", r""\1 \2"", str1)",passed,True,True,4.454376666558346e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+148,mbpp,train,148,canonical_solution,"# Write a function to sort a given list of strings of numbers numerically.
+def sort_numeric_strings(nums_str):
+    result = [int(x) for x in nums_str]
+    result.sort()
+    return result",passed,True,True,0.00012684319999986353,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+149,mbpp,train,149,canonical_solution,"# Write a function to add the given tuple to the given list.
+def add_tuple(test_list, test_tup):
+  test_list += test_tup
+  return (test_list) ",passed,True,True,7.056866666630413e-05,4,3,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+150,mbpp,train,150,canonical_solution,"# Write a function to check if the given array represents min heap or not.
+def check_min_heap(arr, i):
+    if 2 * i + 2 > len(arr):
+        return True
+    left_child = (arr[i] <= arr[2 * i + 1]) and check_min_heap(arr, 2 * i + 1)
+    right_child = (2 * i + 2 == len(arr)) or (arr[i] <= arr[2 * i + 2] 
+                                      and check_min_heap(arr, 2 * i + 2))
+    return left_child and right_child",passed,True,True,5.747446666646283e-05,8,6,7,1,0,0,1,6,7,25,20,40,32,60,135.74788919877133,300.0,5.6,1680.0,93.33333333333333,0.1,85.50314424034941
+151,mbpp,train,151,canonical_solution,"# Write a function to find the nth jacobsthal number.
+def jacobsthal_num(n): 
+	dp = [0] * (n + 1) 
+	dp[0] = 0
+	dp[1] = 1
+	for i in range(2, n+1): 
+		dp[i] = dp[i - 1] + 2 * dp[i - 2] 
+	return dp[n]",passed,True,True,2.7770966668564748e-05,8,7,7,1,0,0,1,2,3,9,7,14,12,21,33.28421251514428,75.28421251514429,2.3333333333333335,175.66316253533668,9.759064585296482,0.025094737505048096,88.78491120311229
+152,mbpp,train,152,canonical_solution,"# Write a function to find minimum k records from tuple list.
+def min_k(test_list, K):
+  res = sorted(test_list, key = lambda x: x[1])[:K]
+  return (res) ",passed,True,True,0.00011356773333327889,4,4,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+153,mbpp,train,153,canonical_solution,"# Write a function to find common index elements from three lists.
+def extract_index_list(l1, l2, l3):
+    result = []
+    for m, n, o in zip(l1, l2, l3):
+        if (m == n == o):
+            result.append(m)
+    return result",passed,True,True,0.00012048120000069199,7,6,6,1,0,0,1,3,1,3,2,3,4,5,4.754887502163469,10.0,0.5,5.0,0.2777777777777778,0.0033333333333333335,97.50831035689417
+154,mbpp,train,154,canonical_solution,"# Write a function to find the second smallest number in a list.
+def second_smallest(numbers):
+  if (len(numbers)<2):
+    return
+  if ((len(numbers)==2)  and (numbers[0] == numbers[1]) ):
+    return
+  dup_items = set()
+  uniq_items = []
+  for x in numbers:
+    if x not in dup_items:
+      uniq_items.append(x)
+      dup_items.add(x)
+  uniq_items.sort()    
+  return  uniq_items[1] ",passed,True,True,4.940283333307131e-05,14,13,13,1,0,0,1,6,4,9,5,10,13,15,36.52932501298081,55.506595772116384,2.2222222222222223,123.34799060470309,6.852666144705727,0.01850219859070546,78.57356295416479
+155,mbpp,train,155,canonical_solution,"# Write a function that matches a string that has an a followed by zero or one 'b'.
+import re
+def text_match_zero_one(text):
+        patterns = 'ab?'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')",passed,True,True,3.252830000140724e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+156,mbpp,train,156,canonical_solution,"# Write a function to count the pairs of reverse strings in the given string list.
+def count_reverse_pairs(test_list):
+  res = sum([1 for idx in range(0, len(test_list)) for idxn in range(idx, len( 
+	test_list)) if test_list[idxn] == str(''.join(list(reversed(test_list[idx]))))]) 
+  return str(res)",passed,True,True,7.057986666628343e-05,5,3,4,1,0,0,1,4,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+157,mbpp,train,157,canonical_solution,"# Write a function to count number of unique lists within a list.
+def unique_sublists(list1):
+    result ={}
+    for l in  list1: 
+        result.setdefault(tuple(l), list()).append(1) 
+    for a, b in result.items(): 
+        result[a] = sum(b)
+    return result",passed,True,True,0.00016993339999847498,8,7,7,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+158,mbpp,train,158,canonical_solution,"# Write a function to check a decimal with a precision of 2.
+def is_decimal(num):
+    import re
+    dnumre = re.compile(r""""""^[0-9]+(\.[0-9]{1,2})?$"""""")
+    result = dnumre.search(num)
+    return bool(result)",passed,True,True,2.928376666678408e-05,6,5,5,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+159,mbpp,train,159,canonical_solution,"# Write a python function to check whether an array contains only one distinct element or not.
+def unique_Element(arr,n):
+    s = set(arr)
+    if (len(s) == 1):
+        return ('YES')
+    else:
+        return ('NO')",passed,True,True,4.725810000157556e-05,7,6,6,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.90348152172656
+160,mbpp,train,160,canonical_solution,"# Write a function to caluclate arc length of an angle.
+def arc_length(d,a):
+    pi=22/7
+    if a >= 360:
+        return None
+    arclength = (pi*d) * (a/360)
+    return arclength",passed,True,True,3.5516933333212816e-05,7,6,6,1,0,0,1,2,3,8,5,10,11,15,28.75488750216347,51.89147427955947,1.875,97.296514274174,5.405361904120777,0.01729715809318649,92.63570161982383
+161,mbpp,train,161,canonical_solution,"# Write a function to check whether the given month number contains 30 days or not.
+def check_monthnumber_number(monthnum3):
+  if(monthnum3==4 or monthnum3==6 or monthnum3==9 or monthnum3==11):
+    return True
+  else:
+    return False",passed,True,True,2.4551166666242354e-05,6,5,5,1,0,0,1,5,2,9,5,12,11,17,30.529325012980813,58.81033751683406,1.3333333333333333,78.41378335577875,4.356321297543264,0.019603445838944685,95.071135599143
+162,mbpp,train,162,canonical_solution,"# Write a python function to find the minimum difference between any two elements in a given array.
+def find_Min_Diff(arr,n): 
+    arr = sorted(arr) 
+    diff = 10**20 
+    for i in range(n-1): 
+        if arr[i+1] - arr[i] < diff: 
+            diff = arr[i+1] - arr[i]  
+    return diff ",passed,True,True,5.1081566666274134e-05,8,7,7,1,0,0,1,3,4,11,7,14,15,21,46.053747805010275,82.0447025077789,2.5454545454545454,208.84106092889172,11.602281162716206,0.02734823416925963,88.38890666635933
+163,mbpp,train,163,canonical_solution,"# Write a python function to count numeric values in a given string.
+def number_ctr(str):
+      number_ctr= 0
+      for i in range(len(str)):
+          if str[i] >= '0' and str[i] <= '9': number_ctr += 1     
+      return  number_ctr",passed,True,True,3.051936666669993e-05,6,6,5,1,0,0,1,4,4,8,4,8,12,12,32.0,43.01955000865388,2.0,86.03910001730776,4.779950000961542,0.014339850002884626,94.42916969027526
+164,mbpp,train,164,canonical_solution,"# Write a function to find nth polite number.
+import math 
+def is_polite(n): 
+	n = n + 1
+	return (int)(n+(math.log((n + math.log(n, 2)), 2))) ",passed,True,True,2.7597466665459554e-05,5,4,4,1,0,0,1,1,1,4,3,6,5,9,8.0,20.89735285398626,0.75,15.673014640489694,0.8707230355827608,0.0069657842846620865,100.0
+165,mbpp,train,165,canonical_solution,"# Write a function to iterate over all pairs of consecutive items in a given list.
+def pair_wise(l1):
+    temp = []
+    for i in range(len(l1) - 1):
+        current_element, next_element = l1[i], l1[i + 1]
+        x = (current_element, next_element)
+        temp.append(x)
+    return temp",passed,True,True,0.00015854156666676998,8,7,7,1,0,0,1,2,2,3,2,4,5,6,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,93.91531351069978
+166,mbpp,train,166,canonical_solution,"# Write a python function to count the number of pairs whose sum is equal to ‘sum’.
+def get_Pairs_Count(arr,n,sum):
+    count = 0  
+    for i in range(0,n):
+        for j in range(i + 1,n):
+            if arr[i] + arr[j] == sum:
+                count += 1
+    return count",passed,True,True,4.088156666739451e-05,8,7,7,1,0,0,1,4,2,7,4,8,9,12,21.651484454403228,38.03910001730775,1.1428571428571428,43.47325716263743,2.415180953479857,0.012679700005769252,90.59181795179379
+167,mbpp,train,167,canonical_solution,"# Write a python function to check for odd parity of a given number.
+def check_Odd_Parity(x): 
+    parity = 0
+    while (x != 0): 
+        x = x & (x - 1) 
+        parity += 1
+    if (parity % 2 == 1): 
+        return True
+    else: 
+        return False",passed,True,True,2.5395733337063577e-05,10,9,9,1,0,0,1,3,6,7,6,12,13,18,35.161259458730164,66.60791492653966,5.142857142857143,342.5549910507754,19.03083283615419,0.022202638308846556,84.64014668430399
+168,mbpp,train,168,canonical_solution,"# Write a python function to get the difference between two lists.
+def Diff(li1,li2):
+    return (list(list(set(li1)-set(li2)) + list(set(li2)-set(li1))))
+ ",passed,True,True,8.878946666660189e-05,4,2,2,1,0,1,1,1,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,100.0
+169,mbpp,train,169,canonical_solution,"# Write a python function to find the sum of fourth power of first n odd natural numbers.
+def odd_Num_Sum(n) : 
+    j = 0
+    sm = 0
+    for i in range(1,n + 1) : 
+        j = (2*i-1) 
+        sm = sm + (j*j*j*j)   
+    return sm ",passed,True,True,2.807460000440187e-05,8,7,7,1,0,0,1,2,3,10,7,14,13,21,37.974168451037094,77.70923408096293,2.1,163.18939157002217,9.066077309445676,0.025903078026987644,88.68850246908275
+170,mbpp,train,170,canonical_solution,"# Write a function to check if the given expression is balanced or not.
+from collections import deque
+def check_expression(exp):
+    if len(exp) & 1:
+        return False
+    stack = deque()
+    for ch in exp:
+        if ch == '(' or ch == '{' or ch == '[':
+            stack.append(ch)
+        if ch == ')' or ch == '}' or ch == ']':
+            if not stack:
+                return False
+            top = stack.pop()
+            if (top == '(' and ch != ')') or (top == '{' and ch != '}' or (top == '[' and ch != ']')):
+                return False
+    return not stack",passed,True,True,3.1557966666658405e-05,16,15,15,1,0,0,1,16,6,27,22,44,33,66,143.89173756274062,332.93001187765793,4.888888888888889,1627.6578358463278,90.42543532479598,0.11097667062588598,69.43903653344306
+171,mbpp,train,171,canonical_solution,"# Write a function to remove all the words with k length in the given string.
+def remove_length(test_str, K):
+  temp = test_str.split()
+  res = [ele for ele in temp if len(ele) != K]
+  res = ' '.join(res)
+  return (res) ",passed,True,True,3.554253333201511e-05,6,5,5,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+172,mbpp,train,172,canonical_solution,"# Write a function to find the occurrence and position of the substrings within a string.
+import re
+def occurance_substring(text,pattern):
+ for match in re.finditer(pattern, text):
+    s = match.start()
+    e = match.end()
+    return (text[s:e], s, e)",passed,True,True,5.4015733333775036e-05,7,7,6,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+173,mbpp,train,173,canonical_solution,"# Write a function to check if the string is a valid email address or not using regex.
+import re 
+regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+def check_email(email): 
+	if(re.search(regex,email)): 
+		return (""Valid Email"") 
+	else: 
+		return (""Invalid Email"") ",passed,True,True,3.291706666459504e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+174,mbpp,train,174,canonical_solution,"# Write a python function to check whether every odd index contains odd numbers of a given list.
+def odd_position(nums):
+	return all(nums[i]%2==i%2 for i in range(len(nums)))",passed,True,True,4.736073333333479e-05,3,2,2,1,0,0,1,2,2,5,3,6,7,9,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,100.0
+175,mbpp,train,175,canonical_solution,"# Write a function to count those characters which have vowels as their neighbors in the given string.
+def count_vowels(test_str):
+  res = 0
+  vow_list = ['a', 'e', 'i', 'o', 'u']
+  for idx in range(1, len(test_str) - 1):
+    if test_str[idx] not in vow_list and (test_str[idx - 1] in vow_list or test_str[idx + 1] in vow_list):
+      res += 1
+  if test_str[0] not in vow_list and test_str[1] in vow_list:
+    res += 1
+  if test_str[-1] not in vow_list and test_str[-2] in vow_list:
+    res += 1
+  return (res) ",passed,True,True,3.997433333324807e-05,12,11,11,1,0,0,1,9,7,21,19,36,28,55,111.8901503327572,264.4045207131682,6.0,1586.4271242790091,88.13484023772273,0.08813484023772274,76.21411519271709
+176,mbpp,train,176,canonical_solution,"# Write a python function to find the sum of non-repeated elements in a given array.
+def find_Sum(arr,n): 
+    arr.sort() 
+    sum = arr[0] 
+    for i in range(0,n-1): 
+        if (arr[i] != arr[i+1]): 
+            sum = sum + arr[i+1]   
+    return sum",passed,True,True,6.674190000050354e-05,8,7,7,1,0,0,1,3,3,7,5,10,10,15,24.406371956566698,49.82892142331044,2.142857142857143,106.77626019280808,5.932014455156004,0.016609640474436815,89.90532605728808
+177,mbpp,train,177,canonical_solution,"# Write a function to pack consecutive duplicates of a given list elements into sublists.
+from itertools import groupby
+def pack_consecutive_duplicates(list1):
+    return [list(group) for key, group in groupby(list1)]",passed,True,True,0.0001617155333330326,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+178,mbpp,train,178,canonical_solution,"# Write a function to count the number of unique lists within a list.
+def unique_sublists(list1):
+    result ={}
+    for l in list1: 
+        result.setdefault(tuple(l), list()).append(1) 
+    for a, b in result.items(): 
+        result[a] = sum(b)
+    return result",passed,True,True,0.00015632336666631847,8,7,7,1,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+179,mbpp,train,179,canonical_solution,"# Write a function to find the combinations of sums with tuples in the given tuple list.
+from itertools import combinations 
+def find_combinations(test_list):
+  res = [(b1 + a1, b2 + a2) for (a1, a2), (b1, b2) in combinations(test_list, 2)]
+  return (res) ",passed,True,True,0.00015637343334068038,5,4,4,1,0,0,1,2,1,4,2,4,5,6,8.0,13.931568569324174,0.5,6.965784284662087,0.3869880158145604,0.004643856189774725,100.0
+180,mbpp,train,180,canonical_solution,"# Write a python function to check whether the count of divisors is even or odd.
+import math 
+def count_Divisors(n) : 
+    count = 0
+    for i in range(1, (int)(math.sqrt(n)) + 2) : 
+        if (n % i == 0) : 
+            if( n // i == i) : 
+                count = count + 1
+            else : 
+                count = count + 2
+    if (count % 2 == 0) : 
+        return (""Even"") 
+    else : 
+        return (""Odd"") ",passed,True,True,2.9455066666628227e-05,14,13,13,1,0,0,1,5,4,10,9,18,14,27,41.219280948873624,102.7985828955553,3.6,370.07489842399906,20.559716579111058,0.03426619429851843,76.83402932875944
+181,mbpp,train,181,canonical_solution,"# Write a python function to find the sum of all odd length subarrays.
+def Odd_Length_Sum(arr):
+    Sum = 0
+    l = len(arr)
+    for i in range(l):
+        Sum += ((((i + 1) *(l - i) + 1) // 2) * arr[i])
+    return Sum",passed,True,True,3.96568333333865e-05,7,6,6,1,0,0,1,2,4,12,7,14,16,21,51.01955000865388,84.0,2.3333333333333335,196.0,10.88888888888889,0.028,91.17099756717711
+182,mbpp,train,182,canonical_solution,"# Write a function to convert rgb color to hsv color.
+def rgb_to_hsv(r, g, b):
+    r, g, b = r/255.0, g/255.0, b/255.0
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    df = mx-mn
+    if mx == mn:
+        h = 0
+    elif mx == r:
+        h = (60 * ((g-b)/df) + 360) % 360
+    elif mx == g:
+        h = (60 * ((b-r)/df) + 120) % 360
+    elif mx == b:
+        h = (60 * ((r-g)/df) + 240) % 360
+    if mx == 0:
+        s = 0
+    else:
+        s = (df/mx)*100
+    v = mx*100
+    return h, s, v",passed,True,True,5.6027966666268486e-05,20,19,19,1,0,0,1,6,6,26,27,54,32,81,137.72120767599534,405.0,6.230769230769231,2523.4615384615386,140.1923076923077,0.135,66.42288593101954
+183,mbpp,train,183,canonical_solution,"# Write a function to find the product of first even and odd number of a given list.
+def mul_even_odd(list1):
+    first_even = next((el for el in list1 if el%2==0),-1)
+    first_odd = next((el for el in list1 if el%2!=0),-1)
+    return (first_even*first_odd)",passed,True,True,6.192406666514217e-05,5,4,4,1,0,0,1,5,5,8,7,12,13,19,35.60964047443681,70.30835464468075,3.75,263.6563299175528,14.647573884308489,0.02343611821489358,98.41907886172473
+184,mbpp,train,184,canonical_solution,"# Write a function to convert tuple string to integer tuple.
+def tuple_str_int(test_str):
+  res = tuple(int(num) for num in test_str.replace('(', '').replace(')', '').replace('...', '').split(', '))
+  return (res) ",passed,True,True,4.327313333002773e-05,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+185,mbpp,train,185,canonical_solution,"# Write a function to locate the right insertion point for a specified value in sorted order.
+import bisect
+def right_insertion(a, x):
+    i = bisect.bisect_right(a, x)
+    return i",passed,True,True,4.6460633332875055e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+186,mbpp,train,186,canonical_solution,"# Write a function that matches a string that has an a followed by three 'b'.
+import re
+def text_match_three(text):
+        patterns = 'ab{3}?'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')",passed,True,True,3.291719999651832e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+187,mbpp,train,187,canonical_solution,"# Write a function to create a new tuple from the given string and list.
+def new_tuple(test_list, test_str):
+  res = tuple(test_list + [test_str])
+  return (res) ",passed,True,True,5.290583333135146e-05,4,3,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+188,mbpp,train,188,canonical_solution,"# Write a function to calculate the perimeter of a regular polygon.
+from math import tan, pi
+def perimeter_polygon(s,l):
+  perimeter = s*l
+  return perimeter",passed,True,True,2.879096666674741e-05,5,4,4,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+189,mbpp,train,189,canonical_solution,"# Write a python function to check whether every even index contains even numbers of a given list.
+def even_position(nums):
+	return all(nums[i]%2==i%2 for i in range(len(nums)))",passed,True,True,4.616896667357651e-05,3,2,2,1,0,0,1,2,2,5,3,6,7,9,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,100.0
+190,mbpp,train,190,canonical_solution,"# Write a function to remove the nested record from the given tuple.
+def remove_nested(test_tup):
+  res = tuple()
+  for count, ele in enumerate(test_tup):
+    if not isinstance(ele, tuple):
+      res = res + (ele, )
+  return (res) ",passed,True,True,7.547863333267439e-05,7,6,6,1,0,0,1,3,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,97.05444847162289
+191,mbpp,train,191,canonical_solution,"# Write a python function to count the number of lists in a given number of lists.
+def count_list(input_list): 
+    return len(input_list)",passed,True,True,6.376500000063365e-05,3,2,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+192,mbpp,train,192,canonical_solution,"# Write a python function to find the last position of an element in a sorted array.
+def last(arr,x,n):
+    low = 0
+    high = n - 1
+    res = -1  
+    while (low <= high):
+        mid = (low + high) // 2 
+        if arr[mid] > x:
+            high = mid - 1
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            res = mid
+            low = mid + 1
+    return res",passed,True,True,6.365866666631821e-05,15,14,14,1,0,0,1,4,7,10,10,19,17,29,52.87076540327685,118.53642239625987,6.65,788.2672089351281,43.792622718618226,0.03951214079875329,75.31678121747517
+193,mbpp,train,193,canonical_solution,"# Write a function that matches a string that has an 'a' followed by anything, ending in 'b'.
+import re
+def text_starta_endb(text):
+        patterns = 'a.*?b$'
+        if re.search(patterns,  text):
+                return 'Found a match!'
+        else:
+                return('Not matched!')",passed,True,True,2.4652999999830173e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+194,mbpp,train,194,canonical_solution,"# Write a function to find the n - cheap price items from a given dataset using heap queue algorithm.
+import heapq
+def cheap_items(items,n):
+  cheap_items = heapq.nsmallest(n, items, key=lambda s: s['price'])
+  return cheap_items",passed,True,True,0.00012672163332657269,5,5,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+195,mbpp,train,195,canonical_solution,"# Write function to find the sum of all items in the given dictionary.
+def return_sum(dict):
+  sum = 0
+  for i in dict.values():
+    sum = sum + i
+  return sum",passed,True,True,6.684703333424599e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+196,mbpp,train,196,canonical_solution,"# Write a python function to find the sum of all odd natural numbers within the range l and r.
+def sum_Odd(n): 
+    terms = (n + 1)//2
+    sum1 = terms * terms 
+    return sum1  
+def sum_in_Range(l,r): 
+    return sum_Odd(r) - sum_Odd(l - 1)",passed,True,True,3.202873333331506e-05,7,6,6,1,0,0,1,1,4,9,5,10,13,15,36.52932501298081,55.506595772116384,2.2222222222222223,123.34799060470309,6.852666144705727,0.01850219859070546,92.56540557918817
+197,mbpp,train,197,canonical_solution,"# Write a python function to find the sum of an array.
+def _sum(arr):  
+    sum=0
+    for i in arr: 
+        sum = sum + i      
+    return(sum)  ",passed,True,True,3.9663166667007015e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+198,mbpp,train,198,canonical_solution,"# Write a python function to left rotate the bits of a given number.
+INT_BITS = 32
+def left_Rotate(n,d):   
+    return (n << d)|(n >> (INT_BITS - d))  ",passed,True,True,2.9706799999000093e-05,4,3,3,1,0,0,1,1,4,6,4,8,10,12,23.509775004326936,39.863137138648355,2.6666666666666665,106.3016990363956,5.905649946466422,0.013287712379549451,100.0
+199,mbpp,train,199,canonical_solution,"# Write a function to remove all whitespaces from a string.
+import re
+def remove_all_spaces(text):
+ return (re.sub(r'\s+', '',text))",passed,True,True,3.551863333370875e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+200,mbpp,train,200,canonical_solution,"# Write a python function to count the number of equal numbers from three given integers.
+def test_three_equal(x,y,z):
+  result= set([x,y,z])
+  if len(result)==3:
+    return 0
+  else:
+    return (4-len(result))",passed,True,True,3.5969933333035445e-05,7,6,6,1,0,0,1,2,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,96.30819107998695
+201,mbpp,train,201,canonical_solution,"# Write a python function to count the number of rotations required to generate a sorted array.
+def count_Rotation(arr,n):   
+    for i in range (1,n): 
+        if (arr[i] < arr[i - 1]): 
+            return i  
+    return 0",passed,True,True,4.855880000000923e-05,6,5,5,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,99.39324397355226
+202,mbpp,train,202,canonical_solution,"# Write a python function to check whether the given number is a perfect square or not.
+def is_Perfect_Square(n) :
+    i = 1
+    while (i * i<= n):
+        if ((n % i == 0) and (n / i == i)):
+            return True     
+        i = i + 1
+    return False",passed,True,True,2.7870933333436673e-05,8,7,7,1,0,0,1,4,7,9,8,16,16,24,48.18080946738404,96.0,6.222222222222222,597.3333333333334,33.18518518518519,0.032,87.77672158501485
+203,mbpp,train,203,canonical_solution,"# Write a python function to check whether the product of numbers is even or not.
+def is_Product_Even(arr,n): 
+    for i in range(0,n): 
+        if ((arr[i] & 1) == 0): 
+            return True
+    return False",passed,True,True,4.5659733333044034e-05,6,5,5,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,99.39324397355226
+204,mbpp,train,204,canonical_solution,"# Write a function to find the list in a list of lists whose sum of elements is the highest.
+def max_sum_list(lists):
+ return max(lists, key=sum)",passed,True,True,8.175366666686538e-05,3,2,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+205,mbpp,train,205,canonical_solution,"# Write a function to find maximum run of uppercase characters in the given string.
+def max_run_uppercase(test_str):
+  cnt = 0
+  res = 0
+  for idx in range(0, len(test_str)):
+    if test_str[idx].isupper():
+      cnt += 1
+    else:
+      res = cnt
+      cnt = 0
+  if test_str[len(test_str) - 1].isupper():
+    res = cnt
+  return (res)",passed,True,True,2.6244366665650887e-05,13,12,12,1,0,0,1,4,2,3,2,4,5,6,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,84.37598779912766
+206,mbpp,train,206,canonical_solution,"# Write a python function to find the first odd number in a given list of numbers.
+def first_odd(nums):
+  first_odd = next((el for el in nums if el%2!=0),-1)
+  return first_odd",passed,True,True,4.6348466666283156e-05,4,3,3,1,0,0,1,3,3,5,3,5,8,8,16.36452797660028,24.0,1.5,36.0,2.0,0.008,100.0
+207,mbpp,train,207,canonical_solution,"# Write a function to check if the given tuples contain the k or not.
+def check_K(test_tup, K):
+  res = False
+  for ele in test_tup:
+    if ele == K:
+      res = True
+      break
+  return (res) ",passed,True,True,5.5162166665923e-05,8,7,7,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,97.04976883877337
+208,mbpp,train,208,canonical_solution,"# Write a function to check if each element of second tuple is smaller than its corresponding index in first tuple.
+def check_smaller(test_tup1, test_tup2):
+  res = all(x > y for x, y in zip(test_tup1, test_tup2))
+  return (res) ",passed,True,True,5.8041166664679625e-05,4,3,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+209,mbpp,train,209,canonical_solution,"# Write a function to iterate over elements repeating each as many times as its count.
+from collections import Counter
+def count_variable(a,b,c,d):
+  c = Counter(p=a, q=b, r=c, s=d)
+  return list(c.elements())",passed,True,True,0.0001456238333332749,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+210,mbpp,train,210,canonical_solution,"# Write a function to check if two lists of tuples are identical or not.
+def check_identical(test_list1, test_list2):
+  res = test_list1 == test_list2
+  return (res) ",passed,True,True,8.133623333227055e-05,4,3,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+211,mbpp,train,211,canonical_solution,"# Write a function to abbreviate 'road' as 'rd.' in a given string.
+import re
+def road_rd(street):
+  return (re.sub('Road$', 'Rd.', street))",passed,True,True,3.739283333364559e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+212,mbpp,train,212,canonical_solution,"# Write a function to find length of the string.
+def string_length(str1):
+    count = 0
+    for char in str1:
+        count += 1
+    return count",passed,True,True,2.616533333300216e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+213,mbpp,train,213,canonical_solution,"# Write a function to find the area of a rombus.
+def rombus_area(p,q):
+  area=(p*q)/2
+  return area",passed,True,True,2.922079999810497e-05,4,3,3,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+214,mbpp,train,214,canonical_solution,"# Write a function to sort the given array without using any sorting algorithm. the given array consists of only 0, 1, and 2.
+def sort_by_dnf(arr, n):
+  low=0
+  mid=0
+  high=n-1
+  while mid <= high:
+    if arr[mid] == 0:
+      arr[low], arr[mid] = arr[mid], arr[low]
+      low = low + 1
+      mid = mid + 1
+    elif arr[mid] == 1:
+      mid = mid + 1
+    else:
+      arr[mid], arr[high] = arr[high], arr[mid]
+      high = high - 1
+  return arr",passed,True,True,0.0001058638333347517,16,15,15,1,0,0,1,4,4,8,8,16,12,24,32.0,86.03910001730776,4.0,344.15640006923104,19.11980000384617,0.028679700005769252,75.16785427325694
+215,mbpp,train,215,canonical_solution,"# Write a function to clear the values of the given tuples.
+def clear_tuple(test_tup):
+  temp = list(test_tup)
+  temp.clear()
+  test_tup = tuple(temp)
+  return (test_tup) ",passed,True,True,4.7376066671252674e-05,6,5,5,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+216,mbpp,train,216,canonical_solution,"# Write a function to find numbers divisible by m or n from a list of numbers using lambda function.
+def div_of_nums(nums,m,n):
+ result = list(filter(lambda x: (x % m == 0 or x % n == 0), nums)) 
+ return result",passed,True,True,8.767680000119072e-05,4,4,3,1,0,0,1,2,3,8,5,10,11,15,28.75488750216347,51.89147427955947,1.875,97.296514274174,5.405361904120777,0.01729715809318649,100.0
+217,mbpp,train,217,canonical_solution,"# Write a python function to count lower case letters in a given string.
+def lower_ctr(str):
+      lower_ctr= 0
+      for i in range(len(str)):
+          if str[i] >= 'a' and str[i] <= 'z': lower_ctr += 1     
+      return  lower_ctr",passed,True,True,3.0411300000802535e-05,6,6,5,1,0,0,1,4,4,8,4,8,12,12,32.0,43.01955000865388,2.0,86.03910001730776,4.779950000961542,0.014339850002884626,94.42916969027526
+218,mbpp,train,218,canonical_solution,"# Write a function to count the frequency of consecutive duplicate elements in a given list of numbers.
+def count_duplic(lists):
+    element = []
+    frequency = []
+    if not lists:
+        return element
+    running_count = 1
+    for i in range(len(lists)-1):
+        if lists[i] == lists[i+1]:
+            running_count += 1
+        else:
+            frequency.append(running_count)
+            element.append(lists[i])
+            running_count = 1
+    frequency.append(running_count)
+    element.append(lists[i+1])
+    return element,frequency
+",passed,True,True,0.0001478851666661285,17,16,16,1,0,0,1,4,4,7,6,11,11,17,27.651484454403228,58.81033751683406,3.142857142857143,184.83248933862134,10.268471629923408,0.019603445838944685,75.28400028970259
+219,mbpp,train,219,canonical_solution,"# Write a function to check whether the given month number contains 28 days or not.
+def check_monthnum_number(monthnum1):
+  if monthnum1 == 2:
+    return True
+  else:
+    return False",passed,True,True,2.650183333419894e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+220,mbpp,train,220,canonical_solution,"# Write a function to merge two dictionaries into a single expression.
+import collections as ct
+def merge_dictionaries(dict1,dict2):
+    merged_dict = dict(ct.ChainMap({}, dict1, dict2))
+    return merged_dict",passed,True,True,0.00015242189999942942,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+221,mbpp,train,221,canonical_solution,"# Write a function to return true if the password is valid.
+import re
+def pass_validity(p):
+ x = True
+ while x:  
+    if (len(p)<6 or len(p)>12):
+        break
+    elif not re.search(""[a-z]"",p):
+        break
+    elif not re.search(""[0-9]"",p):
+        break
+    elif not re.search(""[A-Z]"",p):
+        break
+    elif not re.search(""[$#@]"",p):
+        break
+    elif re.search(""\s"",p):
+        break
+    else:
+        return True
+        x=False
+        break
+
+ if x:
+    return False",passed,True,True,3.395109999928536e-05,24,22,22,1,0,1,1,10,4,10,7,10,14,17,41.219280948873624,64.72503367497926,2.0,129.45006734995852,7.191670408331029,0.021575011224993085,69.19139880096009
+222,mbpp,train,222,canonical_solution,"# Write a function to check if the given string starts with a substring using regex.
+import re 
+def check_substring(string, sample) : 
+  if (sample in string): 
+      y = ""\A"" + sample 
+      x = re.search(y, string) 
+      if x : 
+          return (""string starts with the given substring"") 
+      else : 
+          return (""string doesnt start with the given substring"") 
+  else : 
+      return (""entered string isnt a substring"")",passed,True,True,3.614809999987756e-05,12,11,11,1,0,0,1,3,2,3,2,4,5,6,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,85.97158809777572
+223,mbpp,train,223,canonical_solution,"# Write a python function to remove even numbers from a given list.
+def remove_even(l):
+    for i in l:
+        if i % 2 == 0:
+            l.remove(i)
+    return l",passed,True,True,5.011393333613038e-05,6,5,5,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,99.39324397355226
+224,mbpp,train,224,canonical_solution,"# Write a python function to access multiple elements of specified index from a given list.
+def access_elements(nums, list_index):
+    result = [nums[i] for i in list_index]
+    return result",passed,True,True,7.609643333239546e-05,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+225,mbpp,train,225,canonical_solution,"# Write a python function to find the type of triangle from the given sides.
+def check_Type_Of_Triangle(a,b,c): 
+    sqa = pow(a,2) 
+    sqb = pow(b,2) 
+    sqc = pow(c,2) 
+    if (sqa == sqa + sqb or sqb == sqa + sqc or sqc == sqa + sqb): 
+        return (""Right-angled Triangle"") 
+    elif (sqa > sqc + sqb or sqb > sqa + sqc or sqc > sqa + sqb): 
+        return (""Obtuse-angled Triangle"") 
+    else: 
+        return (""Acute-angled Triangle"") ",passed,True,True,3.64692666683671e-05,11,10,10,1,0,0,1,7,4,15,14,30,19,44,66.60335893412778,186.90881059151775,4.0,747.635242366071,41.5352912425595,0.062302936863839246,79.15597659455466
+226,mbpp,train,226,canonical_solution,"# Write a function to sum a specific column of a list in a given list of lists.
+def sum_column(list1, C):
+    result = sum(row[C] for row in list1)
+    return result",passed,True,True,9.008150000037556e-05,4,3,3,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+227,mbpp,train,227,canonical_solution,"# Write a function to count alphabets,digits and special charactes in a given string.
+def count_alpha_dig_spl(string):
+  alphabets=digits = special = 0
+  for i in range(len(string)):
+    if(string[i].isalpha()):
+        alphabets = alphabets + 1
+    elif(string[i].isdigit()):
+        digits = digits + 1
+    else:
+        special = special + 1
+  return (alphabets,digits,special)   ",passed,True,True,4.3026033334096304e-05,11,10,10,1,0,0,1,4,1,4,3,6,5,9,8.0,20.89735285398626,0.75,15.673014640489694,0.8707230355827608,0.0069657842846620865,86.22217044019237
+228,mbpp,train,228,canonical_solution,"# Write a function to find out the second most repeated (or frequent) string in the given sequence.
+from collections import Counter 
+	
+def second_frequent(input): 
+	dict = Counter(input) 
+	value = sorted(dict.values(), reverse=True)  
+	second_large = value[1] 
+	for (key, val) in dict.items(): 
+		if val == second_large: 
+			return (key) ",passed,True,True,6.22673999998824e-05,10,8,8,1,0,1,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,94.71066273856995
+229,mbpp,train,229,canonical_solution,"# Write a function to round up a number to specific digits.
+import math
+def round_up(a, digits):
+    n = 10**-digits
+    return round(math.ceil(a / n) * n, digits)",passed,True,True,3.513233333857594e-05,5,4,4,1,0,0,1,1,4,6,4,7,10,11,23.509775004326936,36.541209043760986,2.3333333333333335,85.26282110210897,4.736823394561609,0.012180403014586996,100.0
+230,mbpp,train,230,canonical_solution,"# Write a python function to count equal element pairs from the given array.
+def count_Pairs(arr,n): 
+    cnt = 0; 
+    for i in range(n): 
+        for j in range(i + 1,n): 
+            if (arr[i] == arr[j]): 
+                cnt += 1; 
+    return cnt; ",passed,True,True,3.5977433333300725e-05,8,7,7,1,0,0,1,4,2,5,3,6,7,9,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,91.83600848060124
+231,mbpp,train,231,canonical_solution,"# Write a function to extract the maximum numeric value from a string by using regex.
+import re 
+def extract_max(input): 
+	numbers = re.findall('\d+',input) 
+	numbers = map(int,numbers) 
+	return max(numbers)",passed,True,True,3.3857200000397826e-05,6,5,5,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+232,mbpp,train,232,canonical_solution,"# Write a function to get dictionary keys as a list.
+def get_key(dict): 
+    list = [] 
+    for key in dict.keys(): 
+        list.append(key)           
+    return list",passed,True,True,6.525403333436467e-05,6,5,5,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+233,mbpp,train,233,canonical_solution,"# Write a function to generate a square matrix filled with elements from 1 to n raised to the power of 2 in spiral order.
+def generate_matrix(n):
+        if n<=0:
+            return [] 
+        matrix=[row[:] for row in [[0]*n]*n]        
+        row_st=0
+        row_ed=n-1        
+        col_st=0
+        col_ed=n-1
+        current=1        
+        while (True):
+            if current>n*n:
+                break
+            for c in range (col_st, col_ed+1):
+                matrix[row_st][c]=current
+                current+=1
+            row_st+=1
+            for r in range (row_st, row_ed+1):
+                matrix[r][col_ed]=current
+                current+=1
+            col_ed-=1
+            for c in range (col_ed, col_st-1, -1):
+                matrix[row_ed][c]=current
+                current+=1
+            row_ed-=1
+            for r in range (row_ed, row_st-1, -1):
+                matrix[r][col_st]=current
+                current+=1
+            col_st+=1
+        return matrix",passed,True,True,0.00013838566666777297,30,30,29,1,0,0,1,9,6,11,21,40,17,61,53.563522809337215,249.33523331627075,10.909090909090908,2720.02072708659,151.11226261592165,0.08311174443875692,60.760466177857936
+234,mbpp,train,234,canonical_solution,"# Write a python function to find the slope of a line.
+def slope(x1,y1,x2,y2): 
+    return (float)(y2-y1)/(x2-x1)  ",passed,True,True,3.879630000180138e-05,3,2,2,1,0,0,1,1,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,100.0
+235,mbpp,train,235,canonical_solution,"# Write a function to find length of the subarray having maximum sum.
+from sys import maxsize 
+def max_sub_array_sum(a,size): 
+	max_so_far = -maxsize - 1
+	max_ending_here = 0
+	start = 0
+	end = 0
+	s = 0
+	for i in range(0,size): 
+		max_ending_here += a[i] 
+		if max_so_far < max_ending_here: 
+			max_so_far = max_ending_here 
+			start = s 
+			end = i 
+		if max_ending_here < 0: 
+			max_ending_here = 0
+			s = i+1
+	return (end - start + 1)",passed,True,True,5.831793333328505e-05,18,17,17,1,0,0,1,4,4,11,8,15,15,23,46.053747805010275,89.85848369899593,2.727272727272727,245.0685919063525,13.614921772575139,0.02995282789966531,73.02592622791269
+236,mbpp,train,236,canonical_solution,"# Write a python function to find the cube sum of first n odd natural numbers.
+def cube_Sum(n): 
+    sum = 0   
+    for i in range(0,n) : 
+        sum += (2*i+1)*(2*i+1)*(2*i+1) 
+    return sum",passed,True,True,2.6791700004954085e-05,6,5,5,1,0,0,1,2,2,12,9,18,14,27,45.01955000865388,102.7985828955553,1.5,154.19787434333296,8.566548574629609,0.03426619429851843,93.7764219233715
+237,mbpp,train,237,canonical_solution,"# Write a python function to find minimum number swaps required to make two binary strings equal.
+def min_Swaps(s1,s2) :  
+    c0 = 0; c1 = 0;  
+    for i in range(len(s1)) :  
+        if (s1[i] == '0' and s2[i] == '1') : 
+            c0 += 1;    
+        elif (s1[i] == '1' and s2[i] == '0') : 
+            c1 += 1;  
+    result = c0 // 2 + c1 // 2;  
+    if (c0 % 2 == 0 and c1 % 2 == 0) : 
+        return result;  
+    elif ((c0 + c1) % 2 == 0) : 
+        return result + 2;  
+    else : 
+        return -1;  ",passed,True,True,3.324779999995068e-05,15,15,14,1,0,0,1,9,6,24,21,41,30,62,125.5488750216347,304.22721692772814,5.125,1559.1644867546067,86.62024926414482,0.10140907230924272,71.12440210214615
+238,mbpp,train,238,canonical_solution,"# Write a function to sort the tuples alphabetically by the first item of each tuple.
+def sort_tuple(tup): 
+	n = len(tup) 
+	for i in range(n): 
+		for j in range(n-i-1): 
+			if tup[j][0] > tup[j + 1][0]: 
+				tup[j], tup[j + 1] = tup[j + 1], tup[j] 
+	return tup",passed,True,True,0.00016243646666680434,8,7,7,1,0,0,1,4,3,7,6,12,10,18,24.406371956566698,59.794705707972525,2.5714285714285716,153.75781467764364,8.542100815424646,0.019931568569324175,89.21639500738836
+239,mbpp,train,239,canonical_solution,"# Write a python function to check whether the roots of a quadratic equation are numerically equal but opposite in sign or not.
+def Check_Solution(a,b,c):  
+    if b == 0:  
+        return (""Yes"")  
+    else: 
+        return (""No"")  ",passed,True,True,3.285103333373248e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+240,mbpp,train,240,canonical_solution,"# Write a function to count the number of inversions in the given array.
+def get_inv_count(arr, n): 
+	inv_count = 0
+	for i in range(n): 
+		for j in range(i + 1, n): 
+			if (arr[i] > arr[j]): 
+				inv_count += 1
+	return inv_count ",passed,True,True,5.0933266667622475e-05,8,7,7,1,0,0,1,4,2,5,3,6,7,9,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,91.83600848060124
+241,mbpp,train,241,canonical_solution,"# Write a function to find the number which occurs for odd number of times in the given array.
+def get_odd_occurence(arr, arr_size):
+  for i in range(0, arr_size):
+    count = 0
+    for j in range(0, arr_size):
+      if arr[i] == arr[j]:
+        count += 1
+    if (count % 2 != 0):
+      return arr[i]
+  return -1",passed,True,True,5.94912333336121e-05,10,9,9,1,0,0,1,5,5,7,5,9,12,14,31.26112492884004,50.18947501009619,3.2142857142857144,161.32331253245204,8.962406251802891,0.016729825003365395,85.2317805803573
+242,mbpp,train,242,canonical_solution,"# Write a function to find the nth super ugly number from a given prime list of size k using heap queue algorithm.
+import heapq
+def nth_super_ugly_number(n, primes):
+    uglies = [1]
+    def gen(prime):
+        for ugly in uglies:
+            yield ugly * prime
+    merged = heapq.merge(*map(gen, primes))
+    while len(uglies) < n:
+        ugly = next(merged)
+        if ugly != uglies[-1]:
+            uglies.append(ugly)
+    return uglies[-1]",passed,True,True,0.00016478636666571826,13,12,12,1,0,0,1,3,4,7,5,8,11,13,27.651484454403228,44.97261104228487,2.2857142857142856,102.79453952522255,5.710807751401252,0.01499087034742829,80.94682953344558
+243,mbpp,train,243,canonical_solution,"# Write a python function to find the kth element in an array containing odd elements first and then even elements.
+def get_Number(n, k): 
+    arr = [0] * n; 
+    i = 0; 
+    odd = 1; 
+    while (odd <= n):   
+        arr[i] = odd; 
+        i += 1; 
+        odd += 2;
+    even = 2; 
+    while (even <= n): 
+        arr[i] = even; 
+        i += 1;
+        even += 2; 
+    return arr[k - 1]; ",passed,True,True,3.091570000227269e-05,15,14,14,1,0,0,1,3,4,8,8,16,12,24,32.0,86.03910001730776,4.0,344.15640006923104,19.11980000384617,0.028679700005769252,76.42565597855675
+244,mbpp,train,244,canonical_solution,"# Write a python function to count the number of digits in factorial of a given number.
+import math 
+def find_Digits(n): 
+    if (n < 0): 
+        return 0;
+    if (n <= 1): 
+        return 1; 
+    x = ((n * math.log10(n / math.e) + math.log10(2 * math.pi * n) /2.0)); 
+    return math.floor(x) + 1; ",passed,True,True,2.9513200000034583e-05,9,8,8,1,0,0,1,3,5,12,9,18,17,27,54.62919048309069,110.36149671375918,3.75,413.85561267659693,22.99197848203316,0.03678716557125306,85.14817207928905
+245,mbpp,train,245,canonical_solution,"# Write a function to find the minimum number of platforms required for a railway/bus station.
+def find_platform(arr, dep, n): 
+    arr.sort() 
+    dep.sort() 
+    plat_needed = 1
+    result = 1
+    i = 1
+    j = 0
+    while (i < n and j < n): 
+        if (arr[i] <= dep[j]):           
+            plat_needed+= 1
+            i+= 1
+        elif (arr[i] > dep[j]):           
+            plat_needed-= 1
+            j+= 1
+        if (plat_needed > result):  
+            result = plat_needed           
+    return result",passed,True,True,7.713536667021496e-05,18,17,17,1,0,0,1,6,6,12,10,20,18,30,58.52932501298082,125.09775004326937,5.0,625.4887502163468,34.74937501201927,0.04169925001442312,71.75079822005708
+246,mbpp,train,246,canonical_solution,"# Write a python function to copy a list from a singleton tuple.
+def lcopy(xs):
+  return xs[:]
+",passed,True,True,6.0290600000219756e-05,3,3,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+247,mbpp,train,247,canonical_solution,"# Write a function to find the area of a trapezium.
+def area_trapezium(base1,base2,height):
+ area = 0.5 * (base1 + base2) * height
+ return area",passed,True,True,3.387439999945248e-05,4,3,3,1,0,0,1,1,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,100.0
+248,mbpp,train,248,canonical_solution,"# Write a python function to find sum of all prime divisors of a given number.
+def Sum(N): 
+    SumOfPrimeDivisors = [0]*(N + 1)   
+    for i in range(2,N + 1) : 
+        if (SumOfPrimeDivisors[i] == 0) : 
+            for j in range(i,N + 1,i) : 
+                SumOfPrimeDivisors[j] += i           
+    return SumOfPrimeDivisors[N] ",passed,True,True,5.317980000351478e-05,8,7,7,1,0,0,1,4,3,8,6,12,11,18,28.75488750216347,62.26976913547136,2.25,140.10698055481055,7.78372114193392,0.020756589711823786,89.09305788697093
+249,mbpp,train,249,canonical_solution,"# Write a function to check if a triangle of positive area is possible with the given angles.
+def is_triangleexists(a,b,c): 
+    if(a != 0 and b != 0 and c != 0 and (a + b + c)== 180): 
+        if((a + b)>= c or (b + c)>= a or (a + c)>= b): 
+            return True 
+        else:
+            return False
+    else:
+        return False",passed,True,True,3.310803333154884e-05,9,8,8,1,0,0,1,8,6,17,14,31,23,45,84.99664330558272,203.5602880225656,5.470588235294118,1113.5945168293295,61.86636204607386,0.0678534293408552,82.61399388777612
+250,mbpp,train,250,canonical_solution,"# Write a python function to find sum of inverse of divisors.
+def Sum_of_Inverse_Divisors(N,Sum): 
+    ans = float(Sum)*1.0 /float(N);  
+    return round(ans,2); ",passed,True,True,3.1986100005572855e-05,4,3,3,1,0,0,1,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+251,mbpp,train,251,canonical_solution,"# Write a python function to remove negative numbers from a list.
+def remove_negs(num_list): 
+    for item in num_list: 
+        if item < 0: 
+           num_list.remove(item) 
+    return num_list",passed,True,True,5.5012066666885555e-05,6,5,5,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+252,mbpp,train,252,canonical_solution,"# Write a python function to find sum of odd factors of a number.
+import math
+def sum_of_odd_Factors(n): 
+    res = 1
+    while n % 2 == 0: 
+        n = n // 2 
+    for i in range(3,int(math.sqrt(n) + 1)): 
+        count = 0
+        curr_sum = 1
+        curr_term = 1
+        while n % i == 0: 
+            count+=1 
+            n = n // i 
+            curr_term *= i 
+            curr_sum += curr_term    
+        res *= curr_sum  
+    if n >= 2: 
+        res *= (1 + n) 
+    return res ",passed,True,True,2.3489199999933893e-05,19,18,18,1,0,0,1,5,6,13,14,28,19,42,63.61549134016113,178.41295556463058,6.461538461538462,1152.822174417613,64.04567635653406,0.059470985188210194,69.90002882206598
+253,mbpp,train,253,canonical_solution,"# Write a function which accepts an arbitrary list and converts it to a heap using heap queue algorithm.
+import heapq as hq
+def raw_heap(rawheap):
+  hq.heapify(rawheap)
+  return rawheap",passed,True,True,7.979520000086874e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+254,mbpp,train,254,canonical_solution,"# Write a python function to check for even parity of a given number.
+def check_Even_Parity(x): 
+    parity = 0
+    while (x != 0): 
+        x = x & (x - 1) 
+        parity += 1
+    if (parity % 2 == 0): 
+        return True
+    else: 
+        return False",passed,True,True,2.6905166666561324e-05,10,9,9,1,0,0,1,3,6,7,6,12,13,18,35.161259458730164,66.60791492653966,5.142857142857143,342.5549910507754,19.03083283615419,0.022202638308846556,84.64014668430399
+255,mbpp,train,255,canonical_solution,"# Write a python function to find minimum adjacent swaps required to sort binary array.
+def find_Min_Swaps(arr,n) : 
+    noOfZeroes = [0] * n 
+    count = 0 
+    noOfZeroes[n - 1] = 1 - arr[n - 1] 
+    for i in range(n-2,-1,-1) : 
+        noOfZeroes[i] = noOfZeroes[i + 1] 
+        if (arr[i] == 0) : 
+            noOfZeroes[i] = noOfZeroes[i] + 1
+    for i in range(0,n) : 
+        if (arr[i] == 1) : 
+            count = count + noOfZeroes[i] 
+    return count ",passed,True,True,4.892270000027566e-05,13,12,12,1,0,0,1,5,5,12,12,22,17,34,54.62919048309069,138.97373660251156,4.583333333333333,636.962959428178,35.386831079343224,0.04632457886750385,77.24694485108903
+256,mbpp,train,256,canonical_solution,"# Write a function to list out the list of given strings individually using map function.
+def listify_list(list1):
+  result = list(map(list,list1)) 
+  return result ",passed,True,True,0.00016049479999840816,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+257,mbpp,train,257,canonical_solution,"# Write a function to count number of lists in a given list of lists and square the count.
+def count_list(input_list): 
+    return (len(input_list))**2",passed,True,True,8.515183333391481e-05,3,2,2,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+258,mbpp,train,258,canonical_solution,"# Write a function to generate all sublists of a given list.
+from itertools import combinations
+def sub_lists(my_list):
+	subs = []
+	for i in range(0, len(my_list)+1):
+	  temp = [list(x) for x in combinations(my_list, i)]
+	  if len(temp)>0:
+	    subs.extend(temp)
+	return subs",passed,True,True,0.0001779563999998383,9,8,8,1,0,0,1,4,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,90.98086937285376
+259,mbpp,train,259,canonical_solution,"# Write a function to check whether the given string is ending with only alphanumeric characters or not using regex.
+import re 
+regex = '[a-zA-z0-9]$'
+def check_alphanumeric(string): 
+	if(re.search(regex, string)): 
+		return (""Accept"") 
+	else: 
+		return (""Discard"") ",passed,True,True,2.9346766662759668e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+260,mbpp,train,260,canonical_solution,"# Write a function to find all anagrams of a string in a given list of strings using lambda function.
+from collections import Counter 
+def anagram_lambda(texts,str):
+  result = list(filter(lambda x: (Counter(str) == Counter(x)), texts)) 
+  return result",passed,True,True,0.00010664293333017364,5,5,4,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+261,mbpp,train,261,canonical_solution,"# Write a function to find the occurrences of n most common words in a given text.
+from collections import Counter
+import re
+def n_common_words(text,n):
+  words = re.findall('\w+',text)
+  n_common_words= Counter(words).most_common(n)
+  return list(n_common_words)",passed,True,True,6.588363333245676e-05,7,6,6,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+262,mbpp,train,262,canonical_solution,"# Write a function to find the length of the longest sub-sequence such that elements in the subsequences are consecutive integers.
+def find_longest_conseq_subseq(arr, n): 
+	ans = 0
+	count = 0
+	arr.sort() 
+	v = [] 
+	v.append(arr[0]) 
+	for i in range(1, n): 
+		if (arr[i] != arr[i - 1]): 
+			v.append(arr[i]) 
+	for i in range(len(v)): 
+		if (i > 0 and v[i] == v[i - 1] + 1): 
+			count += 1
+		else: 
+			count = 1
+		ans = max(ans, count) 
+	return ans ",passed,True,True,6.851746666711734e-05,17,16,16,1,0,0,1,6,6,11,8,16,17,24,53.563522809337215,98.09910819000817,4.363636363636363,428.06883573821744,23.781601985456525,0.03269970273000272,73.45906738540863
+263,mbpp,train,263,canonical_solution,"# Write a function to find palindromes in a given list of strings using lambda function.
+def palindrome_lambda(texts):
+  result = list(filter(lambda x: (x == """".join(reversed(x))), texts))
+  return result",passed,True,True,6.62493666671556e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+264,mbpp,train,264,canonical_solution,"# Write a function to print n-times a list using map function.
+def ntimes_list(nums,n):
+    result = map(lambda x:n*x, nums) 
+    return list(result)",passed,True,True,8.826643333274357e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+265,mbpp,train,265,canonical_solution,"# Write a function to check whether the given month name contains 31 days or not.
+def check_monthnumb(monthname2):
+  if(monthname2==""January"" or monthname2==""March""or monthname2==""May"" or monthname2==""July"" or monthname2==""Augest"" or monthname2==""October"" or monthname2==""December""):
+    return True
+  else:
+    return False",passed,True,True,2.5823266666217628e-05,6,5,5,1,0,0,1,8,2,15,8,21,17,29,60.60335893412778,118.53642239625987,1.4,165.9509913547638,9.2194995197091,0.03951214079875329,92.53622702343365
+266,mbpp,train,266,canonical_solution,"# Write a python function to add a minimum number such that the sum of array becomes even.
+def min_Num(arr,n):  
+    odd = 0
+    for i in range(n): 
+        if (arr[i] % 2): 
+            odd += 1 
+    if (odd % 2): 
+        return 1
+    return 2",passed,True,True,5.788676665664146e-05,9,8,8,1,0,0,1,4,2,4,3,6,6,9,10.0,23.264662506490403,1.5,34.89699375973561,1.938721875540867,0.007754887502163467,89.74787606164764
+267,mbpp,train,267,canonical_solution,"# Write a python function to find the length of the last word in a given string.
+def length_Of_Last_Word(a): 
+    l = 0
+    x = a.strip() 
+    for i in range(len(x)): 
+        if x[i] == "" "": 
+            l = 0
+        else: 
+            l += 1
+    return l ",passed,True,True,3.293340000046404e-05,10,9,9,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,89.07186323500252
+268,mbpp,train,268,canonical_solution,"# Write a function to remove sublists from a given list of lists, which are outside a given range.
+def remove_list_range(list1, leftrange, rigthrange):
+   result = [i for i in list1 if (min(i)>=leftrange and max(i)<=rigthrange)]
+   return result",passed,True,True,0.00017054130000057437,4,3,3,1,0,0,1,4,3,6,3,6,9,9,20.264662506490406,28.529325012980813,1.5,42.793987519471216,2.377443751081734,0.009509775004326938,100.0
+269,mbpp,train,269,canonical_solution,"# Write a function to calculate the sum of the positive numbers of a given list of numbers using lambda function.
+def sum_positivenum(nums):
+  sum_positivenum = list(filter(lambda nums:nums>0,nums))
+  return sum(sum_positivenum)",passed,True,True,6.466053333345675e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+270,mbpp,train,270,canonical_solution,"# Write a python function to check whether the given strings are rotations of each other or not.
+def are_Rotations(string1,string2): 
+    size1 = len(string1) 
+    size2 = len(string2) 
+    temp = '' 
+    if size1 != size2: 
+        return False
+    temp = string1 + string1 
+    if (temp.count(string2)> 0): 
+        return True
+    else: 
+        return False",passed,True,True,3.128513333289599e-05,12,11,11,1,0,0,1,3,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,83.9594633606348
+271,mbpp,train,271,canonical_solution,"# Write a function to check if a nested list is a subset of another nested list.
+def check_subset(list1,list2): 
+    return all(map(list1.__contains__,list2)) ",passed,True,True,0.00010891213333555546,3,2,2,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+272,mbpp,train,272,canonical_solution,"# Write a function to solve the fibonacci sequence using recursion.
+def fibonacci(n):
+  if n == 1 or n == 2:
+    return 1
+  else:
+    return (fibonacci(n - 1) + (fibonacci(n - 2)))",passed,True,True,3.435526666635269e-05,6,5,5,1,0,0,1,3,4,7,6,12,11,18,27.651484454403228,62.26976913547136,3.4285714285714284,213.49635132161606,11.860908406756447,0.020756589711823786,95.16632638746599
+273,mbpp,train,273,canonical_solution,"# Write a python function to check if the string is a concatenation of another string.
+def check_Concat(str1,str2):
+    N = len(str1)
+    M = len(str2)
+    if (N % M != 0):
+        return False
+    for i in range(N):
+        if (str1[i] != str2[i % M]):
+            return False         
+    return True",passed,True,True,3.436466666547252e-05,10,9,9,1,0,0,1,4,2,7,4,8,9,12,21.651484454403228,38.03910001730775,1.1428571428571428,43.47325716263743,2.415180953479857,0.012679700005769252,86.2092027897625
+274,mbpp,train,274,canonical_solution,"# Write a function to find the minimum difference in the tuple pairs of given tuples.
+def min_difference(test_list):
+  temp = [abs(b - a) for a, b in test_list]
+  res = min(temp)
+  return (res) ",passed,True,True,7.88242333328526e-05,5,4,4,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+275,mbpp,train,275,canonical_solution,"# Write a python function to find lcm of two positive integers.
+def lcm(x, y):
+   if x > y:
+       z = x
+   else:
+       z = y
+   while(True):
+       if((z % x == 0) and (z % y == 0)):
+           lcm = z
+           break
+       z += 1
+   return lcm",passed,True,True,4.576373333217513e-05,12,11,11,1,0,0,1,5,5,9,7,14,14,21,40.13896548741762,79.95445336320968,3.888888888888889,310.93398530137097,17.27411029452061,0.026651484454403226,80.38915609595279
+276,mbpp,train,276,canonical_solution,"# Write a python function to sort the given string.
+def sort_String(str) : 
+    str = ''.join(sorted(str)) 
+    return (str) ",passed,True,True,2.8391733333895294e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+277,mbpp,train,277,canonical_solution,"# Write a function to check if the given tuple contains only k elements.
+def check_tuples(test_tuple, K):
+  res = all(ele in K for ele in test_tuple)
+  return (res) ",passed,True,True,6.646356666806241e-05,4,3,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+278,mbpp,train,278,canonical_solution,"# Write a function that matches a string that has an 'a' followed by anything, ending in 'b' by using regex.
+import re
+def text_match(text):
+  patterns = 'a.*?b$'
+  if re.search(patterns,  text):
+    return ('Found a match!')
+  else:
+    return ('Not matched!')",passed,True,True,2.9714033333524035e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+279,mbpp,train,279,canonical_solution,"# Write a python function to find number of solutions in quadratic equation.
+def Check_Solution(a,b,c) : 
+    if ((b*b) - (4*a*c)) > 0 : 
+        return (""2 solutions"") 
+    elif ((b*b) - (4*a*c)) == 0 : 
+        return (""1 solution"") 
+    else : 
+        return (""No solutions"") ",passed,True,True,3.632033333360596e-05,8,7,7,1,0,0,1,3,4,13,10,20,17,30,56.105716335834195,122.6238852375102,3.076923076923077,377.30426226926215,20.961347903847898,0.040874628412503396,87.16688362895405
+280,mbpp,train,280,canonical_solution,"# Write a function to find the sum of first even and odd number of a given list.
+def sum_even_odd(list1):
+    first_even = next((el for el in list1 if el%2==0),-1)
+    first_odd = next((el for el in list1 if el%2!=0),-1)
+    return (first_even+first_odd)",passed,True,True,5.861699999816968e-05,5,4,4,1,0,0,1,5,5,8,7,12,13,19,35.60964047443681,70.30835464468075,3.75,263.6563299175528,14.647573884308489,0.02343611821489358,98.41907886172473
+281,mbpp,train,281,canonical_solution,"# Write a function to caluclate perimeter of a parallelogram.
+def parallelogram_perimeter(b,h):
+  perimeter=2*(b*h)
+  return perimeter",passed,True,True,2.9519566669478082e-05,4,3,3,1,0,0,1,1,1,4,2,4,5,6,8.0,13.931568569324174,0.5,6.965784284662087,0.3869880158145604,0.004643856189774725,100.0
+282,mbpp,train,282,canonical_solution,"# Write a function to find numbers divisible by m and n from a list of numbers using lambda function.
+def div_of_nums(nums,m,n):
+ result = list(filter(lambda x: (x % m == 0 and x % n == 0), nums)) 
+ return result",passed,True,True,7.752146666841023e-05,4,4,3,1,0,0,1,2,3,8,5,10,11,15,28.75488750216347,51.89147427955947,1.875,97.296514274174,5.405361904120777,0.01729715809318649,100.0
+283,mbpp,train,283,canonical_solution,"# Write a python function to check whether all the bits are within a given range or not.
+def all_Bits_Set_In_The_Given_Range(n,l,r): 
+    num = ((1 << r) - 1) ^ ((1 << (l - 1)) - 1) 
+    new_num = n & num 
+    if (num == new_num): 
+        return True
+    return False",passed,True,True,3.508083333182792e-05,7,6,6,1,0,0,1,2,5,11,8,16,16,24,49.663388279447084,96.0,3.6363636363636362,349.09090909090907,19.39393939393939,0.032,90.76493719194465
+284,mbpp,train,284,canonical_solution,"# Write a python function to check whether the two given strings are isomorphic to each other or not.
+def is_Isomorphic(str1,str2):          
+    dict_str1 = {}
+    dict_str2 = {}
+    for i, value in enumerate(str1):
+        dict_str1[value] = dict_str1.get(value,[]) + [i]        
+    for j, value in enumerate(str2):
+        dict_str2[value] = dict_str2.get(value,[]) + [j]
+    if sorted(dict_str1.values()) == sorted(dict_str2.values()):
+        return True
+    else:
+        return False",passed,True,True,3.811763333298283e-05,12,11,11,1,0,0,1,4,2,6,3,6,8,9,17.509775004326936,27.0,1.0,27.0,1.5,0.009,83.8249604366582
+285,mbpp,train,285,canonical_solution,"# Write a function to add all the numbers in a list and divide it with the length of the list.
+def sum_num(numbers):
+    total = 0
+    for x in numbers:
+        total += x
+    return total/len(numbers) ",passed,True,True,4.428913333451116e-05,6,5,5,1,0,0,1,2,2,3,2,4,5,6,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,99.85407908721824
+286,mbpp,train,286,canonical_solution,"# Write a python function to check whether the given number is odd or not using bitwise operator.
+def is_odd(n) : 
+    if (n^1 == n-1) :
+        return True; 
+    else :
+        return False; ",passed,True,True,2.4921866666242445e-05,6,5,5,1,0,0,1,2,3,4,3,6,7,9,12.75488750216347,25.26619429851844,2.25,56.848937171666485,3.158274287314805,0.008422064766172813,98.04377990507291
+287,mbpp,train,287,canonical_solution,"# Write a function to substract the elements of the given nested tuples.
+def substract_elements(test_tup1, test_tup2):
+  res = tuple(tuple(a - b for a, b in zip(tup1, tup2))
+   for tup1, tup2 in zip(test_tup1, test_tup2))
+  return (res) ",passed,True,True,0.00020005029999765612,5,3,4,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+288,mbpp,train,288,canonical_solution,"# Write a function to reverse each list in a given list of lists.
+def reverse_list_lists(lists):
+    for l in lists:
+        l.sort(reverse = True)
+    return lists ",passed,True,True,0.0001303379333345826,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+289,mbpp,train,289,canonical_solution,"# Write a python function to find the index of an extra element present in one sorted array.
+def find_Extra(arr1,arr2,n) : 
+    for i in range(0, n) : 
+        if (arr1[i] != arr2[i]) : 
+            return i 
+    return n ",passed,True,True,7.118476666647666e-05,6,5,5,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+290,mbpp,train,290,canonical_solution,"# Write a python function to check whether the given two numbers have same number of digits or not.
+def same_Length(A,B): 
+    while (A > 0 and B > 0): 
+        A = A / 10; 
+        B = B / 10; 
+    if (A == 0 and B == 0): 
+        return True; 
+    return False; ",passed,True,True,0.00018475643333317748,8,7,7,1,0,0,1,5,4,8,8,16,12,24,32.0,86.03910001730776,4.0,344.15640006923104,19.11980000384617,0.028679700005769252,87.97534205594998
+291,mbpp,train,291,canonical_solution,"# Write a function to remove multiple spaces in a string.
+import re
+def remove_spaces(text):
+ return (re.sub(' +',' ',text))",passed,True,True,3.609269999742537e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+292,mbpp,train,292,canonical_solution,"# Write a python function to get the last element of each sublist.
+def Extract(lst): 
+    return [item[-1] for item in lst] ",passed,True,True,8.102610000075099e-05,3,2,2,1,0,0,1,2,1,1,1,1,2,2,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,100.0
+293,mbpp,train,293,canonical_solution,"# Write a function to convert the given string of float type into tuple.
+def float_to_tuple(test_str):
+  res = tuple(map(float, test_str.split(', ')))
+  return (res) ",passed,True,True,5.47495666675483e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+294,mbpp,train,294,canonical_solution,"# Write a function to find the maximum sum of subsequences of given array with no adjacent elements.
+def max_sum_subseq(A):
+    n = len(A)
+    if n == 1:
+        return A[0]
+    look_up = [None] * n
+    look_up[0] = A[0]
+    look_up[1] = max(A[0], A[1])
+    for i in range(2, n):
+        look_up[i] = max(look_up[i - 1], look_up[i - 2] + A[i])
+        look_up[i] = max(look_up[i], A[i])
+    return look_up[n - 1]",passed,True,True,7.01028333329153e-05,12,11,11,1,0,0,1,3,4,7,6,12,11,18,27.651484454403228,62.26976913547136,3.4285714285714284,213.49635132161606,11.860908406756447,0.020756589711823786,81.41833832200007
+295,mbpp,train,295,canonical_solution,"# Write a function to sort a list in increasing order by the last element in each tuple from a given list of non-empty tuples.
+def last(n):
+   return n[-1]
+def sort_list_last(tuples):
+  return sorted(tuples, key=last)",passed,True,True,0.0001408350999990186,5,4,4,1,0,0,1,1,1,1,1,1,2,2,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,100.0
+296,mbpp,train,296,canonical_solution,"# Write a python function to check whether the word is present in a given sentence or not.
+def is_Word_Present(sentence,word): 
+    s = sentence.split("" "") 
+    for i in s:  
+        if (i == word): 
+            return True
+    return False",passed,True,True,3.147226666442293e-05,7,6,6,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.76897859774995
+297,mbpp,train,297,canonical_solution,"# Write a function to extract specified number of elements from a given list, which follow each other continuously.
+from itertools import groupby 
+def extract_elements(numbers, n):
+    result = [i for i, j in groupby(numbers) if len(list(j)) == n] 
+    return result",passed,True,True,7.233396666682287e-05,5,4,4,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+298,mbpp,train,298,canonical_solution,"# Write a python function to check whether an array can be sorted or not by picking only the corner elements.
+def check(arr,n): 
+    g = 0 
+    for i in range(1,n): 
+        if (arr[i] - arr[i - 1] > 0 and g == 1): 
+            return False
+        if (arr[i] - arr[i] < 0): 
+            g = 1
+    return True",passed,True,True,5.64514333329195e-05,9,8,8,1,0,0,1,5,5,12,7,14,17,21,54.62919048309069,85.83671966625714,2.9166666666666665,250.3570990265833,13.908727723699073,0.02861223988875238,85.64339724131285
+299,mbpp,train,299,canonical_solution,"# Write a function where a string will start with a specific number.
+import re
+def match_num(string):
+    text = re.compile(r""^5"")
+    if text.match(string):
+        return True
+    else:
+        return False",passed,True,True,2.8497366668034373e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+300,mbpp,train,300,canonical_solution,"# Write a function to find the smallest multiple of the first n numbers.
+def smallest_multiple(n):
+    if (n<=2):
+      return n
+    i = n * 2
+    factors = [number  for number in range(n, 1, -1) if number * 2 > n]
+    while True:
+        for a in factors:
+            if i % a != 0:
+                i += n
+                break
+            if (a == factors[-1] and i % a == 0):
+                return i",passed,True,True,0.0055605057333328505,13,12,12,1,0,0,1,9,9,13,13,24,22,37,76.63504134881501,164.99896988958,8.307692307692308,1370.7606729288186,76.1533707182677,0.05499965662986,76.18694359013104
+301,mbpp,train,301,canonical_solution,"# Write a function to combine two dictionaries by adding values for common keys.
+from collections import Counter
+def add_dict(d1,d2):
+   add_dict = Counter(d1) + Counter(d2)
+   return add_dict",passed,True,True,0.0002005859333337412,5,4,4,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+302,mbpp,train,302,canonical_solution,"# Write a python function to count the total unset bits from 1 to n.
+def count_Unset_Bits(n) :  
+    cnt = 0;  
+    for i in range(1,n + 1) : 
+        temp = i;  
+        while (temp) :  
+            if (temp % 2 == 0) : 
+                cnt += 1;  
+            temp = temp // 2;  
+    return cnt;  ",passed,True,True,3.130283333045251e-05,10,9,9,1,0,0,1,4,4,7,5,10,11,15,27.651484454403228,51.89147427955947,2.857142857142857,148.26135508445563,8.236741949136423,0.01729715809318649,85.26487085086278
+303,mbpp,train,303,canonical_solution,"# Write a function to return true if the given number is even else return false.
+def even_num(x):
+  if x%2==0:
+     return True
+  else:
+    return False",passed,True,True,2.581146665458315e-05,6,5,5,1,0,0,1,2,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,99.52774689752884
+304,mbpp,train,304,canonical_solution,"# Write a python function to find the sum of squares of binomial co-efficients.
+def factorial(start,end): 
+    res = 1 
+    for i in range(start,end + 1): 
+        res *= i      
+    return res 
+def sum_of_square(n): 
+   return int(factorial(n + 1, 2 * n)  /factorial(1, n)) ",passed,True,True,2.198613333348476e-05,8,7,7,1,0,0,1,2,3,9,5,10,12,15,33.28421251514428,53.77443751081735,1.6666666666666667,89.62406251802892,4.9791145843349405,0.017924812503605784,89.8081016302645
+305,mbpp,train,305,canonical_solution,"# Write a function to extract year, month and date from a url by using regex.
+import re
+def extract_date(url):
+        return re.findall(r'/(\d{4})/(\d{1,2})/(\d{1,2})/', url)",passed,True,True,5.1359433333194225e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+306,mbpp,train,306,canonical_solution,"# Write a function to print the first n lucky numbers.
+def lucky_num(n):
+ List=range(-1,n*n+9,2)
+ i=2
+ while List[i:]:List=sorted(set(List)-set(List[List[i]::List[i]]));i+=1
+ return List[1:n+1]",passed,True,True,0.00018724390000007435,6,8,5,1,0,0,1,2,4,7,6,11,11,17,27.651484454403228,58.81033751683406,3.142857142857143,184.83248933862134,10.268471629923408,0.019603445838944685,91.02197840979744
+307,mbpp,train,307,canonical_solution,"# Write a function to find the fixed point in the given array.
+def find_fixed_point(arr, n): 
+	for i in range(n): 
+		if arr[i] is i: 
+			return i 
+	return -1",passed,True,True,6.232620000048427e-05,6,5,5,1,0,0,1,3,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,100.0
+308,mbpp,train,308,canonical_solution,"# Write a function to find the previous palindrome of a specified number.
+def previous_palindrome(num):
+    for x in range(num-1,0,-1):
+        if str(x) == str(x)[::-1]:
+            return x",passed,True,True,7.191620000715679e-05,5,4,4,1,0,0,1,3,3,4,4,6,7,10,12.75488750216347,28.07354922057604,2.25,63.16548574629609,3.509193652572005,0.009357849740192013,100.0
+309,mbpp,train,309,canonical_solution,"# Write a function to validate a gregorian date.
+import datetime
+def check_date(m, d, y):
+    try:
+        m, d, y = map(int, (m, d, y))
+        datetime.date(y, m, d)
+        return True
+    except ValueError:
+        return False",passed,True,True,3.6547666666327436e-05,9,8,8,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+310,mbpp,train,310,canonical_solution,"# Write a function to compute maximum product of three numbers of a given array of integers using heap queue algorithm.
+def maximum_product(nums):
+    import heapq
+    a, b = heapq.nlargest(3, nums), heapq.nsmallest(2, nums)
+    return max(a[0] * a[1] * a[2], a[0] * b[0] * b[1])",passed,True,True,8.87117333339423e-05,5,4,4,1,0,0,1,1,1,8,4,8,9,12,24.0,38.03910001730775,0.5,19.019550008653876,1.0566416671474377,0.012679700005769252,100.0
+311,mbpp,train,311,canonical_solution,"# Write a function to find ln, m lobb number.
+def binomial_coeff(n, k): 
+	C = [[0 for j in range(k + 1)] 
+			for i in range(n + 1)] 
+	for i in range(0, n + 1): 
+		for j in range(0, min(i, k) + 1): 
+			if (j == 0 or j == i): 
+				C[i][j] = 1
+			else: 
+				C[i][j] = (C[i - 1][j - 1] 
+							+ C[i - 1][j]) 
+	return C[n][k] 
+def lobb_num(n, m): 
+	return (((2 * m + 1) *
+		binomial_coeff(2 * n, m + n)) 
+					/ (m + n + 1))",passed,True,True,7.930550000120698e-05,16,11,15,1,0,0,1,7,6,21,19,38,27,57,107.74844088268091,271.0285876233177,5.428571428571429,1471.2980470980106,81.73878039433392,0.0903428625411059,74.21341745712274
+312,mbpp,train,312,canonical_solution,"# Write a function to check for a number at the end of a string.
+import re
+def end_num(string):
+    text = re.compile(r"".*[0-9]$"")
+    if text.match(string):
+        return True
+    else:
+        return False",passed,True,True,2.831476666666314e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+313,mbpp,train,313,canonical_solution,"# Write a python function to check whether the given string is made up of two alternating characters or not.
+def is_Two_Alter(s):  
+    for i in range (len( s) - 2) : 
+        if (s[i] != s[i + 2]) : 
+            return False
+    if (s[0] == s[1]): 
+        return False
+    return True",passed,True,True,2.717839999301456e-05,8,7,7,1,0,0,1,4,4,7,4,8,11,12,27.651484454403228,41.51317942364757,2.2857142857142856,94.88726725405158,5.27151484744731,0.01383772647454919,90.32605119817703
+314,mbpp,train,314,canonical_solution,"# Write a function to rearrange positive and negative numbers in a given array using lambda function.
+def rearrange_numbs(array_nums):
+  result = sorted(array_nums, key = lambda i: 0 if i == 0 else -1 / i)
+  return result ",passed,True,True,8.472703333287276e-05,4,4,3,1,0,0,1,2,3,4,3,5,7,8,12.75488750216347,22.458839376460833,1.875,42.11032383086406,2.3394624350480036,0.007486279792153611,100.0
+315,mbpp,train,315,canonical_solution,"# Write a function to find if there is a triplet in the array whose sum is equal to a given value.
+def find_triplet_array(A, arr_size, sum): 
+	for i in range( 0, arr_size-2): 
+		for j in range(i + 1, arr_size-1): 
+			for k in range(j + 1, arr_size): 
+				if A[i] + A[j] + A[k] == sum: 
+					return  A[i],A[j],A[k] 
+					return True
+	return False",passed,True,True,7.658533333293841e-05,9,8,8,1,0,0,1,5,3,11,7,14,14,21,42.808635307173745,79.95445336320968,1.9090909090909092,152.64032005703666,8.480017780946481,0.026651484454403226,85.8592724846968
+316,mbpp,train,316,canonical_solution,"# Write a function to find the sequences of one upper case letter followed by lower case letters.
+import re
+def text_uppercase_lowercase(text):
+        patterns = '[A-Z]+[a-z]+$'
+        if re.search(patterns, text):
+                return 'Found a match!'
+        else:
+                return ('Not matched!')",passed,True,True,3.506439999985863e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+317,mbpp,train,317,canonical_solution,"# Write a function to count coin change.
+def coin_change(S, m, n): 
+    table = [[0 for x in range(m)] for x in range(n+1)] 
+    for i in range(m): 
+        table[0][i] = 1
+    for i in range(1, n+1): 
+        for j in range(m): 
+            x = table[i - S[j]][j] if i-S[j] >= 0 else 0
+            y = table[i][j-1] if j >= 1 else 0 
+            table[i][j] = x + y   
+    return table[n][m-1] ",passed,True,True,8.36253666667138e-05,11,10,10,1,0,0,1,8,3,11,9,18,14,27,42.808635307173745,102.7985828955553,2.4545454545454546,252.32379437999938,14.017988576666632,0.03426619429851843,80.8394948916453
+318,mbpp,train,318,canonical_solution,"# Write a python function to multiply all items in the list.
+def multiply_list(items):
+    tot = 1
+    for x in items:
+        tot *= x
+    return tot",passed,True,True,4.853706666760142e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+319,mbpp,train,319,canonical_solution,"# Write a function to remove all tuples with all none values in the given tuple list.
+def remove_tuple(test_list):
+  res = [sub for sub in test_list if not all(ele == None for ele in sub)]
+  return (str(res)) ",passed,True,True,0.00010360526666583306,4,3,3,1,0,0,1,4,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,100.0
+320,mbpp,train,320,canonical_solution,"# Write a function to perform chunking of tuples each of size n.
+def chunk_tuples(test_tup, N):
+  res = [test_tup[i : i + N] for i in range(0, len(test_tup), N)]
+  return (res) ",passed,True,True,0.00012057026666525416,4,4,3,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+321,mbpp,train,321,canonical_solution,"# Write a function to find a pair with the highest product from a given array of integers.
+def max_product(arr): 
+    arr_len = len(arr) 
+    if (arr_len < 2): 
+        return None     
+    x = arr[0]; y = arr[1]    
+    for i in range(0, arr_len): 
+        for j in range(i + 1, arr_len): 
+            if (arr[i] * arr[j] > x * y): 
+                x = arr[i]; y = arr[j] 
+    return x,y   ",passed,True,True,7.237139999981916e-05,11,12,10,1,0,0,1,5,4,10,5,10,14,15,41.219280948873624,57.110323830864054,2.0,114.22064766172811,6.345591536762672,0.019036774610288017,81.3031682468669
+322,mbpp,train,322,canonical_solution,"# Write a function to find the length of the shortest string that has both str1 and str2 as subsequences.
+def super_seq(X, Y, m, n):
+	if (not m):
+		return n
+	if (not n):
+		return m
+	if (X[m - 1] == Y[n - 1]):
+		return 1 + super_seq(X, Y, m - 1, n - 1)
+	return 1 + min(super_seq(X, Y, m - 1, n),	super_seq(X, Y, m, n - 1))",passed,True,True,0.00011795623333152131,9,8,8,1,0,0,1,4,4,7,11,20,11,31,27.651484454403228,107.24238017775623,5.714285714285714,612.8136010157499,34.04520005643055,0.03574746005925208,85.10085218310508
+323,mbpp,train,323,canonical_solution,"# Write a function to find maximum of two numbers.
+def max_of_two( x, y ):
+    if x > y:
+        return x
+    return y",passed,True,True,2.93515666650516e-05,5,4,4,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+324,mbpp,train,324,canonical_solution,"# Write a python function to calculate the product of all the numbers of a given tuple.
+def mutiple_tuple(nums):
+    temp = list(nums)
+    product = 1 
+    for x in temp:
+        product *= x
+    return product",passed,True,True,3.793266666699916e-05,7,6,6,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.90348152172656
+325,mbpp,train,325,canonical_solution,"# Write a function to find n-th rencontres number.
+def binomial_coeffi(n, k): 
+	if (k == 0 or k == n): 
+		return 1
+	return (binomial_coeffi(n - 1, k - 1) 
+		+ binomial_coeffi(n - 1, k)) 
+def rencontres_number(n, m): 
+	if (n == 0 and m == 0): 
+		return 1
+	if (n == 1 and m == 0): 
+		return 0
+	if (m == 0): 
+		return ((n - 1) * (rencontres_number(n - 1, 0)+ rencontres_number(n - 2, 0))) 
+	return (binomial_coeffi(n, m) * rencontres_number(n - m, 0))",passed,True,True,3.453806666679308e-05,14,12,13,1,0,0,1,3,6,23,21,42,29,63,119.55169999363824,306.0528026930371,5.478260869565218,1676.6370930140295,93.14650516744608,0.10201760089767904,73.8712014128481
+326,mbpp,train,326,canonical_solution,"# Write a function to calculate the height of the given binary tree.
+class Node: 
+	def __init__(self, data): 
+		self.data = data 
+		self.left = None
+		self.right = None
+def max_height(node): 
+	if node is None: 
+		return 0 ; 
+	else : 
+		left_height = max_height(node.left) 
+		right_height = max_height(node.right) 
+		if (left_height > right_height): 
+			return left_height+1
+		else: 
+			return right_height+1",passed,True,True,0.0001206224666664942,16,15,15,1,0,0,1,3,3,5,4,8,8,12,16.36452797660028,36.0,2.4,86.39999999999999,4.8,0.012,77.81736954247442
+327,mbpp,train,327,canonical_solution,"# Write a function to convert a date of yyyy-mm-dd format to dd-mm-yyyy format.
+import re
+def change_date_format(dt):
+        return re.sub(r'(\d{4})-(\d{1,2})-(\d{1,2})', '\\3-\\2-\\1', dt)
+        return change_date_format(dt)",passed,True,True,4.384246666688796e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+328,mbpp,train,328,canonical_solution,"# Write a function to count repeated items of a tuple.
+def count_tuplex(tuplex,value):  
+  count = tuplex.count(value)
+  return count",passed,True,True,6.272633333329244e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+329,mbpp,train,329,canonical_solution,"# Write a function that matches a string that has an a followed by zero or more b's by using regex.
+import re
+def text_match(text):
+        patterns = 'ab*?'
+        if re.search(patterns,  text):
+                return ('Found a match!')
+        else:
+                return ('Not matched!')",passed,True,True,2.788460000147097e-05,8,7,7,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+330,mbpp,train,330,canonical_solution,"# Write a function to calculate the sum of series 1³+2³+3³+….+n³.
+import math 
+def sum_series(number):
+ total = 0
+ total = math.pow((number * (number + 1)) /2, 2)
+ return total",passed,True,True,2.6264066665741363e-05,6,5,5,1,0,0,1,1,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,97.97645727405393
+331,mbpp,train,331,canonical_solution,"# Write a function to remove duplicate words from a given list of strings.
+def remove_duplic_list(l):
+    temp = []
+    for x in l:
+        if x not in temp:
+            temp.append(x)
+    return temp",passed,True,True,7.996113333395746e-05,7,6,6,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.76897859774995
+332,mbpp,train,332,canonical_solution,"# Write a function to convert camel case string to snake case string by using regex.
+import re
+def camel_to_snake(text):
+  str1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
+  return re.sub('([a-z0-9])([A-Z])', r'\1_\2', str1).lower()",passed,True,True,4.497169999998126e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+333,mbpp,train,333,canonical_solution,"# Write a function to find the nth delannoy number.
+def dealnnoy_num(n, m): 
+	if (m == 0 or n == 0) : 
+		return 1
+	return dealnnoy_num(m - 1, n) + dealnnoy_num(m - 1, n - 1) + dealnnoy_num(m, n - 1)",passed,True,True,0.00013002276666611577,5,4,4,1,0,0,1,3,4,10,9,18,14,27,41.219280948873624,102.7985828955553,3.6,370.07489842399906,20.559716579111058,0.03426619429851843,97.53289122809365
+334,mbpp,train,334,canonical_solution,"# Write a function to calculate the sum of series 1²+2²+3²+….+n².
+def series_sum(number):
+ total = 0
+ total = (number * (number + 1) * (2 * number + 1)) / 6
+ return total",passed,True,True,2.518686666614182e-05,5,4,4,1,0,0,1,1,3,9,6,12,12,18,33.28421251514428,64.52932501298082,2.0,129.05865002596164,7.169925001442313,0.02150977500432694,99.21791423353523
+335,mbpp,train,335,canonical_solution,"# Write a function to re-arrange the given tuples based on the given ordered list.
+def re_arrange_tuples(test_list, ord_list):
+  temp = dict(test_list)
+  res = [(key, temp[key]) for key in ord_list]
+  return (res) ",passed,True,True,0.00015214113333475627,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+336,mbpp,train,336,canonical_solution,"# Write a function to count the most common character in a given string.
+from collections import Counter 
+def max_char(str1):
+    temp = Counter(str1) 
+    max_char = max(temp, key = temp.get)
+    return max_char",passed,True,True,3.89032000005803e-05,6,5,5,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+337,mbpp,train,337,canonical_solution,"# Write a function to find three closest elements from three sorted arrays.
+import sys 
+
+def find_closet(A, B, C, p, q, r): 
+	diff = sys.maxsize 
+	res_i = 0
+	res_j = 0
+	res_k = 0
+	i = 0
+	j = 0
+	k = 0
+	while(i < p and j < q and k < r): 
+		minimum = min(A[i], min(B[j], C[k])) 
+		maximum = max(A[i], max(B[j], C[k])); 
+		if maximum-minimum < diff: 
+			res_i = i 
+			res_j = j 
+			res_k = k 
+			diff = maximum - minimum; 
+		if diff == 0: 
+			break
+		if A[i] == minimum: 
+			i = i+1
+		elif B[j] == minimum: 
+			j = j+1
+		else: 
+			k = k+1
+	return A[res_i],B[res_j],C[res_k]",passed,True,True,0.0001146947666673744,28,26,26,1,0,1,1,8,5,17,13,27,22,40,81.0965087756926,178.37726474549189,3.9705882352941178,708.2626688423943,39.347926046799685,0.05945908824849729,63.85166134194164
+338,mbpp,train,338,canonical_solution,"# Write a function to sort a list of dictionaries using lambda function.
+def sorted_models(models):
+ sorted_models = sorted(models, key = lambda x: x['color'])
+ return sorted_models",passed,True,True,0.00021826083332901665,4,4,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+339,mbpp,train,339,canonical_solution,"# Write a function to sort the given array by using heap sort.
+def heap_sort(arr):
+    heapify(arr)  
+    end = len(arr) - 1
+    while end > 0:
+        arr[end], arr[0] = arr[0], arr[end]
+        shift_down(arr, 0, end - 1)
+        end -= 1
+    return arr
+
+def heapify(arr):
+    start = len(arr) // 2
+    while start >= 0:
+        shift_down(arr, start, len(arr) - 1)
+        start -= 1
+def shift_down(arr, start, end):
+    root = start
+    while root * 2 + 1 <= end:
+        child = root * 2 + 1
+        if child + 1 <= end and arr[child] < arr[child + 1]:
+            child += 1
+        if child <= end and arr[root] < arr[child]:
+            arr[root], arr[child] = arr[child], arr[root]
+            root = child
+        else:
+            return
+",passed,True,True,8.028533333307072e-05,26,24,24,1,0,1,1,2,9,27,22,44,36,66,156.9112875713945,341.2150500951926,7.333333333333333,2502.243700698079,139.01353892767105,0.11373835003173087,63.08163135668158
+340,mbpp,train,340,canonical_solution,"# Write a function to count the elements in a list until an element is a tuple.
+def count_elim(num):
+  count_elim = 0
+  for n in num:
+    if isinstance(n, tuple):
+        break
+    count_elim += 1
+  return count_elim",passed,True,True,6.242570000267734e-05,8,7,7,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,97.04976883877337
+341,mbpp,train,341,canonical_solution,"# Write a function to check if any list element is present in the given list.
+def check_element(test_tup, check_list):
+  res = False
+  for ele in check_list:
+    if ele in test_tup:
+      res = True
+      break
+  return (res) ",passed,True,True,6.751273333520658e-05,8,7,7,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,97.04976883877337
+342,mbpp,train,342,canonical_solution,"# Write a function to combine two given sorted lists using heapq module.
+from heapq import merge
+def combine_lists(num1,num2):
+  combine_lists=list(merge(num1, num2))
+  return combine_lists",passed,True,True,0.00011525883333357948,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+343,mbpp,train,343,canonical_solution,"# Write a function to separate and print the numbers and their position of a given string.
+import re
+def num_position(text):
+ for m in re.finditer(""\d+"", text):
+    return m.start()",passed,True,True,3.1082800000111395e-05,5,4,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+344,mbpp,train,344,canonical_solution,"# Write a function to convert the given tuples into set.
+def tuple_to_set(t):
+  s = set(t)
+  return (s) ",passed,True,True,5.729743333328467e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+345,mbpp,train,345,canonical_solution,"# Write a function to find the most common elements and their counts of a specified text.
+from collections import Counter 
+def most_common_elem(s,a):
+  most_common_elem=Counter(s).most_common(a)
+  return most_common_elem",passed,True,True,0.00012235526666681077,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+346,mbpp,train,346,canonical_solution,"# Write a python function to find the length of the shortest word.
+def len_log(list1):
+    min=len(list1[0])
+    for i in list1:
+        if len(i)<min:
+            min=len(i)
+    return min",passed,True,True,4.0517500004474034e-05,7,6,6,1,0,0,1,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.76897859774995
+347,mbpp,train,347,canonical_solution,"# Write a function to get an item of a tuple.
+def get_item(tup1,index):
+  item = tup1[index]
+  return item",passed,True,True,7.495856666537293e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+348,mbpp,train,348,canonical_solution,"# Write a function to sort the given tuple list basis the total digits in tuple.
+def count_digs(tup):
+  return sum([len(str(ele)) for ele in tup ]) 
+def sort_list(test_list):
+  test_list.sort(key = count_digs)
+  return (str(test_list))",passed,True,True,0.00010246963333315762,6,5,5,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+349,mbpp,train,349,canonical_solution,"# Write a function to display sign of the chinese zodiac for given year.
+def chinese_zodiac(year):
+ if (year - 2000) % 12 == 0:
+     sign = 'Dragon'
+ elif (year - 2000) % 12 == 1:
+     sign = 'Snake'
+ elif (year - 2000) % 12 == 2:
+     sign = 'Horse'
+ elif (year - 2000) % 12 == 3:
+     sign = 'sheep'
+ elif (year - 2000) % 12 == 4:
+     sign = 'Monkey'
+ elif (year - 2000) % 12 == 5:
+     sign = 'Rooster'
+ elif (year - 2000) % 12 == 6:
+     sign = 'Dog'
+ elif (year - 2000) % 12 == 7:
+     sign = 'Pig'
+ elif (year - 2000) % 12 == 8:
+     sign = 'Rat'
+ elif (year - 2000) % 12 == 9:
+     sign = 'Ox'
+ elif (year - 2000) % 12 == 10:
+     sign = 'Tiger'
+ else:
+     sign = 'Hare'
+ return sign",passed,True,True,3.0675666675961113e-05,27,26,26,1,0,0,1,12,3,36,33,66,39,99,190.87218755408668,523.2548196673627,2.75,1438.9507540852474,79.94170856029152,0.1744182732224542,60.04109259325605
+350,mbpp,train,350,canonical_solution,"# Write a function to find the maximum of similar indices in two lists of tuples.
+def max_similar_indices(test_list1, test_list2):
+  res = [(max(x[0], y[0]), max(x[1], y[1]))
+   for x, y in zip(test_list1, test_list2)]
+  return (res) ",passed,True,True,0.00014981160000123359,5,3,4,1,0,0,1,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+351,mbpp,train,351,canonical_solution,"# Write a function to compute the value of ncr mod p.
+def nCr_mod_p(n, r, p): 
+	if (r > n- r): 
+		r = n - r 
+	C = [0 for i in range(r + 1)] 
+	C[0] = 1 
+	for i in range(1, n + 1): 
+		for j in range(min(i, r), 0, -1): 
+			C[j] = (C[j] + C[j-1]) % p 
+	return C[r] ",passed,True,True,6.273686666666834e-05,10,9,9,1,0,0,1,5,5,9,9,17,14,26,40.13896548741762,98.9912279734977,4.722222222222222,467.45857654151695,25.969920918973163,0.0329970759911659,83.16629832254736
+352,mbpp,train,352,canonical_solution,"# Write a python function to find the minimun number of subsets with distinct elements.
+def subset(ar, n): 
+    res = 0
+    ar.sort() 
+    for i in range(0, n) : 
+        count = 1
+        for i in range(n - 1): 
+            if ar[i] == ar[i + 1]: 
+                count+=1
+            else: 
+                break 
+        res = max(res, count)  
+    return res ",passed,True,True,5.7699900001277156e-05,13,12,12,1,0,0,1,4,3,6,4,8,9,12,20.264662506490406,38.03910001730775,2.0,76.0782000346155,4.226566668589751,0.012679700005769252,81.32149808817486
+353,mbpp,train,353,canonical_solution,"# Write a function that gives profit amount if the given amount has profit else return none.
+def profit_amount(actual_cost,sale_amount): 
+ if(actual_cost > sale_amount):
+    amount = actual_cost - sale_amount
+    return amount
+ else:
+    return None",passed,True,True,2.8864833332894098e-05,7,6,6,1,0,0,1,2,2,2,2,4,4,6,4.0,12.0,2.0,24.0,1.3333333333333333,0.004,97.08838515494764
+354,mbpp,train,354,canonical_solution,"# Write a function to find out, if the given number is abundant.
+def is_abundant(n):
+    fctrsum = sum([fctr for fctr in range(1, n) if n % fctr == 0])
+    return fctrsum > n",passed,True,True,3.082086666571134e-05,4,3,3,1,0,0,1,3,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,100.0
+355,mbpp,train,355,canonical_solution,"# Write a function to split the given string at uppercase letters by using regex.
+import re
+def split_list(text):
+  return (re.findall('[A-Z][^A-Z]*', text))",passed,True,True,6.049586666681724e-05,4,3,3,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+356,mbpp,train,356,canonical_solution,"# Write a python function to get the position of rightmost set bit.
+import math
+def get_First_Set_Bit_Pos(n):
+     return math.log2(n&-n)+1",passed,True,True,2.909756666629922e-05,4,3,3,1,0,0,1,1,3,4,3,5,7,8,12.75488750216347,22.458839376460833,1.875,42.11032383086406,2.3394624350480036,0.007486279792153611,100.0
+357,mbpp,train,357,canonical_solution,"# Write a function to convert an integer into a roman numeral.
+def int_to_roman( num):
+        val = [1000, 900, 500, 400,100, 90, 50, 40,10, 9, 5, 4,1]
+        syb = [""M"", ""CM"", ""D"", ""CD"",""C"", ""XC"", ""L"", ""XL"",""X"", ""IX"", ""V"", ""IV"",""I""]
+        roman_num = ''
+        i = 0
+        while  num > 0:
+            for _ in range(num // val[i]):
+                roman_num += syb[i]
+                num -= val[i]
+            i += 1
+        return roman_num",passed,True,True,3.673643333286236e-05,12,11,11,1,0,0,1,3,4,8,5,10,12,15,32.0,53.77443751081735,2.5,134.43609377704337,7.468671876502409,0.017924812503605784,81.86437621734045
+358,mbpp,train,358,canonical_solution,"# Write a python function to find the average of a list.
+def Average(lst): 
+    return sum(lst) / len(lst) ",passed,True,True,5.3005600000233245e-05,3,2,2,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+359,mbpp,train,359,canonical_solution,"# Write a function to solve tiling problem.
+def get_noOfways(n):
+    if (n == 0):
+        return 0;
+    if (n == 1):
+        return 1; 
+    return get_noOfways(n - 1) + get_noOfways(n - 2);",passed,True,True,2.6862766666605846e-05,7,6,6,1,0,0,1,3,3,6,5,10,9,15,20.264662506490406,47.548875021634686,2.5,118.87218755408671,6.604010419671484,0.01584962500721156,92.76696544946398
+360,mbpp,train,360,canonical_solution,"# Write a function to convert a roman numeral to an integer.
+def roman_to_int(s):
+        rom_val = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        int_val = 0
+        for i in range(len(s)):
+            if i > 0 and rom_val[s[i]] > rom_val[s[i - 1]]:
+                int_val += rom_val[s[i]] - 2 * rom_val[s[i - 1]]
+            else:
+                int_val += rom_val[s[i]]
+        return int_val",passed,True,True,3.0948433332393205e-05,10,10,9,1,0,0,1,4,5,14,9,18,19,27,64.91260938324326,114.6940428629768,3.2142857142857144,368.65942348813974,20.48107908267443,0.03823134762099227,81.85491121492159
+361,mbpp,train,361,canonical_solution,"# Write a python function to find the sum of all even natural numbers within the range l and r.
+def sum_Natural(n): 
+    sum = (n * (n + 1)) 
+    return int(sum) 
+def sum_Even(l,r): 
+    return (sum_Natural(int(r / 2)) - sum_Natural(int((l - 1) / 2))) ",passed,True,True,3.150776666037321e-05,6,5,5,1,0,0,1,1,4,10,6,12,14,18,41.219280948873624,68.53238859703687,2.4,164.4777326328885,9.13765181293825,0.022844129532345624,95.14391815855423
+362,mbpp,train,362,canonical_solution,"# Write a function to calculate the discriminant value.
+def discriminant_value(x,y,z):
+    discriminant = (y**2) - (4*x*z)
+    if discriminant > 0:
+        return (""Two solutions"",discriminant)
+    elif discriminant == 0:
+        return (""one solution"",discriminant)
+    elif discriminant < 0:
+        return (""no real solution"",discriminant)",passed,True,True,4.294270000097337e-05,9,8,8,1,0,0,1,4,6,10,7,14,16,21,48.72905595320056,84.0,4.2,352.8,19.6,0.028,85.8436758600439
+363,mbpp,train,363,canonical_solution,"# Write a python function to check whether the length of the word is even or not.
+def word_len(s): 
+    s = s.split(' ')   
+    for word in s:    
+        if len(word)%2==0: 
+            return True  
+        else:
+          return False",passed,True,True,2.6845166667044394e-05,8,7,7,1,0,0,1,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,93.45447839703378
+364,mbpp,train,364,canonical_solution,"# Write a function to convert camel case string to snake case string.
+def camel_to_snake(text):
+        import re
+        str1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
+        return re.sub('([a-z0-9])([A-Z])', r'\1_\2', str1).lower()",passed,True,True,5.983116666546569e-05,5,4,4,1,0,0,1,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+365,mbpp,train,365,canonical_solution,"# Write a function to remove an empty tuple from a list of tuples.
+def remove_empty(tuple1): #L = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+   tuple1 = [t for t in tuple1 if t]
+   return tuple1",passed,True,True,0.00010724896666639931,4,3,3,2,0,0,1,3,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+366,mbpp,train,366,canonical_solution,"# Write a python function to accept the strings which contains all vowels.
+def check(string): 
+  if len(set(string).intersection(""AEIOUaeiou""))>=5: 
+    return ('accepted') 
+  else: 
+    return (""not accepted"") ",passed,True,True,3.004269999943669e-05,6,5,5,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+367,mbpp,train,367,canonical_solution,"# Write a python function to find maximum possible value for the given periodic function.
+def floor_Max(A,B,N):
+    x = min(B - 1,N)
+    return (A*x) // B",passed,True,True,3.4841699999788034e-05,4,3,3,1,0,0,1,1,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,100.0
+368,mbpp,train,368,canonical_solution,"# Write a function to join the tuples if they have similar initial elements.
+def join_tuples(test_list):
+  res = []
+  for sub in test_list:
+    if res and res[-1][0] == sub[0]:
+      res[-1].extend(sub[1:])
+    else:
+      res.append([ele for ele in sub])
+  res = list(map(tuple, res))
+  return (res) ",passed,True,True,0.00014096093333364478,10,10,9,1,0,0,1,5,3,5,4,6,8,10,16.36452797660028,30.0,1.8,54.0,3.0,0.01,85.79851803545888
+369,mbpp,train,369,canonical_solution,"# Write a function to find minimum of two numbers.
+def min_of_two( x, y ):
+    if x < y:
+        return x
+    return y",passed,True,True,2.947909999117352e-05,5,4,4,1,0,0,1,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+370,mbpp,train,370,canonical_solution,"# Write a function to find the maximum number of segments of lengths a, b and c that can be formed from n.
+def maximum_segments(n, a, b, c) : 
+	dp = [-1] * (n + 10) 
+	dp[0] = 0
+	for i in range(0, n) : 
+		if (dp[i] != -1) : 
+			if(i + a <= n ): 
+				dp[i + a] = max(dp[i] + 1, 
+							dp[i + a]) 
+			if(i + b <= n ): 
+				dp[i + b] = max(dp[i] + 1, 
+							dp[i + b]) 
+			if(i + c <= n ): 
+				dp[i + c] = max(dp[i] + 1, 
+							dp[i + c]) 
+	return dp[n]",passed,True,True,5.530356666649065e-05,16,12,15,1,0,0,1,6,5,17,20,38,22,58,81.0965087756926,258.64703388096325,5.588235294117647,1445.3804834524417,80.29891574735787,0.08621567796032108,73.6657961518749
+371,mbpp,train,371,canonical_solution,"# Write a function to concatenate the given two tuples to a nested tuple.
+def concatenate_nested(test_tup1, test_tup2):
+  res = test_tup1 + test_tup2
+  return (res) ",passed,True,True,6.292633333373487e-05,4,3,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+372,mbpp,train,372,canonical_solution,"# Write a python function to left rotate the string.
+def left_rotate(s,d):
+    tmp = s[d : ] + s[0 : d]
+    return tmp  ",passed,True,True,3.093863333560876e-05,4,4,3,1,0,0,1,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+373,mbpp,train,373,canonical_solution,"# Write a function to find the minimum total path sum in the given triangle.
+def min_sum_path(A): 
+	memo = [None] * len(A) 
+	n = len(A) - 1
+	for i in range(len(A[n])): 
+		memo[i] = A[n][i] 
+	for i in range(len(A) - 2, -1,-1): 
+		for j in range( len(A[i])): 
+			memo[j] = A[i][j] + min(memo[j], 
+									memo[j + 1]) 
+	return memo[0]",passed,True,True,6.894936666791788e-05,11,9,10,1,0,0,1,4,4,9,7,12,13,19,36.52932501298081,70.30835464468075,2.6666666666666665,187.48894571914866,10.416052539952704,0.02343611821489358,83.5308523227365
