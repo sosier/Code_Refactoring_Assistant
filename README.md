@@ -98,3 +98,8 @@ bulk_evaluate(
     num_processes=4
 )
 ```
+
+## Analysis
+
+The `Analysis.ipynb` shows an example of analyzing the evaluation results for a model run. It gathers all the necessary results data files and compares the performance the model run to 
+the performance of the baseline canonical example code. Using it you can replicate the analyses found in our paper.
