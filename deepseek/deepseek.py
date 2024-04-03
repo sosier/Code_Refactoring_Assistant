@@ -83,7 +83,7 @@ for i in range(0, num_prompts):
     headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': 'Bearer sk-47c911d337d54a53a9a5ada234244bb2'
+    'Authorization': # TODO: YOUR AUTHORIZATION KEY HERE
     }
 
     # Get generate code
