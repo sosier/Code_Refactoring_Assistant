@@ -6,7 +6,7 @@ For all generations we used the following system prompt:
 
 > Refactor the given Python program to a more readable, efficient, and maintainable one. You can assume that the given program is semantically correct. Do not change the external behavior of the program, and keep the syntactic and semantic correctness. Python programs should be in a code block. Do not explain anything in natural language.
 
-...possibly some very minor additions required for model to output results.
+...possibly with some very minor additions required for model to output results.
 
 ### Claude
 
