@@ -1,3 +1,5 @@
+# 'Make this python function implementation better and WITHOUT any explanation. Just write the function implementation, and do not change any function definitions. Do not write anything but code, starting with the same function definition: '
+
 # Import libraries
 import requests
 import json
@@ -41,6 +43,9 @@ num_prompts = len(humaneval["test"])
 prompts = []
 LIST_OF_CODE_SNIPPETS = []
 
+# Set the system instruction
+system_instruction = "Refactor the given Python program to a more readable, efficient, and maintainable one. You can assume that the given program is semantically correct. Do not change the external behavior of the program, and keep the syntactic and semantic correctness. Python programs should be in a code block. Do not explain anything in natural language."
+
 # For each prompt
 for i in range(0, num_prompts):
     print('Working on prompt number', i, 'of', num_prompts)
@@ -58,7 +63,7 @@ for i in range(0, num_prompts):
     payload = json.dumps({
     "messages": [
         {
-        "content": 'Make this python function implementation better and WITHOUT any explanation. Just write the function implementation, and do not change any function definitions. Do not write anything but code, starting with the same function definition: ' + prompt,
+        "content": system_instruction + prompt,
         "role": "system"
         },
         # {
@@ -114,7 +119,7 @@ results = bulk_evaluate(
     code=LIST_OF_CODE_SNIPPETS, # one for each task in HumanEval test
     # Run in parallel using 4 cores
     # Entering None will use all cores on your machine:
-    num_processes=4
+    num_processes=8
 )
 
 temp = []
