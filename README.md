@@ -1,5 +1,25 @@
 # Code_Refactoring_Assistant
- 
+
+## Code Generation (Refactoring)
+
+For all generations we used the following system prompt:
+
+> Refactor the given Python program to a more readable, efficient, and maintainable one. You can assume that the given program is semantically correct. Do not change the external behavior of the program, and keep the syntactic and semantic correctness. Python programs should be in a code block. Do not explain anything in natural language.
+
+...possibly some very minor additions required for model to output results.
+
+### Claude
+
+`claude/Claude_Generations.ipynb` demonstrates the process of generating refactoring outputs using Claude 3 Haiku. Using it requires using the `anthropic` Python package, [signing up for Claude API access](https://console.anthropic.com/), retreiving your API key, and storing in a variable called `ANTHROPIC_API_KEY` in a `.env` file in your home directory.
+
+### Deepseek
+
+...
+
+### Starcoder 2
+
+...
+
 ## Code Evaluation
 
 ### Initial Installation / Setup
@@ -101,5 +121,5 @@ bulk_evaluate(
 
 ## Analysis
 
-The `Analysis.ipynb` shows an example of analyzing the evaluation results for a model run. It gathers all the necessary results data files and compares the performance the model run to 
+`Analysis.ipynb` shows an example of analyzing the evaluation results for a model run. It gathers all the necessary results data files and compares the performance the model run to 
 the performance of the baseline canonical example code. Using it you can replicate the analyses found in our paper.
