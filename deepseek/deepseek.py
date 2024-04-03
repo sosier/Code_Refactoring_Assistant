@@ -5,8 +5,20 @@ from eval import DATA, evaluate, bulk_evaluate
 import re
 import csv
 
-# Define csv writer
-def write_to_csv(prompt, deepseek_output, filename):
+# Define csv writer - results
+def write_to_csv(prompt, deepseek_output, result, filename):
+    with open(filename, 'a', newline='') as csvfile:  # Use 'a' mode for appending
+        fieldnames = ['prompt', 'deepseek_output', 'result']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        
+        # If the file is empty, write header
+        if csvfile.tell() == 0:
+            writer.writeheader()
+        
+        writer.writerow({'prompt': prompt, 'deepseek_output': deepseek_output, 'result': result})
+
+# Define csv writer - no results
+def write_to_csv_2(prompt, deepseek_output, filename):
     with open(filename, 'a', newline='') as csvfile:  # Use 'a' mode for appending
         fieldnames = ['prompt', 'deepseek_output']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -34,7 +46,7 @@ for i in range(0, num_prompts):
     print('Working on prompt number', i, 'of', num_prompts)
 
     # Get the prompt
-    prompt = humaneval["test"][0]["prompt"] + humaneval["test"][0]["canonical_solution"]
+    prompt = humaneval["test"][i]["prompt"] + humaneval["test"][i]["canonical_solution"]
 
     # Add prompt to list of prompts
     prompts.append(prompt)
@@ -46,7 +58,7 @@ for i in range(0, num_prompts):
     payload = json.dumps({
     "messages": [
         {
-        "content": 'Make this python function implementation better and WITHOUT any explanation, just write the function implementation, and do not change any function definitions: ' + prompt,
+        "content": 'Make this python function implementation better and WITHOUT any explanation. Just write the function implementation, and do not change any function definitions. Do not write anything but code, starting with the same function definition: ' + prompt,
         "role": "system"
         },
         # {
@@ -87,6 +99,13 @@ for i in range(0, num_prompts):
     # Add code to the list of generated code
     LIST_OF_CODE_SNIPPETS.append(content)
 
+print('Done with getting content!')
+
+# Write each pair without its result to CSV
+for prompt, deepseek_output in zip(prompts, LIST_OF_CODE_SNIPPETS):
+    write_to_csv_2(prompt, deepseek_output, 'without_results_output.csv')
+
+print('Done with writing non-result to CSV!')
 
 # Bulk Evaluate instead
 results = bulk_evaluate(
@@ -98,15 +117,16 @@ results = bulk_evaluate(
     num_processes=4
 )
 
-# Write each pair with its result to a CSV
-for prompt, deepseek_output in zip(prompts, LIST_OF_CODE_SNIPPETS):
-    write_to_csv(prompt, deepseek_output, 'output.csv')
-
 temp = []
 for i in results:
     if i == 'ERROR':
         temp.append('False')
     else:
-        temp.append[i['passed_tests']]
+        temp.append(i['passed_tests'])
 results = temp
 print('Results:\n', results)
+
+
+# Write each pair with its result to a CSV
+for prompt, deepseek_output, result in zip(prompts, LIST_OF_CODE_SNIPPETS, results):
+    write_to_csv(prompt, deepseek_output, result, 'results_output.csv')
