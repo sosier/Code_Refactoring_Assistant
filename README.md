@@ -14,7 +14,7 @@ For all generations we used the following system prompt:
 
 ### Deepseek
 
-...
+`deepseeker.py` demonstrates the process of generating refactoring outputs using DeepSeeker. Running it requires using the `re`, `csv`, `requests`, and `json` Python packages. You'll need to create an authorization key on the [DeepSeek website](https://platform.deepseek.com/sign_in).
 
 ### Starcoder 2
 
