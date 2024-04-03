@@ -20,6 +20,9 @@ For all generations we used the following system prompt:
 
 ...
 
+### CodeLLama
+`codellama/gencode_codellama.ipynb` demonstrates the process of generating and storing refactoring outputs using CodeLLama. As an open source model, it requires downloading and locally running the model on a GPU. Eval_helper.py leverages the existing testing suite to generate code metrics, but may need to be modified for the directory structure. Generated code outputs are also included in this directory.
+
 ## Code Evaluation
 
 ### Initial Installation / Setup
