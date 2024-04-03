@@ -1,0 +1,112 @@
+# Import libraries
+import requests
+import json
+from eval import DATA, evaluate, bulk_evaluate
+import re
+import csv
+
+# Define csv writer
+def write_to_csv(prompt, deepseek_output, filename):
+    with open(filename, 'a', newline='') as csvfile:  # Use 'a' mode for appending
+        fieldnames = ['prompt', 'deepseek_output']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        
+        # If the file is empty, write header
+        if csvfile.tell() == 0:
+            writer.writeheader()
+        
+        writer.writerow({'prompt': prompt, 'deepseek_output': deepseek_output})
+
+
+# Get all data
+mbpp = DATA["mbpp"]  # train, validation, and test
+humaneval = DATA["openai_humaneval"]  # test only
+
+# Get number of prompts
+num_prompts = len(humaneval["test"])
+
+# Keep track of prompts and generated code
+prompts = []
+LIST_OF_CODE_SNIPPETS = []
+
+# For each prompt
+for i in range(0, num_prompts):
+    print('Working on prompt number', i, 'of', num_prompts)
+
+    # Get the prompt
+    prompt = humaneval["test"][0]["prompt"] + humaneval["test"][0]["canonical_solution"]
+
+    # Add prompt to list of prompts
+    prompts.append(prompt)
+
+    # Set up URL for POST request
+    url = "https://api.deepseek.com/v1/chat/completions"
+
+    # Create payload (what we send to deepseek for answer)
+    payload = json.dumps({
+    "messages": [
+        {
+        "content": 'Make this python function implementation better and WITHOUT any explanation, just write the function implementation, and do not change any function definitions: ' + prompt,
+        "role": "system"
+        },
+        # {
+        #   "content": "Hi",
+        #   "role": "user"
+        # }
+    ],
+    "model": "deepseek-coder",
+    "frequency_penalty": 0,
+    "max_tokens": 2048,
+    "presence_penalty": 0,
+    "stop": None,
+    "stream": False,
+    "temperature": 1,
+    "top_p": 1
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': 'Bearer sk-47c911d337d54a53a9a5ada234244bb2'
+    }
+
+    # Get generate code
+    response = requests.request("POST", url, headers=headers, data=payload)
+    response_data = json.loads(response.text)
+    content = response_data['choices'][0]['message']['content']
+
+    # # Evaluate whether or not the generated code is correct
+    # print('Prompt was:', prompt)
+    # print('Response was:', content)
+    # print('Correct?:', evaluate(
+    #     dataset="openai_humaneval",
+    #     split="test",
+    #     task_id=0,
+    #     code=content
+    # )['result'])
+
+    # Add code to the list of generated code
+    LIST_OF_CODE_SNIPPETS.append(content)
+
+
+# Bulk Evaluate instead
+results = bulk_evaluate(
+    dataset="openai_humaneval",
+    split="test",
+    code=LIST_OF_CODE_SNIPPETS, # one for each task in HumanEval test
+    # Run in parallel using 4 cores
+    # Entering None will use all cores on your machine:
+    num_processes=4
+)
+
+# Write each pair with its result to a CSV
+for prompt, deepseek_output in zip(prompts, LIST_OF_CODE_SNIPPETS):
+    write_to_csv(prompt, deepseek_output, 'output.csv')
+
+temp = []
+for i in results:
+    if i == 'ERROR':
+        temp.append('False')
+    else:
+        temp.append[i['passed_tests']]
+results = temp
+print('Results:\n', results)
