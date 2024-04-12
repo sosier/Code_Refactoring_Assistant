@@ -30,6 +30,8 @@ def check_correctness(
         code: str,
         test_code: str,
         evaluate_run_time: Optional[bool] = False,
+        num_test_run_repeats: int = 3,
+        test_runs_per_repeat: int = 30,
         timeout: float = 10.0  # seconds
 ) -> Dict:
     """
@@ -88,8 +90,8 @@ def check_correctness(
                     avg_test_time = min(
                         Timer(
                             lambda: exec(test_code, exec_globals)
-                        ).repeat(3, 30)
-                    ) / 30
+                        ).repeat(num_test_run_repeats, test_runs_per_repeat)
+                    ) / test_runs_per_repeat
 
             result = "passed"
         except TimeoutException:
@@ -265,6 +267,18 @@ if __name__ == "__main__":
     parser.add_argument("code", help="Code to evaluate")
     parser.add_argument("test_code", help="Tests to run")
     parser.add_argument(
+        "--num_test_run_repeats",
+        type=int,
+        default=3,
+        help="Number of batches of test runs to use (default: 3)"
+    )
+    parser.add_argument(
+        "--test_runs_per_repeat",
+        type=int,
+        default=30,
+        help="Test runs per batch of runs (default: 30)"
+    )
+    parser.add_argument(
         "--timeout",
         type=float,
         default=10.0,
@@ -275,6 +289,8 @@ if __name__ == "__main__":
     # For debug:
     # print(args.code)
     # print(args.test_code)
+    # print(args.num_test_run_repeats)
+    # print(args.test_runs_per_repeat)
     # print(args.timeout)
 
     # Call the check_correctness function with provided arguments
@@ -282,5 +298,7 @@ if __name__ == "__main__":
         args.code,
         args.test_code,
         evaluate_run_time=True,
+        num_test_run_repeats=args.num_test_run_repeats,
+        test_runs_per_repeat=args.test_runs_per_repeat,
         timeout=args.timeout
     )))
