@@ -115,10 +115,7 @@ Example Output:
 bulk_evaluate(
     dataset="openai_humaneval",
     split="test",
-    code=LIST_OF_CODE_SNIPPETS, # one for each task in HumanEval test
-    # Run in parallel using 4 cores
-    # Entering None will use all cores on your machine:
-    num_processes=4
+    code=LIST_OF_CODE_SNIPPETS # one for each task in HumanEval test
 )
 ```
 
