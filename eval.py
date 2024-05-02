@@ -72,7 +72,14 @@ def _fetch_safe_eval_job_result(
     while len(logging_result) < 1:
         if i > 0:
             time.sleep(5)  # Wait 5 seconds
-        elif i > 60/5 * 10:  # If it's been 10 minutes give up and let it error
+        
+        # If it's been 10 minutes give up and let it error out
+        if i > (60 * 10 / 5):
+            print(
+                f"ERROR: Execution \"{execution_name}\" exceeded max fetching time.",
+                "This likely means there was some kind of error.",
+                "Check the Google Cloud Run Job Console for more details."
+            )
             break
 
         # By default returns a generator so we have to turn it into a list
@@ -229,12 +236,15 @@ def build_tests(dataset, task):
         return build_humaneval_tests(task)
 
 def analyze_simplicity(code, multiline_str_comment=True):
-    return dict(
-        **radon.raw.analyze(code)._asdict(),
-        CC=cc_visit(code)[0].complexity,
-        **h_visit(code).total._asdict(),
-        MI=mi_visit(code, multi=multiline_str_comment)
-    )
+    try:
+        return dict(
+            **radon.raw.analyze(code)._asdict(),
+            CC=cc_visit(code)[0].complexity,
+            **h_visit(code).total._asdict(),
+            MI=mi_visit(code, multi=multiline_str_comment)
+        )
+    except:
+        return {}
 
 def evaluate(dataset, split, task_id, code, **kwargs):
     assert dataset in DATA
