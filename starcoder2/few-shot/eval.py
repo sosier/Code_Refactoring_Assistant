@@ -21,33 +21,17 @@ def _send_safe_eval_job(
     test_code,
     project=GOOGLE_CLOUD_PROJECT,
     location=GOOGLE_CLOUD_LOCATION,
-    job=GOOGLE_CLOUD_JOB,
-    num_test_run_repeats=3,
-    test_runs_per_repeat=30,
-    **kwargs
+    job=GOOGLE_CLOUD_JOB
 ):
     assert type(code) == str and type(test_code) == str
-    assert type(num_test_run_repeats) == int
-    assert num_test_run_repeats > 0
-    assert type(test_runs_per_repeat) == int
-    assert test_runs_per_repeat > 0
 
-    # Build arguments for the job:
-    job_args = [code, test_code]
-    
-    if num_test_run_repeats != 3:  # The default safe_eval.py
-        job_args += [f"--num_test_run_repeats={num_test_run_repeats}"]
-
-    if test_runs_per_repeat != 30:  # The default safe_eval.py
-        job_args += [f"--test_runs_per_repeat={test_runs_per_repeat}"]
-
-    # Initialize request argument(s) / object:
+    # Initialize request argument(s)
     request = run_v2.RunJobRequest(
         name=f"projects/{project}/locations/{location}/jobs/{job}",
         overrides=run_v2.types.RunJobRequest.Overrides(
             container_overrides=[
                 run_v2.types.RunJobRequest.Overrides.ContainerOverride(
-                    args=job_args
+                    args=[code, test_code]
                 )
             ]
         )
@@ -61,8 +45,7 @@ def _fetch_safe_eval_job_result(
     logging_client,
     execution_name,
     project=GOOGLE_CLOUD_PROJECT,
-    job=GOOGLE_CLOUD_JOB,
-    **kwargs
+    job=GOOGLE_CLOUD_JOB
 ):
     # Fetch the actual result (stdout)
     # Run in a while loop because sometimes logging result isn't immediately
@@ -72,14 +55,7 @@ def _fetch_safe_eval_job_result(
     while len(logging_result) < 1:
         if i > 0:
             time.sleep(5)  # Wait 5 seconds
-        
-        # If it's been 10 minutes give up and let it error out
-        if i > (60 * 10 / 5):
-            print(
-                f"ERROR: Execution \"{execution_name}\" exceeded max fetching time.",
-                "This likely means there was some kind of error.",
-                "Check the Google Cloud Run Job Console for more details."
-            )
+        elif i > 60/5 * 10:  # If it's been 10 minutes give up and let it error
             break
 
         # By default returns a generator so we have to turn it into a list
@@ -98,7 +74,7 @@ def _fetch_safe_eval_job_result(
     result = logging_result[0].payload
     return result
 
-def safely_check_correctness(code, test_code, **kwargs):
+def safely_check_correctness(code, test_code):
     """
     Safely checks correctness of untrusted code vs. untrusted test code by
     calling out to a sandboxed (serverless Docker) environment on Google Cloud
@@ -116,8 +92,7 @@ def safely_check_correctness(code, test_code, **kwargs):
         test_code=test_code,
         project=GOOGLE_CLOUD_PROJECT,
         location=GOOGLE_CLOUD_LOCATION,
-        job=GOOGLE_CLOUD_JOB,
-        **kwargs
+        job=GOOGLE_CLOUD_JOB
     )
 
     # Wait
@@ -135,27 +110,20 @@ def safely_check_correctness(code, test_code, **kwargs):
         logging_client=client,
         execution_name=execution_name,
         project="code-refactoring-assistant",
-        job="safe-eval",
-        **kwargs
+        job="safe-eval"
     )
 
-def _bulk_send_safe_eval_jobs(code, test_code, **kwargs):
+def _bulk_send_safe_eval_jobs(code, test_code):
     assert type(code) == list and type(test_code) == list
     assert all(type(snippet) == str for snippet in code)
     assert all(type(snippet) == str for snippet in test_code)
     assert len(code) == len(test_code)
-
-    # Set up place to store the results:
-    if "execution_ids_backup" in kwargs:
-        assert type(kwargs["execution_ids_backup"]) == list
-        execution_ids = kwargs["execution_ids_backup"]
-    else:
-        execution_ids = []
-
+    
     # Create client for running job
     client = run_v2.JobsClient()
 
     print("Sending", len(code), "jobs for execution...")
+    execution_ids = []
 
     for i, (code_instance, tests_instance) in enumerate(zip(code, test_code)):
         if i > 0:
@@ -170,8 +138,7 @@ def _bulk_send_safe_eval_jobs(code, test_code, **kwargs):
             test_code=tests_instance,
             project=GOOGLE_CLOUD_PROJECT,
             location=GOOGLE_CLOUD_LOCATION,
-            job=GOOGLE_CLOUD_JOB,
-            **kwargs
+            job=GOOGLE_CLOUD_JOB
         )
         execution_name = operation.metadata.name.split("/")[-1]
         execution_ids.append(execution_name)
@@ -179,22 +146,18 @@ def _bulk_send_safe_eval_jobs(code, test_code, **kwargs):
     print(len(execution_ids), "jobs sent")
     return execution_ids
 
-def _bulk_fetch_safe_eval_job_results(execution_ids, **kwargs):
-    # Set up place to store the results:
-    if "execution_results_backup" in kwargs:
-        assert type(kwargs["execution_results_backup"]) == list
-        results = kwargs["execution_results_backup"]
-    else:
-        results = []
-
-    # Create client for getting result:
+def _bulk_fetch_safe_eval_job_results(execution_ids):
+    # Create client for getting result
     client = logging_v2.Client(project=GOOGLE_CLOUD_PROJECT)
 
     print("Fetching", len(execution_ids), "job results...")
+    results = []
 
     for i, execution_name in enumerate(execution_ids):
-        print(f"Fetching {i+1}/{len(execution_ids)}...")
         if i > 0:
+            if i % 10 == 0:
+                print(f"{len(results)}/{len(execution_ids)} fetched")
+            
             # Wait 2 seconds between requests to avoid hitting the
             # "logging.googleapis.com/read_requests: Read requests per minute
             # per user" rate limit:
@@ -205,8 +168,7 @@ def _bulk_fetch_safe_eval_job_results(execution_ids, **kwargs):
             logging_client=client,
             execution_name=execution_name,
             project=GOOGLE_CLOUD_PROJECT,
-            job=GOOGLE_CLOUD_JOB,
-            **kwargs
+            job=GOOGLE_CLOUD_JOB
         )
         results.append(result)
     
@@ -236,17 +198,14 @@ def build_tests(dataset, task):
         return build_humaneval_tests(task)
 
 def analyze_simplicity(code, multiline_str_comment=True):
-    try:
-        return dict(
-            **radon.raw.analyze(code)._asdict(),
-            CC=cc_visit(code)[0].complexity,
-            **h_visit(code).total._asdict(),
-            MI=mi_visit(code, multi=multiline_str_comment)
-        )
-    except:
-        return {}
+    return dict(
+        **radon.raw.analyze(code)._asdict(),
+        CC=cc_visit(code)[0].complexity,
+        **h_visit(code).total._asdict(),
+        MI=mi_visit(code, multi=multiline_str_comment)
+    )
 
-def evaluate(dataset, split, task_id, code, **kwargs):
+def evaluate(dataset, split, task_id, code):
     assert dataset in DATA
     assert split in DATA[dataset]
     assert DATA[dataset][split][task_id]
@@ -256,7 +215,7 @@ def evaluate(dataset, split, task_id, code, **kwargs):
     test_code = build_tests(dataset, task)
 
     # Evaluate Correctness / Efficiency
-    execution_results = safely_check_correctness(code, test_code, **kwargs)
+    execution_results = safely_check_correctness(code, test_code)
     
     # Evaluate Code Simplicity
     if execution_results["compiled"]:
@@ -272,7 +231,7 @@ def evaluate(dataset, split, task_id, code, **kwargs):
         **simplicity_results
     )
 
-def bulk_evaluate(dataset, split, code, **kwargs):
+def bulk_evaluate(dataset, split, code):
     assert dataset in DATA
     assert split in DATA[dataset]
     
@@ -286,8 +245,8 @@ def bulk_evaluate(dataset, split, code, **kwargs):
     ]
 
     # Perform evaluations vs. test code on Google Cloud:
-    execution_ids = _bulk_send_safe_eval_jobs(code, test_code, **kwargs)
-    execution_results = _bulk_fetch_safe_eval_job_results(execution_ids, **kwargs)
+    execution_ids = _bulk_send_safe_eval_jobs(code, test_code)
+    execution_results = _bulk_fetch_safe_eval_job_results(execution_ids)
     
     # Calculate simplicity metrics
     simplicity_results = [

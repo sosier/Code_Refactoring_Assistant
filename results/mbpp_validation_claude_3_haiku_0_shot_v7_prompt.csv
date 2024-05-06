@@ -1,0 +1,1029 @@
+,dataset,split,task_id,model,code,result,compiled,passed_tests,avg_test_time,loc,lloc,sloc,comments,multi,blank,single_comments,CC,h1,h2,N1,N2,vocabulary,length,calculated_length,volume,difficulty,effort,time,bugs,MI
+0,mbpp,validation,0,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def find_Min_Sum(num):
+    if num <= 1:
+        return num
+
+    factors = []
+    for i in range(2, int(math.sqrt(num)) + 1):
+        while num % i == 0:
+            factors.append(i)
+            num //= i
+
+    if num > 1:
+        factors.append(num)
+
+    return sum(factors)",passed,True,True,2.8925166649666304e-05,16,12,12,0,0,4,0,5,6,6,6,12,12,18,31.019550008653873,64.52932501298082,6.0,387.1759500778849,21.50977500432694,0.02150977500432694,63.114321321549696
+1,mbpp,validation,1,claude_3_haiku_0_shot_v7_prompt,"from collections import Counter
+
+def count_element_freq(test_tuple):
+    """"""
+    Count the frequency of elements in a mixed nested tuple.
+    
+    Args:
+        test_tuple (tuple): The input tuple, which may contain nested tuples.
+    
+    Returns:
+        dict: A dictionary where the keys are the unique elements and the values are their frequencies.
+    """"""
+    flattened = [item for item in _flatten(test_tuple)]
+    return dict(Counter(flattened))
+
+def _flatten(test_tuple):
+    """"""
+    Flatten a nested tuple.
+    
+    Args:
+        test_tuple (tuple): The input tuple, which may contain nested tuples.
+    
+    Yields:
+        Any: The flattened elements from the input tuple.
+    """"""
+    for item in test_tuple:
+        if isinstance(item, tuple):
+            yield from _flatten(item)
+        else:
+            yield item",passed,True,True,0.00013172483333316146,30,12,10,0,14,6,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+2,mbpp,validation,2,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def add_str(test_tup, K):
+    result = []
+    for element in test_tup:
+        result.append(element)
+        result.append(K)
+    return result",passed,True,True,8.63897333336657e-05,8,7,7,0,0,1,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+3,mbpp,validation,3,claude_3_haiku_0_shot_v7_prompt,"import functools
+
+def sum_elements(tuples):
+    return sum(map(sum, tuples))",failed: 'int' object is not iterable,True,False,,4,3,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+4,mbpp,validation,4,claude_3_haiku_0_shot_v7_prompt,"def modular_sum(arr, n, m):
+    if n > m:
+        return True
+
+    dp = [False] * m
+    dp[0] = True
+
+    for num in arr:
+        temp = [False] * m
+        for i in range(m):
+            if dp[i]:
+                temp[(i + num) % m] = True
+        for i in range(m):
+            if temp[i]:
+                dp[i] = True
+        dp[num % m] = True
+
+    return dp[0]",failed: ,True,False,,18,15,15,0,0,3,0,7,4,7,6,12,11,18,27.651484454403228,62.26976913547136,3.4285714285714284,213.49635132161606,11.860908406756447,0.020756589711823786,60.83971416541304
+5,mbpp,validation,5,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def radix_sort(nums):
+    if not nums:
+        return nums
+
+    max_num = max(nums)
+    digit_count = int(math.log10(max_num)) + 1
+
+    for digit in range(digit_count):
+        buckets = [[] for _ in range(10)]
+        for num in nums:
+            digit_value = (num // 10 ** digit) % 10
+            buckets[digit_value].append(num)
+        nums = [num for bucket in buckets for num in bucket]
+
+    return nums",passed,True,True,8.639983333296186e-05,17,13,13,0,0,4,0,7,5,8,5,9,13,14,35.60964047443681,51.80615605397529,2.8125,145.70481390180552,8.09471188343364,0.01726871868465843,62.75483841368941
+6,mbpp,validation,6,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def largest_pos(numbers):
+    """"""
+    Find the largest positive number from the given list.
+    
+    Args:
+        numbers (list): A list of numbers.
+    
+    Returns:
+        int: The largest positive number in the list.
+    """"""
+    largest = -sys.maxsize - 1
+    for num in numbers:
+        if num > 0 and num > largest:
+            largest = num
+    return largest",passed,True,True,4.500106666682768e-05,17,8,7,0,7,3,0,4,4,8,5,9,12,14,32.0,50.18947501009619,2.25,112.92631877271643,6.273684376262024,0.016729825003365395,93.49661530826
+7,mbpp,validation,7,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def sqrt_root(num):
+    if not isinstance(num, (int, float)):
+        raise TypeError(""Input must be a number"")
+    if num < 0:
+        raise ValueError(""Input must be non-negative"")
+    return math.sqrt(num)",passed,True,True,2.5687133334410343e-05,8,7,7,0,0,1,0,3,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,73.70567794030467
+8,mbpp,validation,8,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def volume_tetrahedron(edge_length):
+    """"""
+    Calculates the volume of a tetrahedron given its edge length.
+    
+    Args:
+        edge_length (float): The length of one edge of the tetrahedron.
+    
+    Returns:
+        float: The volume of the tetrahedron, rounded to 2 decimal places.
+    """"""
+    return round((edge_length ** 3) / (6 * math.sqrt(2)), 2)",passed,True,True,3.1114700000974456e-05,13,4,3,0,7,3,0,1,3,6,3,6,9,9,20.264662506490406,28.529325012980813,1.5,42.793987519471216,2.377443751081734,0.009509775004326938,75.85339325182143
+9,mbpp,validation,9,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def find_lcm(a, b):
+    """"""
+    Finds the Least Common Multiple (LCM) of two numbers.
+    """"""
+    return abs(a * b) // math.gcd(a, b)
+
+def get_lcm(numbers):
+    """"""
+    Finds the Least Common Multiple (LCM) of a list of numbers.
+    """"""
+    if not numbers:
+        return 0
+
+    lcm = numbers[0]
+    for num in numbers[1:]:
+        lcm = find_lcm(lcm, num)
+
+    return lcm",passed,True,True,4.756136666704454e-05,20,12,10,0,6,4,0,1,3,5,3,5,8,8,16.36452797660028,24.0,1.5,36.0,2.0,0.008,95.61365191628124
+10,mbpp,validation,10,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def check_isosceles(a, b, c):
+    """"""
+    Checks if a triangle is isosceles.
+    
+    Args:
+        a (float): Length of the first side of the triangle.
+        b (float): Length of the second side of the triangle.
+        c (float): Length of the third side of the triangle.
+    
+    Returns:
+        bool: True if the triangle is isosceles, False otherwise.
+    """"""
+    # Check if the triangle is valid
+    if a + b <= c or b + c <= a or a + c <= b:
+        return False
+    
+    # Check if the triangle is isosceles
+    if math.isclose(a, b) or math.isclose(b, c) or math.isclose(a, c):
+        return True
+    else:
+        return False",failed: ,True,False,,23,9,8,2,9,4,2,7,3,12,8,18,15,26,47.77443751081735,101.57915548582149,2.25,228.55309984309835,12.697394435727686,0.033859718495273826,83.29178575537276
+11,mbpp,validation,11,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def lbs(arr):
+    n = len(arr)
+    lis = [1] * n  # Initialize LIS array
+    lds = [1] * n  # Initialize LDS array
+
+    # Compute LIS
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] > arr[j]:
+                lis[i] = max(lis[i], lis[j] + 1)
+
+    # Compute LDS
+    for i in range(n - 2, -1, -1):
+        for j in range(i + 1, n):
+            if arr[i] > arr[j]:
+                lds[i] = max(lds[i], lds[j] + 1)
+
+    # Find the maximum length of the bitonic subsequence
+    max_length = 0
+    for i in range(n):
+        max_length = max(max_length, lis[i] + lds[i] - 1)
+
+    return max_length",passed,True,True,0.0001379424333334119,25,17,17,5,0,5,3,8,5,15,12,22,20,34,70.2129994085646,146.94555522617034,3.6666666666666665,538.8003691626245,29.933353842368028,0.048981851742056784,83.27476781116137
+12,mbpp,validation,12,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def check_string(input_str):
+    rules = [
+        lambda s: any(char.isupper() for char in s),
+        lambda s: any(char.islower() for char in s),
+        lambda s: any(char.isdigit() for char in s),
+        lambda s: len(s) >= 8
+    ]
+
+    messages = [
+        ""String must have at least one uppercase character."",
+        ""String must have at least one lowercase character."",
+        ""String must have at least one number."",
+        ""String length must be at least 8 characters.""
+    ]
+
+    violations = [msg for rule, msg in zip(rules, messages) if not rule(input_str)]
+
+    if not violations:
+        violations.append(""Valid string."")
+
+    return violations",failed: ,True,False,,23,9,18,0,0,5,0,7,2,4,3,4,6,7,10.0,18.094737505048094,1.0,18.094737505048094,1.0052631947248942,0.006031579168349364,69.43727009647432
+13,mbpp,validation,13,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def max_sum_increasing_subsequence(arr):
+    n = len(arr)
+    msis = [num for num in arr]
+    
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] > arr[j] and msis[i] < msis[j] + arr[i]:
+                msis[i] = msis[j] + arr[i]
+    
+    return max(msis)",failed: max_sum_increasing_subsequence() takes 1 positional argument but 2 were given,True,False,,12,9,9,0,0,3,0,6,4,10,5,10,14,15,41.219280948873624,57.110323830864054,2.0,114.22064766172811,6.345591536762672,0.019036774610288017,66.07663178465194
+14,mbpp,validation,14,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def parallel_lines(line1, line2):
+    """"""
+    Checks whether two given lines are parallel or not.
+
+    Args:
+        line1 (tuple): A tuple containing the coefficients (a, b) of the first line equation (ax + by + c = 0).
+        line2 (tuple): A tuple containing the coefficients (a, b) of the second line equation (ax + by + c = 0).
+
+    Returns:
+        bool: True if the lines are parallel, False otherwise.
+    """"""
+    if math.isclose(line1[0] / line1[1], line2[0] / line2[1], rel_tol=1e-09):
+        return True
+    else:
+        return False",passed,True,True,5.1187733333790675e-05,17,7,6,0,8,3,0,2,1,4,2,4,5,6,8.0,13.931568569324174,0.5,6.965784284662087,0.3869880158145604,0.004643856189774725,93.19449920519779
+15,mbpp,validation,15,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def capitalize_first_last_letters(input_string):
+    words = input_string.split()
+    capitalized_words = []
+    for word in words:
+        capitalized_word = word[0].upper() + word[1:-1] + word[-1].upper()
+        capitalized_words.append(capitalized_word)
+    return ' '.join(capitalized_words)",passed,True,True,3.061659999730182e-05,9,9,8,0,0,1,0,2,2,5,4,6,7,10,13.60964047443681,28.07354922057604,1.2,33.688259064691245,1.8715699480384025,0.009357849740192013,68.77418547459212
+16,mbpp,validation,16,claude_3_haiku_0_shot_v7_prompt,"def get_pairs_count(arr, target_sum):
+    count = 0
+    seen = set()
+
+    for num in arr:
+        complement = target_sum - num
+        if complement in seen:
+            count += 1
+        seen.add(num)
+
+    return count",failed: get_pairs_count() takes 2 positional arguments but 3 were given,True,False,,11,9,9,0,0,2,0,3,3,6,3,6,9,9,20.264662506490406,28.529325012980813,1.5,42.793987519471216,2.377443751081734,0.009509775004326938,68.59070924880801
+17,mbpp,validation,17,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def min_length(list_of_lists):
+    if not list_of_lists:
+        return 0, []
+
+    min_length = sys.maxsize
+    min_list = None
+
+    for lst in list_of_lists:
+        if len(lst) < min_length:
+            min_length = len(lst)
+            min_list = lst
+
+    return min_length, min_list",passed,True,True,7.978376666670784e-05,15,11,11,0,0,4,0,4,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,69.28921068613067
+18,mbpp,validation,18,claude_3_haiku_0_shot_v7_prompt,"def jacobsthal_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        return jacobsthal_lucas(n-1) + 2 * jacobsthal_lucas(n-2)",passed,True,True,2.719426666809947e-05,7,7,7,0,0,0,0,3,4,7,6,12,11,18,27.651484454403228,62.26976913547136,3.4285714285714284,213.49635132161606,11.860908406756447,0.020756589711823786,68.59800003860587
+19,mbpp,validation,19,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def negative_count(nums):
+    negative_count = sum(1 for num in nums if num < 0)
+    total_count = len(nums)
+    return round(negative_count / total_count, 2)",passed,True,True,7.705746666673008e-05,6,5,5,0,0,1,0,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,76.012549340051
+20,mbpp,validation,20,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def min_coins(coins, m, V):
+    dp = [sys.maxsize] * (V + 1)
+    dp[0] = 0
+
+    for i in range(1, V + 1):
+        for j in range(m):
+            if coins[j] <= i:
+                dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+
+    return dp[V] if dp[V] != sys.maxsize else -1",passed,True,True,8.509443333333255e-05,12,9,9,0,0,3,0,5,6,10,8,15,16,23,48.72905595320056,92.0,4.5,414.0,23.0,0.030666666666666665,64.7612054073089
+21,mbpp,validation,21,claude_3_haiku_0_shot_v7_prompt,"def check_permutation(str1, str2):
+    if len(str1) != len(str2):
+        return False
+
+    char_count = {}
+    for char in str1:
+        char_count[char] = char_count.get(char, 0) + 1
+
+    for char in str2:
+        if char not in char_count or char_count[char] == 0:
+            return False
+        char_count[char] -= 1
+
+    return True",passed,True,True,3.5021566666667185e-05,14,11,11,0,0,3,0,6,6,11,6,12,17,18,53.563522809337215,73.57433114250613,3.272727272727273,240.78872010274733,13.377151116819297,0.02452477704750204,63.40523761622972
+22,mbpp,validation,22,claude_3_haiku_0_shot_v7_prompt,"import typing
+
+def remove_datatype(test_tuple: tuple, data_type: type) -> tuple:
+    return tuple(ele for ele in test_tuple if not isinstance(ele, data_type))",failed: ,True,False,,4,3,3,0,0,1,0,3,1,1,1,1,2,2,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,87.08076934775725
+23,mbpp,validation,23,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def search_literal(pattern, text):
+    try:
+        match = re.search(pattern, text)
+        if match:
+            start = match.start()
+            end = match.end()
+            return (start, end)
+        else:
+            return (-1, -1)
+    except (AttributeError, TypeError):
+        return (-1, -1)",passed,True,True,4.170319999919532e-05,13,12,12,0,0,1,0,3,1,1,4,4,2,8,0.0,8.0,2.0,16.0,0.8888888888888888,0.0026666666666666666,69.73182237233873
+24,mbpp,validation,24,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def topbottom_surfacearea(radius):
+    """"""
+    Calculates the top or bottom surface area of a cylinder.
+
+    Args:
+        radius (float): The radius of the cylinder.
+
+    Returns:
+        float: The top or bottom surface area of the cylinder.
+    """"""
+    return math.pi * radius ** 2",failed: ,True,False,,13,4,3,0,7,3,0,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,77.70672809662328
+25,mbpp,validation,25,claude_3_haiku_0_shot_v7_prompt,"def nth_items(lst, n):
+    return lst[::n]",passed,True,True,7.130276667339785e-05,2,3,2,0,0,0,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+26,mbpp,validation,26,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def first_repeated_word(text):
+    words = re.findall(r'\w+', text.lower())
+    seen = set()
+    for word in words:
+        if word in seen:
+            return word
+        seen.add(word)
+    return 'None'",passed,True,True,3.9232166667109895e-05,10,9,9,0,0,1,0,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,74.03933453534945
+27,mbpp,validation,27,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def string_list_to_tuple(input_string):
+    """"""
+    Converts a given string to a tuple, excluding whitespace characters.
+    
+    Args:
+        input_string (str): The input string to be converted.
+    
+    Returns:
+        tuple: A tuple containing the non-whitespace characters from the input string.
+    """"""
+    return tuple(char for char in input_string if not char.isspace())",passed,True,True,6.834676666661229e-05,13,4,3,0,7,3,0,3,1,1,1,1,2,2,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,83.66654161017219
+28,mbpp,validation,28,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def basesnum_coresspondingnum(bases_num, index):
+    """"""
+    Create a list containing the power of each number in `bases_num` raised to the corresponding number in `index`.
+    
+    Args:
+        bases_num (list): A list of numbers to be used as the base.
+        index (list): A list of numbers to be used as the exponent.
+    
+    Returns:
+        list: A list of the calculated powers.
+    """"""
+    return [base ** exp for base, exp in zip(bases_num, index)]",passed,True,True,0.00014557220000028793,14,4,3,0,8,3,0,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,74.84640431451162
+29,mbpp,validation,29,claude_3_haiku_0_shot_v7_prompt,"import collections
+
+def find_Diff(arr, n):
+    # Count the frequency of each element in the array
+    freq = collections.Counter(arr)
+
+    # Get the maximum and minimum frequencies
+    max_freq = max(freq.values())
+    min_freq = min(freq.values())
+
+    # Return the difference between the maximum and minimum frequencies
+    return max_freq - min_freq",passed,True,True,7.004856666602185e-05,12,6,6,3,0,3,3,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+30,mbpp,validation,30,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def get_divisors(n):
+    divisors = set()
+    for i in range(1, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            divisors.add(i)
+            divisors.add(n // i)
+    return divisors
+
+def check_abundant(n):
+    divisors_sum = sum(get_divisors(n)) - n
+    return divisors_sum > n",passed,True,True,3.112969999961024e-05,13,11,11,0,0,2,0,3,6,9,6,12,15,18,44.039100017307746,70.32403072095333,4.0,281.2961228838133,15.627562382434073,0.02344134357365111,63.94614386504937
+31,mbpp,validation,31,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def fill_spaces(text):
+    return re.sub(r'[ ,.]', ':', text)",passed,True,True,3.160133333324211e-05,4,3,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+32,mbpp,validation,32,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def count_digits(num1, num2):
+    total = num1 + num2
+    return int(math.log10(abs(total))) + 1",passed,True,True,3.3837233333618616e-05,5,4,4,0,0,1,0,1,1,4,2,4,5,6,8.0,13.931568569324174,0.5,6.965784284662087,0.3869880158145604,0.004643856189774725,78.7218789164598
+33,mbpp,validation,33,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def flatten_tuple(test_list):
+    """"""
+    Flattens a list of tuples into a single string.
+    
+    Args:
+        test_list (list): A list of tuples.
+    
+    Returns:
+        str: A space-separated string containing all the elements from the input list of tuples.
+    """"""
+    return ' '.join(re.findall(r'\w+', ' '.join(map(str, test_list))))",passed,True,True,0.00010069239999997611,13,4,3,0,7,3,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+34,mbpp,validation,34,claude_3_haiku_0_shot_v7_prompt,"def toggle_F_and_L_bits(n):
+    if n == 1:
+        return 0
+    
+    # Toggle the first and last bits
+    return n ^ ((n & 1) | ((n >> (bin(n).count('1') - 1)) & 1))",failed: ,True,False,,6,4,4,1,0,1,1,2,6,8,7,14,14,21,39.50977500432694,79.95445336320968,5.25,419.7608801568508,23.320048897602824,0.026651484454403226,98.4316251620473
+35,mbpp,validation,35,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def last_occurrence_char(string, char):
+    match = re.search(char[::-1], string[::-1])
+    if match:
+        return len(string) - match.start()
+    return None",failed: name 'last_occurence_char' is not defined,True,False,,7,7,6,0,0,1,0,2,2,3,3,4,5,7,6.754887502163469,16.253496664211536,1.3333333333333333,21.67132888561538,1.2039627158675212,0.005417832221403845,72.81699043712904
+36,mbpp,validation,36,claude_3_haiku_0_shot_v7_prompt,"def Total_Hamming_Distance(n):
+    total_distance = 0
+    for i in range(1, n+1):
+        for j in range(i+1, n+1):
+            total_distance += bin(i ^ j).count('1')
+    return total_distance",failed: ,True,False,,6,6,6,0,0,0,0,3,2,6,5,10,8,15,17.509775004326936,45.0,1.6666666666666667,75.0,4.166666666666667,0.015,71.04611207701747
+37,mbpp,validation,37,claude_3_haiku_0_shot_v7_prompt,"def longest_increasing_subsequence(arr):
+    n = len(arr)
+    dp = [1] * n
+
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] > arr[j]:
+                dp[i] = max(dp[i], dp[j] + 1)
+
+    return max(dp)",passed,True,True,6.815653333471042e-05,10,8,8,0,0,2,0,4,3,6,3,6,9,9,20.264662506490406,28.529325012980813,1.5,42.793987519471216,2.377443751081734,0.009509775004326938,69.57204560999716
+38,mbpp,validation,38,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def odd_Num_Sum(n):
+    return sum([(2 * i - 1) ** 5 for i in range(1, n + 1)])",passed,True,True,2.6269400000004475e-05,4,3,3,0,0,1,0,2,4,7,4,8,11,12,27.651484454403228,41.51317942364757,2.2857142857142856,94.88726725405158,5.27151484744731,0.01383772647454919,77.99252863535158
+39,mbpp,validation,39,claude_3_haiku_0_shot_v7_prompt,"def find_Max(arr):
+    left, right = 0, len(arr) - 1
+
+    while left < right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] > arr[right]:
+            left = mid + 1
+        else:
+            right = mid
+
+    return arr[left]",failed: find_Max() takes 1 positional argument but 3 were given,True,False,,12,9,9,0,0,3,0,3,5,10,7,14,15,21,44.82892142331043,82.0447025077789,3.5,287.15645877722613,15.953136598734785,0.02734823416925963,65.37847236293541
+40,mbpp,validation,40,claude_3_haiku_0_shot_v7_prompt,"import os
+import re
+import sys
+
+def extract_column(nested_list, column_index):
+    """"""
+    Extracts the specified column from a given nested list.
+
+    Args:
+        nested_list (list): The input nested list.
+        column_index (int): The index of the column to extract.
+
+    Returns:
+        list: The extracted column.
+    """"""
+    return [row[column_index] for row in nested_list]",passed,True,True,0.00010824510000020381,16,6,5,0,8,3,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+41,mbpp,validation,41,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def Seq_Linear(seq_nums):
+    """"""
+    Checks whether a given sequence is linear or not.
+
+    Args:
+        seq_nums (list): A list of numbers representing the sequence.
+
+    Returns:
+        str: ""Linear Sequence"" if the sequence is linear, ""Non Linear Sequence"" otherwise.
+    """"""
+    if len(seq_nums) < 2:
+        return ""Linear Sequence""
+
+    differences = [seq_nums[i] - seq_nums[i-1] for i in range(1, len(seq_nums))]
+    if len(set(differences)) == 1:
+        return ""Linear Sequence""
+    else:
+        return ""Non Linear Sequence""",passed,True,True,4.5666733334807456e-05,20,10,9,0,7,4,0,4,3,7,4,8,10,12,24.406371956566698,39.863137138648355,1.7142857142857142,68.33680652339717,3.796489251299843,0.013287712379549451,94.72317381858453
+42,mbpp,validation,42,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def tuple_to_float(test_tup):
+    """"""
+    Converts a tuple of integers to a floating-point number.
+    
+    Args:
+        test_tup (tuple): A tuple of integers.
+        
+    Returns:
+        float: The floating-point number represented by the input tuple.
+    """"""
+    if not isinstance(test_tup, tuple) or not all(isinstance(x, int) for x in test_tup):
+        raise ValueError(""Input must be a tuple of integers."")
+    
+    float_str = ''.join(map(str, test_tup))
+    float_str = re.sub(r'(\d{1,2})(?=(\d{2})+$)', r'\1.\2', float_str)
+    return float(float_str)",failed: ,True,False,,18,8,7,0,7,4,0,4,2,4,3,4,6,7,10.0,18.094737505048094,1.0,18.094737505048094,1.0052631947248942,0.006031579168349364,96.59892981372292
+43,mbpp,validation,43,claude_3_haiku_0_shot_v7_prompt,"def split(lst):
+    return [num for num in lst if num % 2 != 0]",failed: name 'Split' is not defined,True,False,,2,2,2,0,0,0,0,3,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,84.69319837885878
+44,mbpp,validation,44,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def difference(n):
+    sum_of_cubes = (n * (n + 1) * (2 * n + 1)) // 6
+    sum_of_numbers = (n * (n + 1)) // 2
+    return sum_of_cubes - sum_of_numbers ** 2",failed: ,True,False,,6,5,5,0,0,1,0,1,5,14,11,22,19,33,64.91260938324326,140.1816079436383,3.9285714285714284,550.713459778579,30.595192209921056,0.04672720264787944,69.58703166924117
+45,mbpp,validation,45,claude_3_haiku_0_shot_v7_prompt,"import itertools
+
+def find_Odd_Pair(A, N):
+    return sum(1 for i, j in itertools.combinations(A, 2) if (A[i] ^ A[j]) % 2 != 0)",failed: list index out of range,True,False,,4,3,3,0,0,1,0,3,3,6,3,6,9,9,20.264662506490406,28.529325012980813,1.5,42.793987519471216,2.377443751081734,0.009509775004326938,78.99861514145327
+46,mbpp,validation,46,claude_3_haiku_0_shot_v7_prompt,"def toggle_string(input_string):
+    """"""
+    Toggles the case of each character in the input string.
+    
+    Args:
+        input_string (str): The input string to toggle the case.
+    
+    Returns:
+        str: The input string with the case of each character toggled.
+    """"""
+    return input_string.swapcase()",passed,True,True,4.24046666656371e-05,11,3,2,0,7,2,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+47,mbpp,validation,47,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def digit_distance_nums(num1, num2):
+    """"""
+    Calculates the digit distance between two integers.
+
+    Args:
+        num1 (int): The first integer.
+        num2 (int): The second integer.
+
+    Returns:
+        int: The digit distance between the two integers.
+    """"""
+    distance = abs(num1 - num2)
+    return sum(int(digit) for digit in str(distance))",passed,True,True,3.628303332637491e-05,15,5,4,0,8,3,0,2,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,85.87285774682948
+48,mbpp,validation,48,claude_3_haiku_0_shot_v7_prompt,"def max_sub_array_sum(arr, n):
+    """"""
+    Find the largest sum of contiguous subarray in the given array.
+    
+    Args:
+        arr (list): The input array.
+        n (int): The size of the input array.
+    
+    Returns:
+        int: The largest sum of contiguous subarray.
+    """"""
+    max_so_far = float('-inf')
+    max_ending_here = 0
+    
+    for i in range(n):
+        max_ending_here += arr[i]
+        max_so_far = max(max_so_far, max_ending_here)
+        if max_ending_here < 0:
+            max_ending_here = 0
+    
+    return max_so_far",passed,True,True,7.062329999219704e-05,21,10,9,0,8,4,0,3,2,3,2,4,5,6,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,96.89592504051987
+49,mbpp,validation,49,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def union_elements(tuple1, tuple2):
+    """"""
+    Find the union of elements of the given tuples.
+    
+    Args:
+        tuple1 (tuple): The first tuple.
+        tuple2 (tuple): The second tuple.
+    
+    Returns:
+        tuple: The union of elements of the given tuples.
+    """"""
+    return tuple(set(tuple1 + tuple2))",passed,True,True,8.656466666631482e-05,14,4,3,0,8,3,0,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,74.98090723848824
+50,mbpp,validation,50,claude_3_haiku_0_shot_v7_prompt,"import collections
+
+def assign_elements(test_list):
+    result = collections.defaultdict(list)
+    for key, value in test_list:
+        result[key].append(value)
+        result[value].append(key)
+    return result",failed: ,True,False,,8,7,7,0,0,1,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+51,mbpp,validation,51,claude_3_haiku_0_shot_v7_prompt,"def Find_Max_Length(lst):
+    """"""
+    Find the maximum length of a sublist in the given list.
+
+    Args:
+        lst (list): A list of sublists.
+
+    Returns:
+        int: The maximum length of a sublist in the given list.
+    """"""
+    return max(len(sub_list) for sub_list in lst)",passed,True,True,7.567309999956251e-05,11,3,2,0,7,2,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+52,mbpp,validation,52,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def extract_values(text):
+    return re.findall(r'""(.*?)""', text)",passed,True,True,4.826116666360273e-05,4,3,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+53,mbpp,validation,53,claude_3_haiku_0_shot_v7_prompt,"def count_Pairs(arr, n):
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if arr[i] != arr[j]:
+                count += 1
+    return count",passed,True,True,4.971473333436431e-05,7,7,7,0,0,0,0,4,2,5,3,6,7,9,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,71.2064477082596
+54,mbpp,validation,54,claude_3_haiku_0_shot_v7_prompt,"def split(string):
+    return list(string)",passed,True,True,4.9835300008756654e-05,2,2,2,0,0,0,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+55,mbpp,validation,55,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def sum_digits(n):
+    if n == 0:
+        return 0
+    return n % 10 + sum_digits(int(n / 10))",passed,True,True,2.5885366665079345e-05,6,5,5,0,0,1,0,2,4,5,4,8,9,12,19.60964047443681,38.03910001730775,3.2,121.72512005538482,6.762506669743601,0.012679700005769252,73.4188947427642
+56,mbpp,validation,56,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def is_sorted(lst):
+    """"""
+    Checks whether a given list is sorted in ascending order.
+
+    Args:
+        lst (list): The list to be checked.
+
+    Returns:
+        bool: True if the list is sorted, False otherwise.
+    """"""
+    for i in range(len(lst) - 1):
+        if lst[i] > lst[i + 1]:
+            return False
+    return True",failed: name 'issort_list' is not defined,True,False,,16,7,6,0,7,3,0,3,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,94.10674886439865
+57,mbpp,validation,57,claude_3_haiku_0_shot_v7_prompt,"import typing
+
+def empty_list(length: int) -> typing.List[dict]:
+    return [{} for _ in range(length)]",passed,True,True,6.01152000001548e-05,4,3,3,0,0,1,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+58,mbpp,validation,58,claude_3_haiku_0_shot_v7_prompt,"import os
+import re
+import sys
+
+def sort_sublists(lst):
+    """"""
+    Sorts each sublist of strings in the given list of lists.
+    
+    Args:
+        lst (list): A list of lists, where each sublist contains strings.
+    
+    Returns:
+        list: A new list where each sublist is sorted in ascending order.
+    """"""
+    return [sorted(sublist) for sublist in lst]",passed,True,True,0.00012382359999113152,15,6,5,0,7,3,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+59,mbpp,validation,59,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def remove_words(list1, charlist):
+    return [' '.join(word for word in line.split() if not any(phrase in word for phrase in charlist)) for line in list1]",passed,True,True,0.00011066789999934675,4,3,3,0,0,1,0,5,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,81.46370445391442
+60,mbpp,validation,60,claude_3_haiku_0_shot_v7_prompt,"def max_sum_pair_diff_lessthan_K(arr, N, K):
+    arr.sort()
+    dp = [0] * N
+    dp[0] = 0
+
+    for i in range(1, N):
+        dp[i] = dp[i-1]
+        if arr[i] - arr[i-1] < K:
+            if i >= 2:
+                dp[i] = max(dp[i], dp[i-2] + arr[i] + arr[i-1])
+            else:
+                dp[i] = max(dp[i], arr[i] + arr[i-1])
+
+    return dp[N-1]",passed,True,True,6.183436666731267e-05,14,12,12,0,0,2,0,4,5,15,13,26,20,39,70.2129994085646,168.55519570060713,4.333333333333333,730.4058480359641,40.57810266866468,0.05618506523353571,60.329089640139095
+61,mbpp,validation,61,claude_3_haiku_0_shot_v7_prompt,"import collections
+
+def two_unique_nums(nums):
+    """"""
+    Removes duplicate numbers from a list of numbers.
+    
+    Args:
+        nums (list): A list of numbers.
+    
+    Returns:
+        list: A list of unique numbers.
+    """"""
+    counter = collections.Counter(nums)
+    return [num for num, count in counter.items() if count == 1]",passed,True,True,7.46077666666715e-05,14,5,4,0,7,3,0,3,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,91.00754266028326
+62,mbpp,validation,62,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def unique_product(list_data):
+    unique_nums = set(list_data)
+    product = math.prod(unique_nums)
+    return product",passed,True,True,5.373943333021695e-05,6,5,5,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+63,mbpp,validation,63,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def surfacearea_cylinder(radius, height):
+    lateral_area = 2 * math.pi * radius * height
+    base_area = 2 * math.pi * radius ** 2
+    total_area = lateral_area + base_area
+    return total_area",failed: ,True,False,,7,6,6,0,0,1,0,1,3,10,7,14,13,21,37.974168451037094,77.70923408096293,2.1,163.18939157002217,9.066077309445676,0.025903078026987644,69.65381948223911
+64,mbpp,validation,64,claude_3_haiku_0_shot_v7_prompt,"def count_no(A, N, L, R):
+    count = 0
+    for num in range(L, R + 1):
+        if num % A != 0:
+            count += 1
+            if count == N:
+                return num
+    return -1",passed,True,True,4.452103333581666e-05,8,8,8,0,0,0,0,4,5,8,6,11,13,17,35.60964047443681,62.907475208398566,3.4375,216.24444602887007,12.013580334937226,0.02096915840279952,67.16747896373072
+65,mbpp,validation,65,claude_3_haiku_0_shot_v7_prompt,"def is_Sub_Array(arr1, arr2, n, m):
+    i = j = 0
+    while i < n and j < m:
+        if arr1[i] == arr2[j]:
+            i += 1
+            j += 1
+            if j == m:
+                return True
+        else:
+            i = i - j + 1
+            j = 0
+    return False",passed,True,True,6.78376333326014e-05,12,12,12,0,0,0,0,5,5,10,9,18,15,27,44.82892142331043,105.48604608143,4.5,474.687207366435,26.3715115203575,0.03516201536047667,61.61982639756724
+66,mbpp,validation,66,claude_3_haiku_0_shot_v7_prompt,"def last_Digit_Factorial(n):
+    if n == 0:
+        return 1
+    elif n <= 2:
+        return n
+    elif n == 3:
+        return 6
+    elif n == 4:
+        return 4
+    else:
+        factorial = 1
+        for i in range(1, n+1):
+            factorial *= i
+        return factorial % 10",passed,True,True,2.9573800005285497e-05,14,14,14,0,0,0,0,6,5,9,7,14,14,21,40.13896548741762,79.95445336320968,3.888888888888889,310.93398530137097,17.27411029452061,0.026651484454403226,60.8676573885404
+67,mbpp,validation,67,claude_3_haiku_0_shot_v7_prompt,"import itertools
+
+def interleave_lists(list1, list2, list3):
+    return list(itertools.chain(*zip(list1, list2, list3)))",passed,True,True,0.00012723083333412432,4,3,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+68,mbpp,validation,68,claude_3_haiku_0_shot_v7_prompt,"def find_dissimilar(tuple1, tuple2):
+    return tuple(set(tuple1) ^ set(tuple2))",passed,True,True,7.75046666665465e-05,2,2,2,0,0,0,0,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,88.5574946685516
+69,mbpp,validation,69,claude_3_haiku_0_shot_v7_prompt,"import typing
+
+def extract_even(test_tuple: typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[...]]]]]]]) -> typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[...]]]]]]]:
+    """"""
+    Extracts the even elements from a nested mixed tuple.
+
+    Args:
+        test_tuple (Tuple[Union[int, Tuple[Union[int, Tuple[Union[int, Tuple[...]]]]]]]):
+            The input nested mixed tuple.
+
+    Returns:
+        Tuple[Union[int, Tuple[Union[int, Tuple[Union[int, Tuple[...]]]]]]]:
+            A new tuple containing only the even elements from the input tuple.
+    """"""
+    def even_ele(elements: typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[...]]]]]]]) -> typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[typing.Union[int, typing.Tuple[...]]]]]]]:
+        """"""
+        Recursively extracts the even elements from a nested mixed tuple.
+
+        Args:
+            elements (Tuple[Union[int, Tuple[Union[int, Tuple[Union[int, Tuple[...]]]]]]]):
+                The input nested mixed tuple.
+
+        Returns:
+            Tuple[Union[int, Tuple[Union[int, Tuple[Union[int, Tuple[...]]]]]]]:
+                A new tuple containing only the even elements from the input tuple.
+        """"""
+        result = ()
+        for element in elements:
+            if isinstance(element, tuple):
+                result += (even_ele(element),)
+            elif element % 2 == 0:
+                result += (element,)
+        return result
+
+    return even_ele(test_tuple)",passed,True,True,0.0001624322999996745,35,13,11,0,18,6,0,1,3,7,4,8,10,12,24.406371956566698,39.863137138648355,1.7142857142857142,68.33680652339717,3.796489251299843,0.013287712379549451,78.14504065353775
+70,mbpp,validation,70,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def surface_Area(base, slant_height):
+    """"""
+    Calculates the surface area of a square pyramid.
+
+    Args:
+        base (float): The length of the base of the pyramid.
+        slant_height (float): The slant height of the pyramid.
+
+    Returns:
+        float: The surface area of the pyramid.
+    """"""
+    return 2 * base * slant_height + base ** 2",passed,True,True,3.005063333603175e-05,14,4,3,0,8,3,0,1,3,6,4,8,9,12,20.264662506490406,38.03910001730775,2.0,76.0782000346155,4.226566668589751,0.012679700005769252,68.65745927548522
+71,mbpp,validation,71,claude_3_haiku_0_shot_v7_prompt,"def my_dict(dictionary):
+    return len(dictionary) == 0",passed,True,True,3.149499999987408e-05,2,2,2,0,0,0,0,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,88.5574946685516
+72,mbpp,validation,72,claude_3_haiku_0_shot_v7_prompt,"def catalan_number(n):
+    if n <= 1:
+        return 1
+    
+    catalans = [1, 1]
+    for i in range(2, n+1):
+        current_catalan = sum(catalans[j] * catalans[i-j-1] for j in range(i-1))
+        catalans.append(current_catalan)
+    
+    return catalans[n]",failed: ,True,False,,10,8,8,0,0,2,0,4,4,7,6,12,11,18,27.651484454403228,62.26976913547136,3.4285714285714284,213.49635132161606,11.860908406756447,0.020756589711823786,67.19846286871275
+73,mbpp,validation,73,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def find_adverbs(text):
+    adverbs = []
+    for match in re.finditer(r'\w+ly', text):
+        start, end = match.span()
+        adverb = match.group()
+        adverbs.append(f'{start}-{end}: {adverb}')
+    return '\n'.join(adverbs)",passed,True,True,3.7624266666669294e-05,9,8,8,0,0,1,0,2,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+74,mbpp,validation,74,claude_3_haiku_0_shot_v7_prompt,"import heapq
+
+def expensive_items(items, n):
+    return heapq.nlargest(n, items, key=lambda item: item['price'])",passed,True,True,0.00014153370005563678,4,4,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+75,mbpp,validation,75,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def split_Arr(arr, n, k):
+    """"""
+    Splits the input array into two parts and adds the first part to the end.
+    
+    Args:
+        arr (list): The input array.
+        n (int): The length of the input array.
+        k (int): The index at which the array should be split.
+    
+    Returns:
+        list: The modified array.
+    """"""
+    first_part = arr[:k]
+    second_part = arr[k:]
+    return second_part + first_part",passed,True,True,8.146393333324416e-05,17,8,5,0,9,3,0,1,1,2,1,2,3,3,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,85.76857007615381
+76,mbpp,validation,76,claude_3_haiku_0_shot_v7_prompt,"def list_tuple(input_list):
+    """"""
+    Converts a list to a tuple.
+
+    Args:
+        input_list (list): The input list to be converted.
+
+    Returns:
+        tuple: The converted tuple.
+    """"""
+    return tuple(input_list)",passed,True,True,7.163406667132222e-05,11,3,2,0,7,2,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+77,mbpp,validation,77,claude_3_haiku_0_shot_v7_prompt,"def big_diff(nums):
+    if not nums:
+        return 0
+    
+    max_num = max(nums)
+    min_num = min(nums)
+    
+    return max_num - min_num",passed,True,True,4.129503333084965e-05,8,6,6,0,0,2,0,2,2,3,2,3,5,5,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,75.30055572580265
+78,mbpp,validation,78,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def perfect_squares(a, b):
+    result = []
+    for num in range(a, b + 1):
+        sqrt = int(math.sqrt(num))
+        if sqrt * sqrt == num:
+            result.append(num)
+    return result",passed,True,True,8.155553333419144e-05,9,8,8,0,0,1,0,3,3,5,3,6,8,9,16.36452797660028,27.0,1.8,48.6,2.7,0.009,69.87409083132408
+79,mbpp,validation,79,claude_3_haiku_0_shot_v7_prompt,"import cmath
+
+def polar_rect(r, theta):
+    """"""
+    Converts polar coordinates to rectangular coordinates.
+
+    Args:
+        r (float): The magnitude (radius) of the polar coordinate.
+        theta (float): The angle (in radians) of the polar coordinate.
+
+    Returns:
+        tuple: A tuple containing the rectangular coordinates (x, y).
+    """"""
+    x = r * cmath.cos(theta)
+    y = r * cmath.sin(theta)
+    return (x, y)",failed: ,True,False,,16,6,5,0,8,3,0,1,1,3,2,4,4,6,4.754887502163469,12.0,0.6666666666666666,8.0,0.4444444444444444,0.004,89.87830862820935
+80,mbpp,validation,80,claude_3_haiku_0_shot_v7_prompt,"def swap_List(lst):
+    if len(lst) < 2:
+        return lst
+    
+    lst[0], lst[-1] = lst[-1], lst[0]
+    return lst",passed,True,True,5.9168066666851855e-05,6,5,5,0,0,1,0,2,2,3,3,4,5,7,6.754887502163469,16.253496664211536,1.3333333333333333,21.67132888561538,1.2039627158675212,0.005417832221403845,76.0046221524879
+81,mbpp,validation,81,claude_3_haiku_0_shot_v7_prompt,"import math
+
+def binomial_coeff(n, k):
+    """"""
+    Calculates the binomial coefficient C(n, k).
+    """"""
+    return math.comb(n, k)
+
+def sum_of_product(n):
+    """"""
+    Calculates the sum of the product of binomial coefficients.
+    """"""
+    total = 0
+    for i in range(n):
+        total += binomial_coeff(2 * n, n - 1 - i) * binomial_coeff(2 * n, n + i)
+    return total",failed: name 'sum_Of_product' is not defined,True,False,,16,10,8,0,6,2,0,1,3,9,7,14,12,21,33.28421251514428,75.28421251514429,2.3333333333333335,175.66316253533668,9.759064585296482,0.025094737505048096,93.28768576702433
+82,mbpp,validation,82,claude_3_haiku_0_shot_v7_prompt,"import re
+
+def removezero_ip(ip_address):
+    return re.sub(r'\b0+(\d+)', r'\1', ip_address)",passed,True,True,4.3940933333412126e-05,4,3,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+83,mbpp,validation,83,claude_3_haiku_0_shot_v7_prompt,"def diff_even_odd(numbers):
+    try:
+        even_num = next((num for num in numbers if num % 2 == 0), None)
+        odd_num = next((num for num in numbers if num % 2 != 0), None)
+        if even_num is None or odd_num is None:
+            return 0
+        return even_num - odd_num
+    except (TypeError, ValueError):
+        return 0",passed,True,True,6.271033333291598e-05,9,9,9,0,0,0,0,8,6,10,8,16,16,24,48.72905595320056,96.0,4.8,460.79999999999995,25.599999999999998,0.032,64.2282755856845
+84,mbpp,validation,84,claude_3_haiku_0_shot_v7_prompt,"def min_Swaps(str1, str2):
+    if len(str1) != len(str2):
+        return ""Not Possible""
+
+    diff_count = 0
+    for i in range(len(str1)):
+        if str1[i] != str2[i]:
+            diff_count += 1
+
+    if diff_count % 2 != 0:
+        return ""Not Possible""
+
+    return diff_count // 2",passed,True,True,3.782216667029085e-05,13,10,10,0,0,3,0,5,4,9,6,12,13,18,36.52932501298081,66.60791492653966,2.6666666666666665,177.62110647077242,9.867839248376246,0.022202638308846556,64.74516944135763
+85,mbpp,validation,85,claude_3_haiku_0_shot_v7_prompt,"import sys
+
+def tuple_size(tup):
+    return sys.getsizeof(tup)",passed,True,True,0.00010017443333367737,4,3,3,0,0,1,0,1,0,0,0,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+86,mbpp,validation,86,claude_3_haiku_0_shot_v7_prompt,"def find_kth(arr1, arr2, m, n, k):
+    if m > n:
+        return find_kth(arr2, arr1, n, m, k)
+
+    left, right = 0, m
+
+    while left <= right:
+        partitionX = (left + right) // 2
+        partitionY = k - partitionX
+
+        maxLeftX = arr1[partitionX - 1] if partitionX != 0 else float('-inf')
+        minRightX = arr1[partitionX] if partitionX != m else float('inf')
+
+        maxLeftY = arr2[partitionY - 1] if partitionY != 0 else float('-inf')
+        minRightY = arr2[partitionY] if partitionY != n else float('inf')
+
+        if maxLeftX <= minRightY and maxLeftY <= minRightX:
+            return max(maxLeftX, maxLeftY)
+        elif maxLeftX > minRightY:
+            right = partitionX - 1
+        else:
+            left = partitionX + 1
+
+    return -1",passed,True,True,8.315386665647869e-05,24,18,18,0,0,6,0,10,8,17,18,35,25,53,93.48686830125578,246.1243780580604,8.235294117647058,2026.9066428310853,112.60592460172695,0.0820414593526868,54.52960530407821
+87,mbpp,validation,87,claude_3_haiku_0_shot_v7_prompt,"def armstrong_number(num):
+    """"""
+    Checks if a given number is an Armstrong number.
+    
+    An Armstrong number is a number that is equal to the sum of the cubes of its digits.
+    
+    Args:
+        num (int): The number to be checked.
+    
+    Returns:
+        bool: True if the number is an Armstrong number, False otherwise.
+    """"""
+    original_num = num
+    digit_count = len(str(num))
+    total_sum = 0
+    
+    while num > 0:
+        digit = num % 10
+        total_sum += digit ** digit_count
+        num //= 10
+    
+    return original_num == total_sum",passed,True,True,2.7800866663104293e-05,22,10,9,0,8,5,0,2,6,8,6,12,14,18,39.50977500432694,68.53238859703687,4.5,308.3957486866659,17.133097149259218,0.022844129532345624,92.18576411185582
+88,mbpp,validation,88,claude_3_haiku_0_shot_v7_prompt,"def sum_average(n):
+    """"""
+    Calculates the sum and average of the first n natural numbers.
+
+    Args:
+        n (int): The number of natural numbers to consider.
+
+    Returns:
+        tuple: A tuple containing the sum and average of the first n natural numbers.
+    """"""
+    total = n * (n + 1) // 2
+    average = total / n
+    return total, average",passed,True,True,3.508839999994961e-05,13,5,4,0,7,2,0,1,4,6,4,8,10,12,23.509775004326936,39.863137138648355,2.6666666666666665,106.3016990363956,5.905649946466422,0.013287712379549451,84.81067091203418
+89,mbpp,validation,89,claude_3_haiku_0_shot_v7_prompt,"def is_even(num: int) -> bool:
+    """"""
+    Checks whether the given number is even or not using bitwise operator.
+
+    Args:
+        num (int): The number to be checked.
+
+    Returns:
+        bool: True if the number is even, False otherwise.
+    """"""
+    return (num & 1) == 0",failed: name 'is_Even' is not defined,True,False,,11,3,2,0,7,2,0,1,2,4,2,4,6,6,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,61.515062853972545
