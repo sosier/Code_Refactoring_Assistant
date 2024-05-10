@@ -25,7 +25,7 @@ For all generations we used the following system prompt:
 
 ## Fine-Tuning
 
-The `fine_tuning` folder contains the code used to fine-tune and evaluate Meta's Llama 3 8B Instruct. `fine_tuning/Llama3_Fine_Tuning.ipynb` performs the fine-tuning, and `Llama3.ipynb` is for testing / evaluating Llama 3 models. WARNING: Using these files will require access to 1) the Llama 3 model (can be requested [on Hugging Face](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)) and 2) an environment with a GPU and a lot of RAM (primarily for training; less needed for inference / model testing).
+The `fine_tuning` folder contains the code used to fine-tune and evaluate Meta's Llama 3 8B Instruct. `fine_tuning/Llama3_Fine_Tuning.ipynb` performs the fine-tuning, and `Llama3.ipynb` is for testing / evaluating Llama 3 models. WARNING: Using these files will require access to 1) the Llama 3 model (can be requested [on Hugging Face](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)) and 2) an environment with a GPU with a lot of RAM (primarily for training; less needed for inference / model testing).
 
 ## Code Evaluation
 
