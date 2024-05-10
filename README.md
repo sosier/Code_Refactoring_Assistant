@@ -23,6 +23,10 @@ For all generations we used the following system prompt:
 ### CodeLLama
 `codellama/gencode_codellama.ipynb` demonstrates the process of generating and storing refactoring outputs using CodeLLama. As an open source model, it requires downloading and locally running the model on a GPU. Eval_helper.py leverages the existing testing suite to generate code metrics, but may need to be modified for the directory structure. Generated code outputs are also included in this directory.
 
+## Fine-Tuning
+
+The `fine_tuning` folder contains the code used to fine-tune and evaluate Meta's Llama 3 8B Instruct. `fine_tuning/Llama3_Fine_Tuning.ipynb` performs the fine-tuning, and `Llama3.ipynb` is for testing / evaluating Llama 3 models. WARNING: Using these files will require access to 1) the Llama 3 model (can be requested [on Hugging Face](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)) and 2) an environment with a GPU and a lot of RAM (primarily for training; less needed for inference / model testing).
+
 ## Code Evaluation
 
 ### Initial Installation / Setup
@@ -112,7 +116,7 @@ Example Output:
 `bulk_evaluate` Example (evaluating code snippets for each HumanEval task):
 
 ```python
-bulk_evaluate(
+results = bulk_evaluate(
     dataset="openai_humaneval",
     split="test",
     code=LIST_OF_CODE_SNIPPETS # one for each task in HumanEval test
