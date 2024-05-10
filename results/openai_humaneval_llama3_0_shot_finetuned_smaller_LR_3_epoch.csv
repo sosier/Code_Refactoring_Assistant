@@ -1,0 +1,2712 @@
+,dataset,split,task_id,model,code,result,avg_test_time,passed_tests,compiled,loc,lloc,sloc,comments,multi,blank,single_comments,CC,h1,h2,N1,N2,vocabulary,length,calculated_length,volume,difficulty,effort,time,bugs,MI
+0,openai_humaneval,test,0,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """""" Check if in given list of numbers, are any two numbers closer to each other than
+    given threshold.
+    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+    False
+    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    True
+    """"""
+    for elem in numbers:
+        for other in numbers:
+            if elem!= other and abs(elem - other) < threshold:
+                return True
+
+    return False",failed: ,,False,True,16.0,8.0,7.0,0.0,7.0,2.0,0.0,5.0,4.0,6.0,4.0,8.0,10.0,12.0,23.509775004326936,39.863137138648355,2.6666666666666665,106.3016990363956,5.905649946466422,0.013287712379549451,94.06260203651267
+1,openai_humaneval,test,1,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    result = []
+    current_string = []
+    current_depth = 0
+
+    for char in paren_string:
+        if char =='':
+            continue
+        if char == '(':
+            current_depth += 1
+            current_string.append(char)
+        elif char == ')':
+            current_depth -= 1
+            current_string.append(char)
+
+            if current_depth == 0:
+                result.append(''.join(current_string))
+                current_string.clear()
+
+    return result",passed,8.895786668290384e-05,True,True,22.0,18.0,18.0,0.0,0.0,4.0,0.0,6.0,3.0,7.0,6.0,12.0,10.0,18.0,24.406371956566698,59.794705707972525,2.5714285714285716,153.75781467764364,8.542100815424646,0.019931568569324175,59.37029735596963
+2,openai_humaneval,test,2,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def truncate_number(number: float) -> float:
+    """"""Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
+    """"""
+    return number - int(number)",passed,6.999743333343152e-05,True,True,10.0,3.0,2.0,0.0,7.0,1.0,0.0,1.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,65.11035329571214
+3,openai_humaneval,test,3,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+
+def below_zero(operations: List[int]) -> bool:
+    """""" You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> below_zero([1, 2, 3])
+    False
+    >>> below_zero([1, 2, -4, 5])
+    True
+    """"""
+    balance = 0
+
+    for op in operations:
+        balance += op
+        if balance < 0:
+            return True
+    return False",passed,0.0001227585666659555,True,True,19.0,9.0,8.0,0.0,8.0,3.0,0.0,3.0,2.0,3.0,2.0,4.0,5.0,6.0,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,96.41268794345224
+4,openai_humaneval,test,4,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+import statistics
+
+def mean_absolute_deviation(numbers: List[float]) -> float:
+    """""" For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |
+    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
+    1.0
+    """"""
+    return statistics.mean(abs(x - statistics.mean(numbers)) for x in numbers)",passed,0.0002651120333344655,True,True,13.0,5.0,4.0,0.0,8.0,1.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,85.87285774682948
+5,openai_humaneval,test,5,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """""" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'
+    >>> intersperse([], 4)
+    []
+    >>> intersperse([1, 2, 3], 4)
+    [1, 4, 2, 4, 3]
+    """"""
+    if not numbers:
+        return []
+
+    result = [numbers[0]]
+    for n in numbers[1:]:
+        result.append(delimeter)
+        result.append(n)
+
+    return result",passed,8.463963333345721e-05,True,True,18.0,10.0,9.0,0.0,6.0,3.0,0.0,3.0,1.0,1.0,1.0,1.0,2.0,2.0,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,100.0
+6,openai_humaneval,test,6,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def parse_nested_parens(paren_string: str) -> List[int]:
+    """""" Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parse_nested_parens('(()()) ((())) () ((())()())')
+    [2, 3, 1, 3]
+    """"""
+    def parse_paren_group(s: str) -> int:
+        depth = 0
+        max_depth = 0
+        for char in s:
+            if char == '(':
+                depth += 1
+                max_depth = max(depth, max_depth)
+            else:
+                depth -= 1
+        return max_depth
+
+    return [parse_paren_group(group) for group in paren_string.split() if group]",passed,7.84512666655246e-05,True,True,22.0,14.0,13.0,0.0,6.0,3.0,0.0,3.0,3.0,4.0,3.0,6.0,7.0,9.0,12.75488750216347,25.26619429851844,2.25,56.848937171666485,3.158274287314805,0.008422064766172813,93.62602677033182
+7,openai_humaneval,test,7,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def filter_by_substring(strings: List[str], substring: str) -> List[str]:
+    """"""
+    Filter an input list of strings only for ones that contain given substring
+
+    >>> filter_by_substring([], 'a')
+    []
+    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')
+    ['abc', 'bacd', 'array']
+    """"""
+    return [s for s in strings if substring in s]",passed,0.00011386869999796545,True,True,12.0,4.0,3.0,0.0,7.0,2.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,81.03301269040966
+8,openai_humaneval,test,8,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List, Tuple
+
+def sum_product(numbers: List[int]) -> Tuple[int, int]:
+    """""" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.
+    Empty sum should be equal to 0 and empty product should be equal to 1.
+    >>> sum_product([])
+    (0, 1)
+    >>> sum_product([1, 2, 3, 4])
+    (10, 24)
+    """"""
+    return sum(numbers), *([1],)[0] if not numbers else functools.reduce(lambda x, y: x * y, numbers)","failed: invalid syntax (<string>, line 11)",,False,False,,,,,,,,,,,,,,,,,,,,,
+9,openai_humaneval,test,9,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+    [1, 2, 3, 3, 3, 4, 4]
+    """"""
+    running_max = numbers[0]
+    result = [running_max]
+
+    for n in numbers[1:]:
+        running_max = max(running_max, n)
+        result.append(running_max)
+
+    return result",failed: list index out of range,,False,True,16.0,9.0,8.0,0.0,5.0,3.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+10,openai_humaneval,test,10,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_palindrome(s: str) -> bool:
+    """""" Test if given string is a palindrome """"""
+    return s == s[::-1]
+
+
+def make_palindrome(s: str) -> str:
+    """""" Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> make_palindrome('')
+    ''
+    >>> make_palindrome('cat')
+    'catac'
+    >>> make_palindrome('cata')
+    'catac'
+    """"""
+    if not s:
+        return ''
+
+    beginning_of_suffix = 0
+
+    while not is_palindrome(s[beginning_of_suffix:]):
+        beginning_of_suffix += 1
+
+    return s + s[:beginning_of_suffix][::-1]",passed,6.919233333333442e-05,True,True,26.0,13.0,9.0,0.0,11.0,5.0,1.0,1.0,4.0,8.0,7.0,10.0,12.0,17.0,32.0,60.94436251225966,2.5,152.36090628064915,8.464494793369397,0.020314787504086555,84.78199057976444
+11,openai_humaneval,test,11,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def string_xor(a: str, b: str) -> str:
+    """""" Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> string_xor('010', '110')
+    '100'
+    """"""
+    return ''.join('1' if x!= y else '0' for x, y in zip(a, b))",passed,5.93472999999974e-05,True,True,9.0,4.0,3.0,0.0,5.0,1.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,94.87411876956551
+12,openai_humaneval,test,12,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List, Optional
+
+def longest(strings: List[str]) -> Optional[str]:
+    """""" Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.
+    >>> longest([])
+
+    >>> longest(['a', 'b', 'c'])
+    'a'
+    >>> longest(['a', 'bb', 'ccc'])
+    'ccc'
+    """"""
+    if not strings:
+        return None
+
+    max_len = max(len(s) for s in strings)
+    return next((s for s in strings if len(s) == max_len), None)",passed,7.015003332829413e-05,True,True,17.0,7.0,6.0,0.0,8.0,3.0,0.0,5.0,2.0,3.0,2.0,3.0,5.0,5.0,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,93.3454185591911
+13,openai_humaneval,test,13,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def greatest_common_divisor(a: int, b: int) -> int:
+    """"""Return the greatest common divisor of two integers a and b""""""
+    while b:
+        a, b = b, a % b
+    return a",passed,6.364553333331931e-05,True,True,5.0,5.0,4.0,0.0,0.0,0.0,1.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,79.7423427057672
+14,openai_humaneval,test,14,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def all_prefixes(string: str) -> List[str]:
+    """""" Return list of all prefixes from shortest to longest of the input string
+    >>> all_prefixes('abc')
+    ['a', 'ab', 'abc']
+    """"""
+    return [string[:i+1] for i in range(len(string))]",passed,7.111513333342145e-05,True,True,8.0,5.0,3.0,0.0,4.0,1.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,99.65108917260686
+15,openai_humaneval,test,15,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def string_sequence(n: int) -> str:
+    """""" Return a string containing space-delimited numbers starting from 0 upto n inclusive.
+    >>> string_sequence(0)
+    '0'
+    >>> string_sequence(5)
+    '0 1 2 3 4 5'
+    """"""
+    return''.join(map(str, range(n + 1)))",failed: ,,False,True,8.0,3.0,2.0,0.0,6.0,0.0,0.0,1.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,72.06769654236032
+16,openai_humaneval,test,16,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def count_distinct_characters(string: str) -> int:
+    """"""Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> count_distinct_characters('xyzXYZ')
+    3
+    >>> count_distinct_characters('Jerry')
+    4
+    """"""
+    return len(set(string.casefold()))",passed,7.704186666662357e-05,True,True,8.0,3.0,2.0,0.0,6.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+17,openai_humaneval,test,17,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def parse_music(music_string: str) -> List[int]:
+    """""" Input to this function is a string representing musical notes in a special ASCII format.
+    Your task is to parse this string and return list of integers corresponding to how many beats does each
+    not last.
+
+    Here is a legend:
+    'o' - whole note, lasts four beats
+    'o|' - half note, lasts two beats
+    '.|' - quater note, lasts one beat
+
+    >>> parse_music('o o|.| o| o|.|.|.|.| o o')
+    [4, 2, 1, 2, 2, 1, 1, 1, 1, 4, 4]
+    """"""
+    note_map = {'o': 4, 'o|': 2, '.|': 1}
+    return [note_map.get(x, 0) for x in music_string.replace('|','').split()]",failed: ,,False,True,17.0,6.0,4.0,0.0,10.0,3.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+18,openai_humaneval,test,18,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'how_many_times' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+19,openai_humaneval,test,19,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def sort_numbers(numbers: str) -> str:
+    """""" Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five','six','seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """"""
+    value_map = {
+        'zero': 0,
+        'one': 1,
+        'two': 2,
+        'three': 3,
+        'four': 4,
+        'five': 5,
+       'six': 6,
+       'seven': 7,
+        'eight': 8,
+        'nine': 9
+    }
+    return''.join(sorted([value_map[x] for x in numbers.split(' ') if x in value_map], key=lambda x: x))","failed: sequence item 0: expected str instance, int found",,False,True,22.0,7.0,15.0,0.0,6.0,1.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+20,openai_humaneval,test,20,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List, Tuple
+
+def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
+    """""" From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])
+    (2.0, 2.2)
+    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
+    (2.0, 2.0)
+    """"""
+    numbers.sort()
+    closest_pair = (numbers[0], numbers[1])
+    min_distance = abs(numbers[0] - numbers[1])
+
+    for i in range(1, len(numbers) - 1):
+        distance = abs(numbers[i] - numbers[i + 1])
+        if distance < min_distance:
+            min_distance = distance
+            closest_pair = (numbers[i], numbers[i + 1])
+
+    return closest_pair",passed,0.00011424873333332937,True,True,21.0,12.0,11.0,0.0,7.0,3.0,0.0,3.0,3.0,9.0,6.0,12.0,12.0,18.0,33.28421251514428,64.52932501298082,2.0,129.05865002596164,7.169925001442313,0.02150977500432694,92.52448316546938
+21,openai_humaneval,test,21,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def rescale_to_unit(numbers: List[float]) -> List[float]:
+    """"""
+    Given list of numbers (of at least two elements), apply a linear transform to that list,
+    such that the smallest number will become 0 and the largest will become 1
+    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
+    [0.0, 0.25, 0.5, 0.75, 1.0]
+    """"""
+    min_num = min(numbers)
+    max_num = max(numbers)
+    return [(x - min_num) / (max_num - min_num) for x in numbers]",passed,0.0001479670333348319,True,True,12.0,6.0,5.0,0.0,6.0,1.0,0.0,2.0,2.0,5.0,3.0,6.0,7.0,9.0,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,95.31748009686918
+22,openai_humaneval,test,22,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List, Any
+
+def filter_integers(values: List[Any]) -> List[int]:
+    """"""
+    Filter given list of any python values only for integers
+    >>> filter_integers(['a', 3.14, 5])
+    [5]
+    >>> filter_integers([1, 2, 3, 'abc', {}, []])
+    [1, 2, 3]
+    """"""
+    return list(filter(lambda x: isinstance(x, int), values))",passed,8.499263333353232e-05,True,True,11.0,5.0,3.0,0.0,7.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+23,openai_humaneval,test,23,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def strlen(string: str) -> int:
+    """"""
+    Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+    return len(string.strip())",passed,5.306589999965657e-05,True,True,9.0,3.0,2.0,0.0,7.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+24,openai_humaneval,test,24,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def largest_divisor(n: int) -> int:
+    """""" For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largest_divisor(15)
+    5
+    """"""
+    for i in range(1, n):
+        if n % i == 0:
+            return i",failed: ,,False,True,8.0,5.0,4.0,0.0,4.0,0.0,0.0,3.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,100.0
+25,openai_humaneval,test,25,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+import math
+
+def factorize(n: int) -> List[int]:
+    """""" Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+    """"""
+    factors = []
+    i = 2
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            while n % i == 0:
+                n //= i
+                factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors",failed: ,,False,True,27.0,17.0,16.0,0.0,10.0,1.0,0.0,5.0,7.0,6.0,9.0,18.0,13.0,27.0,35.161259458730164,99.91187238980949,10.5,1049.0746600929997,58.28192556072221,0.03330395746326983,87.65869451270474
+26,openai_humaneval,test,26,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+from collections import Counter
+
+
+def remove_duplicates(numbers: List[int]) -> List[int]:
+    """""" From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> remove_duplicates([1, 2, 3, 2, 4])
+    [1, 3, 4]
+    """"""
+    counter = Counter(numbers)
+    return [n for n in numbers if counter[n] == 1]",passed,8.282806666670695e-05,True,True,12.0,6.0,5.0,0.0,5.0,2.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+27,openai_humaneval,test,27,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def flip_case(string: str) -> str:
+    """""" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """"""
+    result = """"
+    for char in string:
+        if char.islower():
+            result += char.upper()
+        else:
+            result += char.lower()
+    return result",passed,6.040873333333548e-05,True,True,12.0,9.0,8.0,0.0,4.0,0.0,0.0,3.0,1.0,3.0,2.0,4.0,4.0,6.0,4.754887502163469,12.0,0.6666666666666666,8.0,0.4444444444444444,0.004,100.0
+28,openai_humaneval,test,28,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def concatenate(strings: List[str]) -> str:
+    """"""
+    Concatenate list of strings into a single string
+
+    Args:
+        strings (List[str]): A list of strings
+
+    Returns:
+        str: The concatenated string
+
+    Examples:
+        >>> concatenate([])
+        ''
+        >>> concatenate(['a', 'b', 'c'])
+        'abc'
+    """"""
+    result = ''
+    for string in strings:
+        result += string
+    return result",passed,6.729963333332497e-05,True,True,22.0,7.0,6.0,0.0,12.0,4.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,82.68522603147062
+29,openai_humaneval,test,29,llama3_0_shot_finetuned_smaller_LR_3_epoch,"from typing import List
+
+def filter_by_prefix(strings: List[str], prefix: str) -> List[str]:
+    """"""
+    Filter an input list of strings only for ones that start with a given prefix.
+
+    >>> filter_by_prefix([], 'a')
+    []
+    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')
+    ['abc', 'array']
+    """"""
+    filtered_strings = []
+    for string in strings:
+        if string.startswith(prefix):
+            filtered_strings.append(string)
+    return filtered_strings",passed,7.08141333333856e-05,True,True,16.0,8.0,7.0,0.0,7.0,2.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+30,openai_humaneval,test,30,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def get_positive(l: list):
+    """"""Return only positive numbers in the list.
+    >>> get_positive([-1, 2, -4, 5, 6])
+    [2, 5, 6]
+    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    [5, 3, 2, 3, 9, 123, 1]
+    """"""
+    return list(filter(lambda x: x > 0, l))",passed,0.00010140140000203246,True,True,8.0,4.0,2.0,0.0,6.0,0.0,0.0,1.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,69.34228743492241
+31,openai_humaneval,test,31,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+    if n < 2:
+        return False
+    for k in range(2, int(n**0.5) + 1):
+        if n % k == 0:
+            return False
+    return True",passed,0.0001265370000003448,True,True,23.0,8.0,7.0,0.0,16.0,0.0,0.0,4.0,5.0,8.0,5.0,10.0,13.0,15.0,35.60964047443681,55.506595772116384,3.125,173.4581117878637,9.636561765992427,0.01850219859070546,67.80844482965082
+32,openai_humaneval,test,32,llama3_0_shot_finetuned_smaller_LR_3_epoch,"import math
+
+
+def evaluate_polynomial(coefficients: list, x: float) -> float:
+    """"""
+    Evaluates polynomial with coefficients at point x.
+    """"""
+    return sum(coeff * math.pow(x, i) for i, coeff in enumerate(reversed(coefficients)))
+
+
+def find_zero(coefficients: list) -> float:
+    """"""
+    Finds a zero of a polynomial.
+    """"""
+    if len(coefficients) % 2 == 1:
+        raise ValueError(""Polynomial must have an even number of coefficients"")
+    if max(abs(coeff) for coeff in coefficients) == 0:
+        raise ValueError(""Polynomial must have a non-zero coefficient"")
+
+    begin, end = -1., 1.
+    while evaluate_polynomial(coefficients, begin) * evaluate_polynomial(coefficients, end) > 0:
+        begin *= 2.0
+        end *= 2.0
+    while end - begin > 1e-10:
+        center = (begin + end) / 2.0
+        if evaluate_polynomial(coefficients, center) * evaluate_polynomial(coefficients, begin) > 0:
+            begin = center
+        else:
+            end = center
+    return round(begin, 2)",failed: name 'poly' is not defined,,False,True,30.0,21.0,19.0,0.0,6.0,5.0,0.0,2.0,8.0,19.0,15.0,29.0,27.0,44.0,104.71062275542812,209.21505009519265,6.105263157894737,1277.3129374232815,70.96182985684896,0.06973835003173089,80.69062490028907
+33,openai_humaneval,test,33,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
+    >>> sort_third([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_third([5, 6, 3, 4, 8, 9, 2])
+    [2, 6, 3, 4, 8, 9, 5]
+    """"""
+    result = l[:]  # Create a copy of the list
+    result[::3] = sorted(l[::3])  # Sort the elements at indices divisible by 3
+    return result",passed,0.00027120310000000223,True,True,12.0,7.0,4.0,2.0,8.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+34,openai_humaneval,test,34,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def unique(l: list):
+    """"""Return sorted unique elements in a list
+    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [0, 2, 3, 5, 9, 123]
+    """"""
+    return sorted(set(l))",passed,0.00011383266666674293,True,True,6.0,3.0,2.0,0.0,4.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+35,openai_humaneval,test,35,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def max_element(l: list):
+    """"""Return maximum element in the list.
+    >>> max_element([1, 2, 3])
+    3
+    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])
+    123
+    """"""
+    return max(l)",passed,5.987750000002734e-05,True,True,8.0,3.0,2.0,0.0,6.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+36,openai_humaneval,test,36,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def fizz_buzz(n: int):
+    """"""Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.
+    >>> fizz_buzz(50)
+    0
+    >>> fizz_buzz(78)
+    2
+    >>> fizz_buzz(79)
+    3
+    """"""
+    count = sum(str(i).count('7') for i in range(n) if i % 11 == 0 or i % 13 == 0)
+    return count",passed,0.01661124270000016,True,True,11.0,4.0,3.0,0.0,8.0,0.0,0.0,4.0,3.0,8.0,5.0,10.0,11.0,15.0,28.75488750216347,51.89147427955947,1.875,97.296514274174,5.405361904120777,0.01729715809318649,67.30961856465568
+37,openai_humaneval,test,37,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'sort_even' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+38,openai_humaneval,test,38,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def encode_cyclic(s: str):
+    """"""
+    returns encoded string by cycling groups of three characters.
+    """"""
+    encoded_groups = []
+    for i in range((len(s) + 2) // 3):
+        group = s[3 * i:min(3 * (i + 1), len(s))]
+        if len(group) == 3:
+            encoded_groups.append(group[1:] + group[0])
+        else:
+            encoded_groups.append(group)
+    return """".join(encoded_groups)
+
+def decode_cyclic(s: str):
+    """"""
+    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    """"""
+    decoded_groups = []
+    for i in range((len(s) + 2) // 3):
+        group = s[3 * i:min(3 * (i + 1), len(s))]
+        if len(group) == 3:
+            decoded_groups.append(group[1:] + group[0])
+        else:
+            decoded_groups.append(group)
+    return """".join(decoded_groups)",failed: ,,False,True,25.0,24.0,18.0,0.0,6.0,1.0,0.0,3.0,4.0,20.0,14.0,28.0,24.0,42.0,94.43856189774725,192.56842503028858,2.8,539.191590084808,29.955088338044888,0.0641894750100962,80.43629043952096
+39,openai_humaneval,test,39,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+    import math
+
+    def is_prime(p):
+        if p < 2:
+            return False
+        for k in range(2, int(math.sqrt(p)) + 1):
+            if p % k == 0:
+                return False
+        return True
+
+    fibonacci_numbers = [0, 1]
+    while True:
+        next_number = fibonacci_numbers[-1] + fibonacci_numbers[-2]
+        fibonacci_numbers.append(next_number)
+        if is_prime(next_number):
+            n -= 1
+        if n == 0:
+            return next_number",passed,0.0019857952333333317,True,True,32.0,18.0,17.0,0.0,13.0,2.0,0.0,4.0,6.0,13.0,9.0,16.0,19.0,25.0,63.61549134016113,106.19818783608963,3.6923076923076925,392.11638585633096,21.784243658685053,0.03539939594536321,86.28606716781128
+40,openai_humaneval,test,40,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def triples_sum_to_zero(l: list):
+    """"""
+    triples_sum_to_zero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triples_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> triples_sum_to_zero([1, 3, -2, 1])
+    True
+    >>> triples_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])
+    True
+    >>> triples_sum_to_zero([1])
+    False
+    """"""
+    l.sort()
+    for i in range(len(l) - 2):
+        if i > 0 and l[i] == l[i - 1]:
+            continue
+        left, right = i + 1, len(l) - 1
+        while left < right:
+            total = l[i] + l[left] + l[right]
+            if total < 0:
+                left += 1
+            elif total > 0:
+                right -= 1
+            else:
+                return True
+    return False",passed,0.00014916446666575213,True,True,31.0,16.0,15.0,0.0,15.0,1.0,0.0,7.0,6.0,17.0,14.0,28.0,23.0,42.0,84.99664330558272,189.98960215439456,4.9411764705882355,938.7721518217144,52.15400843453969,0.06332986738479819,82.47846493786325
+41,openai_humaneval,test,41,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def car_race_collision(n: int):
+    """"""
+    Imagine a road that's a perfectly straight infinitely long line.
+    n cars are driving left to right;  simultaneously, a different set of n cars
+    are driving right to left.   The two sets of cars start out being very far from
+    each other.  All cars move in the same speed.  Two cars are said to collide
+    when a car that's moving left to right hits a car that's moving right to left.
+    However, the cars are infinitely sturdy and strong; as a result, they continue moving
+    in their trajectory as if they did not collide.
+
+    This function outputs the number of such collisions.
+    """"""
+    return n * (n - 1)",failed: ,,False,True,13.0,3.0,2.0,0.0,10.0,1.0,0.0,1.0,2.0,3.0,2.0,4.0,5.0,6.0,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,52.29890245994939
+42,openai_humaneval,test,42,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def incr_list(numbers: list) -> list:
+    """"""Return list with elements incremented by 1.
+    >>> incr_list([1, 2, 3])
+    [2, 3, 4]
+    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])
+    [6, 4, 6, 3, 4, 4, 10, 1, 124]
+    """"""
+    return [num + 1 for num in numbers]",passed,8.433206666680348e-05,True,True,8.0,3.0,2.0,0.0,6.0,0.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,71.9331936183837
+43,openai_humaneval,test,43,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def pairs_sum_to_zero(l):
+    """"""
+    pairs_sum_to_zero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairs_sum_to_zero([1, 3, 5, 0])
+    False
+    >>> pairs_sum_to_zero([1, 3, -2, 1])
+    False
+    >>> pairs_sum_to_zero([1, 2, 3, 7])
+    False
+    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])
+    True
+    >>> pairs_sum_to_zero([1])
+    False
+    """"""
+    seen = set()
+    for num in l:
+        if -num in seen:
+            return True
+        seen.add(num)
+    return False",passed,0.000163653866666665,True,True,22.0,8.0,7.0,0.0,15.0,0.0,0.0,3.0,2.0,3.0,2.0,3.0,5.0,5.0,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,75.60345168368548
+44,openai_humaneval,test,44,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def change_base(x: int, base: int):
+    """"""Change numerical base of input number x to base.
+    return string representation after the conversion.
+    base numbers are less than 10.
+    >>> change_base(8, 3)
+    '22'
+    >>> change_base(8, 2)
+    '1000'
+    >>> change_base(7, 2)
+    '111'
+    """"""
+    if not isinstance(x, int) or not isinstance(base, int):
+        raise TypeError(""Input must be integers"")
+    if base < 2 or base > 9:
+        raise ValueError(""Base must be between 2 and 9"")
+    if x < 0:
+        raise ValueError(""Input number must be non-negative"")
+    return ''.join(str(x % base) for x in reversed(range(x + 1)))",failed: ,,False,True,18.0,9.0,8.0,0.0,10.0,0.0,0.0,7.0,6.0,12.0,9.0,16.0,18.0,25.0,58.52932501298082,104.2481250360578,4.0,416.9925001442312,23.166250008012845,0.03474937501201927,85.58890817593164
+45,openai_humaneval,test,45,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def triangle_area(a, h):
+    """"""
+    Given length of a side and high return area for a triangle.
+    >>> triangle_area(5, 3)
+    7.5
+    """"""
+    return 0.5 * a * h",passed,5.079206666778191e-05,True,True,7.0,3.0,2.0,0.0,5.0,0.0,0.0,1.0,1.0,4.0,2.0,4.0,5.0,6.0,8.0,13.931568569324174,0.5,6.965784284662087,0.3869880158145604,0.004643856189774725,77.52200017156707
+46,openai_humaneval,test,46,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def fib4(n: int):
+    """"""The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fib4(0) -> 0
+    fib4(1) -> 0
+    fib4(2) -> 2
+    fib4(3) -> 0
+    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.
+    >>> fib4(5)
+    4
+    >>> fib4(6)
+    8
+    >>> fib4(7)
+    14
+    """"""
+    results = [0, 0, 2, 0]
+    if n < 4:
+        return results[n]
+
+    for _ in range(4, n + 1):
+        results.append(sum(results[-4:]))
+        results.pop(0)
+
+    return results[-1]",passed,6.338213333331547e-05,True,True,24.0,10.0,8.0,0.0,14.0,2.0,0.0,3.0,3.0,3.0,4.0,6.0,6.0,10.0,9.509775004326938,25.84962500721156,3.0,77.54887502163469,4.308270834535261,0.00861654166907052,79.29220685675755
+47,openai_humaneval,test,47,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def median(l: list):
+    """"""Return median of elements in the list l.
+    >>> median([3, 1, 2, 4, 5])
+    3
+    >>> median([-10, 4, 6, 1000, 10, 20])
+    15.0
+    """"""
+    sorted_list = sorted(l)
+    n = len(sorted_list)
+    if n % 2 == 1:
+        return sorted_list[n // 2]
+    else:
+        return (sorted_list[n // 2 - 1] + sorted_list[n // 2]) / 2.0",passed,9.49731333330798e-05,True,True,13.0,8.0,7.0,0.0,6.0,0.0,0.0,2.0,6.0,8.0,8.0,16.0,14.0,24.0,39.50977500432694,91.37651812938249,6.0,548.259108776295,30.45883937646083,0.03045883937646083,93.79249583583558
+48,openai_humaneval,test,48,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_palindrome(text: str) -> bool:
+    """"""
+    Checks if given string is a palindrome
+    >>> is_palindrome('')
+    True
+    >>> is_palindrome('aba')
+    True
+    >>> is_palindrome('aaaaa')
+    True
+    >>> is_palindrome('zbcd')
+    False
+    """"""
+    return text == text[::-1]",passed,7.207759999801055e-05,True,True,13.0,4.0,2.0,0.0,11.0,0.0,0.0,1.0,2.0,3.0,2.0,3.0,5.0,5.0,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,50.35217716849601
+49,openai_humaneval,test,49,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def modp(n: int, p: int) -> int:
+    """"""Return 2^n modulo p (be aware of numerics).
+    >>> modp(3, 5)
+    3
+    >>> modp(1101, 101)
+    2
+    >>> modp(0, 101)
+    1
+    >>> modp(3, 11)
+    8
+    >>> modp(100, 101)
+    1
+    """"""
+    result = 1
+    for _ in range(n):
+        result = (result * 2) % p
+    return result",passed,0.00015018183333287045,True,True,17.0,6.0,5.0,0.0,12.0,0.0,0.0,2.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,72.41966851140586
+50,openai_humaneval,test,50,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def encode_shift(s: str):
+    """"""
+    returns encoded string by shifting every character by 5 in the alphabet.
+    """"""
+    return """".join(chr((ord(ch) - ord(""a"") + 5) % 26 + ord(""a"")) for ch in s)
+
+def decode_shift(s: str):
+    """"""
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """"""
+    return """".join(chr((ord(ch) - ord(""a"") - 5) % 26 + ord(""a"")) for ch in s)",passed,0.001629451266611189,True,True,11.0,6.0,4.0,0.0,6.0,1.0,0.0,2.0,3.0,16.0,8.0,16.0,19.0,24.0,68.75488750216347,101.95026032264605,1.5,152.92539048396907,8.49585502688717,0.03398342010754868,85.16136508223657
+51,openai_humaneval,test,51,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def remove_vowels(text):
+    """"""
+    remove_vowels is a function that takes string and returns string without vowels.
+    >>> remove_vowels('')
+    ''
+    >>> remove_vowels(""abcdef\nghijklm"")
+    'bcdf\nghjklm'
+    >>> remove_vowels('abcdef')
+    'bcdf'
+    >>> remove_vowels('aaaaa')
+    ''
+    >>> remove_vowels('aaBAA')
+    'B'
+    >>> remove_vowels('zbcd')
+    'zbcd'
+    """"""
+    return """".join([c for c in text if c.lower() not in 'aeiou'])",passed,8.449196666666658e-05,True,True,17.0,3.0,2.0,0.0,15.0,0.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,67.73115796691512
+52,openai_humaneval,test,52,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def below_threshold(numbers: list, threshold: int) -> bool:
+    """"""Return True if all numbers in the list are below the threshold.
+    >>> below_threshold([1, 2, 4, 10], 100)
+    True
+    >>> below_threshold([1, 20, 4, 10], 5)
+    False
+    """"""
+    return all(e < threshold for e in numbers)",passed,0.00011310386666707473,True,True,8.0,3.0,2.0,0.0,6.0,0.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,71.9331936183837
+53,openai_humaneval,test,53,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def add(x: int, y: int) -> int:
+    """"""
+    Add two numbers x and y
+
+    Args:
+        x (int): The first number
+        y (int): The second number
+
+    Returns:
+        int: The sum of x and y
+
+    Examples:
+        >>> add(2, 3)
+        5
+        >>> add(5, 7)
+        12
+    """"""
+    return x + y",passed,0.00023835596666685888,True,True,18.0,3.0,2.0,0.0,13.0,3.0,0.0,1.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,60.10550539847652
+54,openai_humaneval,test,54,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def same_chars(s0: str, s1: str):
+    """"""
+    Check if two words have the same characters.
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
+    True
+    >>> same_chars('abcd', 'dddddddabc')
+    True
+    >>> same_chars('dddddddabc', 'abcd')
+    True
+    >>> same_chars('eabcd', 'dddddddabc')
+    False
+    >>> same_chars('abcd', 'dddddddabce')
+    False
+    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
+    False
+    """"""
+    return sorted(s0) == sorted(s1)",failed: ,,False,True,17.0,3.0,2.0,0.0,15.0,0.0,0.0,1.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,68.00016381486833
+55,openai_humaneval,test,55,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def fib(n: int):
+    """"""Return n-th Fibonacci number.
+    >>> fib(10)
+    55
+    >>> fib(1)
+    1
+    >>> fib(8)
+    21
+    """"""
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)",passed,0.00012653703333853628,True,True,15.0,8.0,7.0,0.0,8.0,0.0,0.0,3.0,3.0,6.0,5.0,10.0,9.0,15.0,20.264662506490406,47.548875021634686,2.5,118.87218755408671,6.604010419671484,0.01584962500721156,91.53009100920066
+56,openai_humaneval,test,56,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def correct_bracketing(brackets: str):
+    """"""brackets is a string of ""<"" and "">"". 
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""<"")
+    False
+    >>> correct_bracketing(""<>"")
+    True
+    >>> correct_bracketing(""<<><>>"")
+    True
+    >>> correct_bracketing(""><<>"")
+    False
+    """"""
+    stack = []
+    for b in brackets:
+        if b == ""<"":
+            stack.append(b)
+        elif stack and stack[-1] == ""<"":
+            stack.pop()
+    return not stack",failed: ,,False,True,20.0,9.0,8.0,0.0,11.0,1.0,0.0,5.0,4.0,6.0,5.0,8.0,10.0,13.0,23.509775004326936,43.18506523353572,2.6666666666666665,115.16017395609524,6.397787442005291,0.014395021744511906,86.1618365547702
+57,openai_humaneval,test,57,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def monotonic(l: list):
+    """"""Return True is list elements are monotonically increasing or decreasing.
+    >>> monotonic([1, 2, 4, 20])
+    True
+    >>> monotonic([1, 20, 4, 10])
+    False
+    >>> monotonic([4, 1, 0, -10])
+    True
+    """"""
+    return l == sorted(l) or l == sorted(l, reverse=True)",passed,0.00010424869999970572,True,True,10.0,3.0,2.0,0.0,8.0,0.0,0.0,2.0,2.0,5.0,3.0,6.0,7.0,9.0,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,54.8576348179995
+58,openai_humaneval,test,58,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def common(l1: list, l2: list):
+    """"""Return sorted unique common elements for two lists.
+    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])
+    [1, 5, 653]
+    >>> common([5, 3, 2, 8], [3, 2])
+    [2, 3]
+
+    """"""
+    return sorted(set(e for e in l1 if e in l2))",passed,0.00012615209999845926,True,True,9.0,3.0,2.0,0.0,6.0,1.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,71.7986906944071
+59,openai_humaneval,test,59,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'largest_prime_factor' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+60,openai_humaneval,test,60,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sum_to_n(n: int) -> int:
+    """"""
+    sum_to_n is a function that sums numbers from 1 to n.
+    >>> sum_to_n(30)
+    465
+    >>> sum_to_n(100)
+    5050
+    >>> sum_to_n(5)
+    15
+    >>> sum_to_n(10)
+    55
+    >>> sum_to_n(1)
+    1
+    """"""
+    return sum(range(1, n + 1))",passed,6.050903333137588e-05,True,True,15.0,3.0,2.0,0.0,13.0,0.0,0.0,1.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,60.10550539847652
+61,openai_humaneval,test,61,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def correct_bracketing(brackets: str):
+    """"""brackets is a string of ""("" and "")"".
+    return True if every opening bracket has a corresponding closing bracket.
+
+    >>> correct_bracketing(""("")
+    False
+    >>> correct_bracketing(""()"")
+    True
+    >>> correct_bracketing(""(()())"")
+    True
+    >>> correct_bracketing("")(()"")
+    False
+    """"""
+    stack = []
+    for b in brackets:
+        if b == ""("":
+            stack.append(b)
+        elif stack and stack[-1] == ""("":
+            stack.pop()
+    return not stack",failed: ,,False,True,20.0,9.0,8.0,0.0,11.0,1.0,0.0,5.0,4.0,6.0,5.0,8.0,10.0,13.0,23.509775004326936,43.18506523353572,2.6666666666666665,115.16017395609524,6.397787442005291,0.014395021744511906,86.1618365547702
+62,openai_humaneval,test,62,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def derivative(xs: list):
+    """""" xs represent coefficients of a polynomial.
+    xs[0] + xs[1] * x + xs[2] * x^2 +....
+     Return derivative of this polynomial in the same form.
+    >>> derivative([3, 1, 2, 4, 5])
+    [1, 4, 12, 20]
+    >>> derivative([1, 2, 3])
+    [2, 6]
+    """"""
+    return [i * x for i, x in enumerate(xs[1:])]",failed: ,,False,True,10.0,4.0,2.0,0.0,8.0,0.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,57.21148314475711
+63,openai_humaneval,test,63,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def fibfib(n: int):
+    """"""The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:
+    fibfib(0) == 0
+    fibfib(1) == 0
+    fibfib(2) == 1
+    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
+    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
+    >>> fibfib(1)
+    0
+    >>> fibfib(5)
+    4
+    >>> fibfib(8)
+    24
+    """"""
+    if n <= 2:
+        return 0
+    a, b, c = 0, 0, 1
+    for _ in range(3, n + 1):
+        a, b, c = b, c, a + b + c
+    return c",failed: ,,False,True,20.0,8.0,7.0,0.0,13.0,0.0,0.0,3.0,2.0,7.0,4.0,8.0,9.0,12.0,21.651484454403228,38.03910001730775,1.1428571428571428,43.47325716263743,2.415180953479857,0.012679700005769252,77.9692005966509
+64,openai_humaneval,test,64,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def vowels_count(s):
+    """"""
+    Write a function vowels_count which takes a string representing
+    a word as input and returns the number of vowels in the string.
+    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a
+    vowel, but only when it is at the end of the given word.
+
+    Example:
+    >>> vowels_count(""abcde"")
+    2
+    >>> vowels_count(""ACEDY"")
+    3
+    """"""
+    vowels = ""aeiouAEIOUY""
+    return sum(1 for c in s if c in vowels)",failed: Test 3,,False,True,15.0,4.0,3.0,0.0,11.0,1.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,60.221302689602105
+65,openai_humaneval,test,65,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'circular_shift' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+66,openai_humaneval,test,66,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""") => 0
+        digitSum(""abAB"") => 131
+        digitSum(""abcCd"") => 67
+        digitSum(""helloE"") => 69
+        digitSum(""woArBld"") => 131
+        digitSum(""aAaaaXa"") => 153
+    """"""
+    if not s:
+        return 0
+    return sum(ord(char) for char in s if char.isupper())",passed,0.00010087149999975509,True,True,16.0,5.0,4.0,0.0,11.0,1.0,0.0,4.0,1.0,1.0,1.0,1.0,2.0,2.0,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,73.61798127912475
+67,openai_humaneval,test,67,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def fruit_distribution(s, n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket of fruit this basket contains 
+    apples, oranges, and mango fruits. Given the string that represents the total number of 
+    the oranges and apples and an integer that represent the total number of the fruits 
+    in the basket return the number of the mango fruits in the basket.
+    for examble:
+    fruit_distribution(""5 apples and 6 oranges"", 19) ->19 - 5 - 6 = 8
+    fruit_distribution(""0 apples and 1 oranges"",3) -> 3 - 0 - 1 = 2
+    fruit_distribution(""2 apples and 3 oranges"", 100) -> 100 - 2 - 3 = 95
+    fruit_distribution(""100 apples and 1 oranges"",120) -> 120 - 100 - 1 = 19
+    """"""
+    numbers = [int(i) for i in s.split() if i.isdigit()]
+    return n - sum(numbers)",passed,8.731876666843164e-05,True,True,15.0,4.0,3.0,0.0,12.0,0.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,57.07698022078051
+68,openai_humaneval,test,68,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def pluck(arr):
+    """"""
+    ""Given an array representing a branch of a tree that has non-negative integer nodes
+    your task is to pluck one of the nodes and return it.
+    The plucked node should be the node with the smallest even value.
+    If multiple nodes with the same smallest even value are found return the node that has smallest index.
+
+    The plucked node should be returned in a list, [ smalest_value, its index ],
+    If there are no even values or the given array is empty, return [].
+
+    Example 1:
+        Input: [4,2,3]
+        Output: [2, 1]
+        Explanation: 2 has the smallest even value, and 2 has the smallest index.
+
+    Example 2:
+        Input: [1,2,3]
+        Output: [2, 1]
+        Explanation: 2 has the smallest even value, and 2 has the smallest index. 
+
+    Example 3:
+        Input: []
+        Output: []
+    
+    Example 4:
+        Input: [5, 0, 3, 0, 4, 2]
+        Output: [0, 1]
+        Explanation: 0 is the smallest value, but  there are two zeros,
+                     so we will choose the first zero, which has the smallest index.
+
+    Constraints:
+        * 1 <= nodes.length <= 10000
+        * 0 <= node.value
+    """"""
+    if not arr:
+        return []
+    evens = [x for x in arr if x % 2 == 0]
+    if not evens:
+        return []
+    return [min(evens), arr.index(min(evens))]",passed,0.00017348646667111705,True,True,40.0,8.0,7.0,0.0,27.0,6.0,0.0,5.0,3.0,6.0,4.0,6.0,9.0,10.0,20.264662506490406,31.699250014423125,1.5,47.548875021634686,2.6416041678685938,0.010566416671474375,45.71492142314935
+69,openai_humaneval,test,69,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'search' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+70,openai_humaneval,test,70,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+
+    Examples:
+    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    strange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]
+    strange_sort_list([]) == []
+    '''
+    result = []
+    while lst:
+        if not result or (lst[0] <= result[-1]):
+            result.append(min(lst))
+        else:
+            result.append(max(lst))
+        lst.remove(result[-1])
+    return result",passed,0.00023018506666782438,True,True,19.0,10.0,9.0,0.0,9.0,1.0,0.0,4.0,4.0,6.0,5.0,7.0,10.0,12.0,23.509775004326936,39.863137138648355,2.3333333333333335,93.01398665684617,5.167443703158121,0.013287712379549451,92.08311342172307
+71,openai_humaneval,test,71,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def triangle_area(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return the area of
+    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
+    Otherwise return -1
+    Three sides make a valid triangle when the sum of any two sides is greater 
+    than the third side.
+    Example:
+    triangle_area(3, 4, 5) == 6.00
+    triangle_area(1, 2, 10) == -1
+    '''
+    sides = [a, b, c]
+    sides.sort()
+    if sides[0] + sides[1] <= sides[2]:
+        return -1 
+    s = (sides[0] + sides[1] + sides[2]) / 2    
+    area = (s * (s - sides[0]) * (s - sides[1]) * (s - sides[2])) ** 0.5
+    area = round(area, 2)
+    return area",passed,0.00012361906666667662,True,True,19.0,10.0,9.0,0.0,10.0,0.0,0.0,2.0,7.0,22.0,13.0,25.0,29.0,38.0,117.75898006442377,184.60327781484776,3.977272727272727,734.2175822181445,40.7898656787858,0.06153442593828259,85.95858443022927
+72,openai_humaneval,test,72,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def will_it_fly(q, w):
+    '''
+    Write a function that returns True if the object q will fly, and False otherwise.
+    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.
+
+    Example:
+    will_it_fly([1, 2], 5) ➞ False 
+    # 1+2 is less than the maximum possible weight, but it's unbalanced.
+
+    will_it_fly([3, 2, 3], 1) ➞ False
+    # it's balanced, but 3+2+3 is more than the maximum possible weight.
+
+    will_it_fly([3, 2, 3], 9) ➞ True
+    # 3+2+3 is less than the maximum possible weight, and it's balanced.
+
+    will_it_fly([3], 5) ➞ True
+    # 3 is less than the maximum possible weight, and it's balanced.
+    '''
+    if sum(q) > w:
+        return False
+
+    left, right = 0, len(q) - 1
+    while left < right:
+        if q[left]!= q[right]:
+            return False
+        left += 1
+        right -= 1
+    return True",passed,8.815303333354526e-05,True,True,28.0,11.0,10.0,0.0,13.0,5.0,0.0,4.0,5.0,8.0,6.0,12.0,13.0,18.0,35.60964047443681,66.60791492653966,3.75,249.77968097452373,13.876648943029096,0.022202638308846556,84.52090011044952
+73,openai_humaneval,test,73,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def smallest_change(arr):
+    """"""
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A palindromic array is an array that
+    is read the same backwards and forwards. In one change, you can change one element to any other element.
+
+    For example:
+    smallest_change([1,2,3,5,4,7,9,6]) == 4
+    smallest_change([1, 2, 3, 4, 3, 2, 2]) == 1
+    smallest_change([1, 2, 3, 2, 1]) == 0
+    """"""
+    arr = arr[:len(arr)//2 + len(arr)%2]
+    return sum(1 for a, b in zip(arr, reversed(arr)) if a!= b)",failed: ,,False,True,13.0,5.0,3.0,0.0,9.0,1.0,0.0,3.0,4.0,7.0,4.0,8.0,11.0,12.0,27.651484454403228,41.51317942364757,2.2857142857142856,94.88726725405158,5.27151484744731,0.01383772647454919,60.37007533158324
+74,openai_humaneval,test,74,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def total_match(lst1, lst2):
+    '''
+    Write a function that accepts two lists of strings and returns the list that has 
+    total number of chars in the all strings of the list less than the other list.
+
+    if the two lists have the same number of chars, return the first list.
+
+    Examples
+    total_match([], []) ➞ []
+    total_match(['hi', 'admin'], ['hI', 'Hi']) ➞ ['hI', 'Hi']
+    total_match(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) ➞ ['hi', 'admin']
+    total_match(['hi', 'admin'], ['hI', 'hi', 'hi']) ➞ ['hI', 'hi', 'hi']
+    total_match(['4'], ['1', '2', '3', '4', '5']) ➞ ['4']
+    '''
+    total_chars1 = sum(len(s) for s in lst1)
+    total_chars2 = sum(len(s) for s in lst2)
+    
+    if total_chars1 <= total_chars2:
+        return lst1
+    else:
+        return lst2",passed,0.00023414623333333957,True,True,21.0,8.0,7.0,0.0,11.0,3.0,0.0,4.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,90.15670002474971
+75,openai_humaneval,test,75,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_multiply_prime(a):
+    """"""Write a function that returns true if the given number is the multiplication of 3 prime numbers
+    and false otherwise.
+    Knowing that (a) is less then 100. 
+    Example:
+    is_multiply_prime(30) == True
+    30 = 2 * 3 * 5
+    """"""
+    def is_prime(n):
+        if n < 2:
+            return False
+        for j in range(2, int(n**0.5) + 1):
+            if n % j == 0:
+                return False
+        return True
+
+    for i in range(2, 8):
+        if not is_prime(i): continue
+        for j in range(i, 8):
+            if not is_prime(j): continue
+                if k * j * i == a: return True
+    return False","failed: unexpected indent (<string>, line 21)",,False,False,,,,,,,,,,,,,,,,,,,,,
+76,openai_humaneval,test,76,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+    For example:
+    is_simple_power(1, 4) => true
+    is_simple_power(2, 2) => true
+    is_simple_power(8, 2) => true
+    is_simple_power(3, 2) => false
+    is_simple_power(3, 1) => false
+    is_simple_power(5, 3) => false
+    """"""
+    if n == 1:
+        return x == 1
+    power = n
+    while power <= x:
+        if power == x:
+            return True
+        power *= n
+    return False",failed: This prints if this assert fails 2 (also good for debugging!),,False,True,20.0,10.0,9.0,0.0,11.0,0.0,0.0,4.0,3.0,4.0,5.0,10.0,7.0,15.0,12.75488750216347,42.11032383086406,3.75,157.91371436574022,8.772984131430013,0.01403677461028802,88.25718174831817
+77,openai_humaneval,test,77,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def iscube(a):
+    '''
+    Write a function that takes an integer a and returns True 
+    if this ingeger is a cube of some integer number.
+    Note: you may assume the input is always valid.
+    Examples:
+    iscube(1) ==> True
+    iscube(2) ==> False
+    iscube(-1) ==> True
+    iscube(64) ==> True
+    iscube(0) ==> True
+    iscube(180) ==> False
+    '''
+    a = abs(a)
+    return round(a ** (1. / 3)) ** 3 == a",passed,0.00013437020000613606,True,True,15.0,4.0,3.0,0.0,12.0,0.0,0.0,1.0,3.0,6.0,4.0,8.0,9.0,12.0,20.264662506490406,38.03910001730775,2.0,76.0782000346155,4.226566668589751,0.012679700005769252,51.02253810573073
+78,openai_humaneval,test,78,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def hex_key(num):
+    """"""You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    Examples:
+    For num = ""AB"" the output should be 1.
+    For num = ""1077E"" the output should be 2.
+    For num = ""ABED1A33"" the output should be 4.
+    For num = ""123456789ABCDEF0"" the output should be 6.
+    For num = ""2020"" the output should be 2.
+    """"""
+    primes = {'2', '3', '5', '7', 'B', 'D'}
+    return sum(1 for digit in num if digit in primes)",passed,0.00019326763333348633,True,True,20.0,4.0,3.0,0.0,17.0,0.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,53.18774262777732
+79,openai_humaneval,test,79,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an extra couple of characters 'db' at the beginning and at the end of the string.
+    The extra characters are there to help with the format.
+
+    Examples:
+    decimal_to_binary(15)   # returns ""db1111db""
+    decimal_to_binary(32)   # returns ""db100000db""
+    """"""
+    return ""db"" + bin(decimal)[2:] + ""db""",passed,5.8548166666668364e-05,True,True,13.0,4.0,2.0,0.0,9.0,2.0,0.0,1.0,1.0,3.0,2.0,4.0,4.0,6.0,4.754887502163469,12.0,0.6666666666666666,8.0,0.4444444444444444,0.004,51.39145068428643
+80,openai_humaneval,test,80,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_happy(s):
+    """"""You are given a string s.
+    Your task is to check if the string is happy or not.
+    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct
+    For example:
+    is_happy(a) => False
+    is_happy(aa) => False
+    is_happy(abcd) => True
+    is_happy(aabb) => False
+    is_happy(adb) => True
+    is_happy(xyy) => False
+    """"""
+    if len(s) < 3:
+      return False
+
+    for i in range(len(s) - 2):
+      if s[i:i+3].count(s[i]) > 1:
+        return False
+    return True",failed: xyy,,False,True,19.0,8.0,7.0,0.0,11.0,1.0,0.0,4.0,4.0,7.0,4.0,8.0,11.0,12.0,27.651484454403228,41.51317942364757,2.2857142857142856,94.88726725405158,5.27151484744731,0.01383772647454919,83.56748530812997
+81,openai_humaneval,test,81,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def numerical_letter_grade(grades):
+    """"""It is the last week of the semester and the teacher has to give the grades
+    to students. The teacher has been making her own algorithm for grading.
+    The only problem is, she has lost the code she used for grading.
+    She has given you a list of GPAs for some students and you have to write 
+    a function that can output a list of letter grades using the following table:
+             GPA       |    Letter grade
+              4.0                A+
+            > 3.7                A 
+            > 3.3                A- 
+            > 3.0                B+
+            > 2.7                B 
+            > 2.3                B-
+            > 2.0                C+
+            > 1.7                C
+            > 1.3                C-
+            > 1.0                D+ 
+            > 0.7                D 
+            > 0.0                D-
+              0.0                E
+    
+
+    Example:
+    grade_equation([4.0, 3, 1.7, 2, 3.5]) ==> ['A+', 'B', 'C-', 'C', 'A-']
+    """"""
+
+    letter_grade = []
+    for gpa in grades:
+        if gpa >= 4.0:
+            letter_grade.append(""A+"")
+        elif gpa >= 3.7:
+            letter_grade.append(""A"")
+        elif gpa >= 3.3:
+            letter_grade.append(""A-"")
+        elif gpa >= 3.0:
+            letter_grade.append(""B+"")
+        elif gpa >= 2.7:
+            letter_grade.append(""B"")
+        elif gpa >= 2.3:
+            letter_grade.append(""B-"")
+        elif gpa >= 2.0:
+            letter_grade.append(""C+"")
+        elif gpa >= 1.7:
+            letter_grade.append(""C"")
+        elif gpa >= 1.3:
+            letter_grade.append(""C-"")
+        elif gpa >= 1.0:
+            letter_grade.append(""D+"")
+        elif gpa >= 0.7:
+            letter_grade.append(""D"")
+        elif gpa >= 0.0:
+            letter_grade.append(""D-"")
+        else:
+            letter_grade.append(""E"")
+    return letter_grade",failed: ,,False,True,55.0,31.0,30.0,0.0,22.0,3.0,0.0,14.0,1.0,13.0,12.0,24.0,14.0,36.0,48.105716335834195,137.06477719407374,0.9230769230769231,126.52133279452961,7.0289629330294225,0.04568825906469125,79.25733228665749
+82,openai_humaneval,test,82,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def prime_length(string):
+    """"""Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == False
+    """"""
+    length = len(string)
+    if length < 2:
+        return False
+    for i in range(2, int(length ** 0.5) + 1):
+        if length % i == 0:
+            return False
+    return True",passed,0.0001327587000001055,True,True,16.0,9.0,8.0,0.0,8.0,0.0,0.0,4.0,5.0,8.0,5.0,10.0,13.0,15.0,35.60964047443681,55.506595772116384,3.125,173.4581117878637,9.636561765992427,0.01850219859070546,92.07456440501085
+83,openai_humaneval,test,83,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def starts_one_ends(n):
+    """"""
+    Given a positive integer n, return the count of the numbers of n-digit
+    positive integers that start or end with 1.
+    """"""
+    if n == 1:
+        return 1
+    else:
+        return 9 * (10 ** (n - 1)) + 10",failed: ,,False,True,9.0,6.0,5.0,0.0,4.0,0.0,0.0,2.0,5.0,7.0,5.0,10.0,12.0,15.0,31.26112492884004,53.77443751081735,3.5714285714285716,192.0515625386334,10.6695312521463,0.017924812503605784,98.71944126361534
+84,openai_humaneval,test,84,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the output should be ""1"".
+        For N = 150, the sum of digits will be 6 the output should be ""110"".
+        For N = 147, the sum of digits will be 12 the output should be ""1100"".
+    
+    Variables:
+        @N integer
+             Constraints: 0 ≤ N ≤ 10000.
+    Output:
+         a string of binary number
+    """"""
+    return bin(sum(int(i) for i in str(N)))[2:]",passed,8.049526666506305e-05,True,True,15.0,4.0,2.0,0.0,11.0,2.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+85,openai_humaneval,test,85,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def add(lst):
+    """"""Given a non-empty list of integers lst. add the even elements that are at odd indices.
+
+    Examples:
+        add([4, 2, 6, 7]) ==> 2 
+    """"""
+    return sum([num for num in lst[1::2] if num % 2 == 0])",passed,0.00010896340000006906,True,True,7.0,4.0,2.0,0.0,4.0,1.0,0.0,3.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,84.25705591987948
+86,openai_humaneval,test,86,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+    Note: You should keep the order of words and blank spaces in the sentence.
+
+    For example:
+    anti_shuffle('Hi') returns 'Hi'
+    anti_shuffle('hello') returns 'ehllo'
+    anti_shuffle('Hello World!!!') returns 'Hello!!!Wdlor'
+    """"""
+    return''.join(''.join(sorted(c)) for c in s.split())",failed: ,,False,True,14.0,3.0,2.0,0.0,11.0,1.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+87,openai_humaneval,test,87,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def get_row(lst, x):
+    """"""
+    You are given a 2 dimensional data, as a nested lists,
+    which is similar to matrix, however, unlike matrices,
+    each row may contain a different number of columns.
+    Given lst, and integer x, find integers x in the list,
+    and return list of tuples, [(x1, y1), (x2, y2)...] such that
+    each tuple is a coordinate - (row, columns), starting with 0.
+    Sort coordinates initially by rows in ascending order.
+    Also, sort coordinates of the row by columns in descending order.
+    
+    Examples:
+    get_row([
+      [1,2,3,4,5,6],
+      [1,2,3,4,1,6],
+      [1,2,3,4,5,1]
+    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]
+    get_row([], 1) == []
+    get_row([[], [1], [1, 2, 3]], 3) == [(2, 2)]
+    """"""
+    coords = [(i, j) for i in range(len(lst)) for j in range(len(lst[i])) if lst[i][j] == x]
+    return sorted(coords, key=lambda x: (x[0], -x[1]))",passed,0.00037973616666704403,True,True,22.0,5.0,3.0,0.0,18.0,1.0,0.0,4.0,2.0,3.0,2.0,3.0,5.0,5.0,6.754887502163469,11.60964047443681,1.0,11.60964047443681,0.6449800263576005,0.0038698801581456034,49.42594753320999
+88,openai_humaneval,test,88,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sort_array(array):
+    """"""
+    Given an array of non-negative integers, return a copy of the given array after sorting,
+    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
+    or sort it in descending order if the sum( first index value, last index value) is even.
+
+    Note:
+    * don't change the given array.
+
+    Examples:
+    * sort_array([]) => []
+    * sort_array([5]) => [5]
+    * sort_array([2, 4, 3, 0, 1, 5]) => [0, 1, 2, 3, 4, 5]
+    * sort_array([2, 4, 3, 0, 1, 5, 6]) => [6, 5, 4, 3, 2, 1, 0]
+    """"""
+    if not array:
+        return array
+    return sorted(array, reverse=(array[0] + array[-1]) % 2 == 0)",passed,0.00018145273333326865,True,True,18.0,5.0,4.0,0.0,12.0,2.0,0.0,2.0,5.0,8.0,5.0,8.0,13.0,13.0,35.60964047443681,48.105716335834195,2.5,120.26429083958548,6.681349491088082,0.016035238778611398,60.05637456585845
+89,openai_humaneval,test,89,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'encrypt' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+90,openai_humaneval,test,90,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def next_smallest(lst):
+    """"""
+    You are given a list of integers.
+    Write a function next_smallest() that returns the 2nd smallest element of the list.
+    Return None if there is no such element.
+    
+    next_smallest([1, 2, 3, 4, 5]) == 2
+    next_smallest([5, 1, 4, 3, 2]) == 2
+    next_smallest([]) == None
+    next_smallest([1, 1]) == None
+    """"""
+    sorted_lst = sorted(set(lst))
+    return None if len(sorted_lst) < 2 else sorted_lst[1]",passed,0.00011030173333305507,True,True,13.0,4.0,3.0,0.0,9.0,1.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,69.20778451094579
+91,openai_humaneval,test,91,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_bored(S):
+    """"""
+    You'll be given a string of words, and your task is to count the number
+    of boredoms. A boredom is a sentence that starts with the word ""I"".
+    Sentences are delimited by '.', '?' or '!'.
+
+    For example:
+    >>> is_bored(""Hello world"")
+    0
+    >>> is_bored(""The sky is blue. The sun is shining. I love this weather"")
+    1
+    """"""
+    import re
+    sentences = re.split(r'[.?!]\s*', S)
+    return sum(1 for sentence in sentences if sentence.strip().startswith('I '))",passed,9.287720000088484e-05,True,True,15.0,5.0,4.0,0.0,10.0,1.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+92,openai_humaneval,test,92,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'any_int' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+93,openai_humaneval,test,93,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'encode' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+94,openai_humaneval,test,94,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def skjkasdkd(lst):
+    """"""You are given a list of integers.
+    You need to find the largest prime value and return the sum of its digits.
+
+    Examples:
+    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10
+    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1] the output should be 25
+    For lst = [1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3] the output should be 13
+    For lst = [0,724,32,71,99,32,6,0,5,91,83,0,5,6] the output should be 11
+    For lst = [0,81,12,3,1,21] the output should be 3
+    For lst = [0,8,1,2,1,7] the output should be 7
+    """"""
+    def is_prime(n):
+        """"""Check if a number is prime.""""""
+        if n <= 1:
+            return False
+        if n == 2:
+            return True
+        if n % 2 == 0:
+            return False
+        max_divisor = int(n**0.5) + 1
+        for d in range(3, max_divisor, 2):
+            if n % d == 0:
+                return False
+        return True
+
+    max_prime = max((x for x in lst if is_prime(x)), default=0)
+    return sum(int(digit) for digit in str(max_prime))",passed,0.00034641083342042595,True,True,28.0,17.0,15.0,0.0,10.0,2.0,1.0,4.0,5.0,9.0,8.0,16.0,14.0,24.0,40.13896548741762,91.37651812938249,4.444444444444445,406.1178583528111,22.56210324182284,0.03045883937646083,87.91703518770896
+95,openai_humaneval,test,95,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def check_dict_case(dict):
+    """"""
+    Given a dictionary, return True if all keys are strings in lower 
+    case or all keys are strings in upper case, else return False.
+    The function should return False is the given dictionary is empty.
+    Examples:
+    check_dict_case({""a"":""apple"", ""b"":""banana""}) should return True.
+    check_dict_case({""a"":""apple"", ""A"":""banana"", ""B"":""banana""}) should return False.
+    check_dict_case({""a"":""apple"", 8:""banana"", ""a"":""apple""}) should return False.
+    check_dict_case({""Name"":""John"", ""Age"":""36"", ""City"":""Houston""}) should return False.
+    check_dict_case({""STATE"":""NC"", ""ZIP"":""12345"" }) should return True.
+    """"""
+    if not dict:
+        return False
+    state = ""start""
+    for key in dict:
+        if not isinstance(key, str):
+            return False
+        if state == ""start"":
+            if key.isupper():
+                state = ""upper""
+            elif key.islower():
+                state = ""lower""
+        elif state == ""upper"" and not key.isupper() or state == ""lower"" and not key.islower():
+            return False
+    return state in (""upper"", ""lower"")",passed,0.00024550573333309935,True,True,26.0,16.0,15.0,0.0,11.0,0.0,0.0,11.0,5.0,15.0,11.0,18.0,20.0,29.0,70.2129994085646,125.33591475173351,3.0,376.0077442552005,20.889319125288917,0.041778638250577836,86.1987519341204
+96,openai_humaneval,test,96,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def count_up_to(n):
+    """"""Implement a function that takes an non-negative integer and returns an array of the first n
+    integers that are prime numbers and less than n.
+    for example:
+    count_up_to(5) => [2,3]
+    count_up_to(11) => [2,3,5,7]
+    count_up_to(0) => []
+    count_up_to(20) => [2,3,5,7,11,13,17,19]
+    count_up_to(1) => []
+    count_up_to(18) => [2,3,5,7,11,13,17]
+    """"""
+    primes = []
+    for i in range(2, n):
+        is_prime = True
+        for j in range(2, int(i**0.5) + 1):
+            if i % j == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(i)
+    return primes",passed,0.000304763166665604,True,True,21.0,12.0,11.0,0.0,10.0,0.0,0.0,5.0,4.0,7.0,4.0,8.0,11.0,12.0,27.651484454403228,41.51317942364757,2.2857142857142856,94.88726725405158,5.27151484744731,0.01383772647454919,91.33173548227609
+97,openai_humaneval,test,97,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def multiply(a, b):
+    """"""Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """"""
+    return abs(a % 10) * abs(b % 10)",passed,0.00015273356666666664,True,True,11.0,3.0,2.0,0.0,9.0,0.0,0.0,1.0,2.0,5.0,3.0,6.0,7.0,9.0,13.60964047443681,25.26619429851844,1.2,30.319433158222125,1.6844129532345624,0.008422064766172813,51.85269872430772
+98,openai_humaneval,test,98,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def count_upper(s):
+    """"""
+    Given a string s, count the number of uppercase vowels in even indices.
+    
+    For example:
+    count_upper('aBCdEf') returns 1
+    count_upper('abcdefg') returns 0
+    count_upper('dBBE') returns 0
+    """"""
+    return sum(1 for i in range(0, len(s), 2) if s[i].upper() in 'AEIOU')",failed: ,,False,True,10.0,3.0,2.0,0.0,7.0,1.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,64.84134744775892
+99,openai_humaneval,test,99,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'closest_integer' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+100,openai_humaneval,test,100,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number of stones in each level in a list, where element at index
+    i represents the number of stones in the level (i+1).
+
+    Examples:
+    >>> make_a_pile(3)
+    [3, 5, 7]
+    """"""
+    result = []
+    for i in range(n):
+        if n % 2 == 1:
+            result.append(2*i + 1)
+        else:
+            result.append(2*i + 2)
+    return result",failed: Test 3,,False,True,21.0,9.0,8.0,0.0,12.0,1.0,0.0,3.0,4.0,7.0,6.0,12.0,11.0,18.0,27.651484454403228,62.26976913547136,3.4285714285714284,213.49635132161606,11.860908406756447,0.020756589711823786,82.81932531130596
+101,openai_humaneval,test,101,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def words_string(s):
+    """"""
+    You will be given a string of words separated by commas or spaces. Your task is
+    to split the string into words and return an array of the words.
+    
+    For example:
+    words_string(""Hi, my name is John"") == [""Hi"", ""my"", ""name"", ""is"", ""John""]
+    words_string(""One, two, three, four, five, six"") == [""One"", ""two"", ""three"", ""four"", ""five"", ""six""]
+    """"""
+    if not s:
+        return []
+
+    s = s.replace(',','')
+    return s.split()",passed,0.00011442699999975048,True,True,14.0,6.0,5.0,0.0,7.0,2.0,0.0,2.0,1.0,1.0,1.0,1.0,2.0,2.0,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,99.25801939416841
+102,openai_humaneval,test,102,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def choose_num(x, y):
+    """"""This function takes two positive numbers x and y and returns the
+    biggest even integer number that is in the range [x, y] inclusive. If 
+    there's no such number, then the function should return -1.
+
+    For example:
+    choose_num(12, 15) = 14
+    choose_num(13, 12) = -1
+    """"""
+    if x > y:
+        return -1
+    if y % 2 == 0:
+        return y
+    for i in range(y - 1, x - 1, -1):
+        if i % 2 == 0:
+            return i
+    return -1",passed,8.476213333332704e-05,True,True,17.0,10.0,9.0,0.0,7.0,1.0,0.0,5.0,5.0,8.0,10.0,17.0,13.0,27.0,35.60964047443681,99.91187238980949,5.3125,530.7818220708629,29.487879003936825,0.03330395746326983,91.79454818716596
+103,openai_humaneval,test,103,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def rounded_avg(n, m):
+    """"""You are given two positive integers n and m, and your task is to compute the
+    average of the integers from n through m (including n and m). 
+    Round the answer to the nearest integer and convert that to binary.
+    If n is greater than m, return -1.
+    Example:
+    rounded_avg(1, 5) => ""0b11""
+    rounded_avg(7, 5) => -1
+    rounded_avg(10, 20) => ""0b1111""
+    rounded_avg(20, 33) => ""0b11010""
+    """"""
+    if m < n:
+        return -1
+    total = sum(range(n, m+1))
+    average = round(total / (m - n + 1))
+    return bin(average)",passed,0.00014731953333087708,True,True,16.0,7.0,6.0,0.0,10.0,0.0,0.0,2.0,5.0,6.0,6.0,11.0,11.0,17.0,27.11941547876375,58.81033751683406,4.583333333333333,269.54738028548945,14.97485446030497,0.019603445838944685,82.05860547122144
+104,openai_humaneval,test,104,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def unique_digits(x):
+    """"""Given a list of positive integers x. return a sorted list of all 
+    elements that hasn't any even digit.
+
+    Note: Returned list should be sorted in increasing order.
+    
+    For example:
+    >>> unique_digits([15, 33, 1422, 1])
+    [1, 15, 33]
+    >>> unique_digits([152, 323, 1422, 10])
+    []
+    """"""
+    return sorted([i for i in x if all(int(c) % 2 == 1 for c in str(i))])",passed,0.00010365193333351878,True,True,13.0,3.0,2.0,0.0,9.0,2.0,0.0,4.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,52.93315694483384
+105,openai_humaneval,test,105,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def by_length(arr):
+    """"""
+    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
+    reverse the resulting array, and then replace each digit by its corresponding name from
+    ""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight"", ""Nine"".
+
+    For example:
+      arr = [2, 1, 1, 4, 5, 8, 2, 3]   
+            -> sort arr -> [1, 1, 2, 2, 3, 4, 5, 8] 
+            -> reverse arr -> [8, 5, 4, 3, 2, 2, 1, 1]
+      return [""Eight"", ""Five"", ""Four"", ""Three"", ""Two"", ""Two"", ""One"", ""One""]
+    
+      If the array is empty, return an empty array:
+      arr = []
+      return []
+    
+      If the array has any strange number ignore it:
+      arr = [1, -1, 55] 
+            -> sort arr -> [-1, 1, 55]
+            -> reverse arr -> [55, 1, -1]
+      return = ['One']
+    """"""
+    digit_names = {
+        1: ""One"",
+        2: ""Two"",
+        3: ""Three"",
+        4: ""Four"",
+        5: ""Five"",
+        6: ""Six"",
+        7: ""Seven"",
+        8: ""Eight"",
+        9: ""Nine"",
+    }
+    filtered_arr = [num for num in arr if 1 <= num <= 9]
+    sorted_arr = sorted(filtered_arr, reverse=True)
+    return [digit_names[num] for num in sorted_arr]",passed,0.00014544203333333912,True,True,36.0,7.0,15.0,0.0,18.0,3.0,0.0,4.0,1.0,3.0,2.0,3.0,4.0,5.0,4.754887502163469,10.0,0.5,5.0,0.2777777777777778,0.0033333333333333335,96.40668858073434
+106,openai_humaneval,test,106,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def f(n):
+    """""" Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
+    or the sum of numbers from 1 to i otherwise.
+    i starts from 1.
+    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 *... * i).
+    Example:
+    f(5) == [1, 2, 6, 24, 15]
+    """"""
+    result = []
+    for i in range(1, n + 1):
+        if i % 2 == 0:
+            result.append(math.factorial(i))
+        else:
+            result.append(sum(range(1, i + 1)))
+    return result",failed: name 'math' is not defined,,False,True,16.0,9.0,8.0,0.0,8.0,0.0,0.0,3.0,3.0,6.0,4.0,8.0,9.0,12.0,20.264662506490406,38.03910001730775,2.0,76.0782000346155,4.226566668589751,0.012679700005769252,93.35819823249946
+107,openai_humaneval,test,107,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def even_odd_palindrome(n):
+    """"""
+    Given a positive integer n, return a tuple that has the number of even and odd
+    integer palindromes that fall within the range(1, n), inclusive.
+
+    Example 1:
+
+        Input: 3
+        Output: (1, 2)
+        Explanation:
+        Integer palindrome are 1, 2, 3. one of them is even, and two of them are odd.
+
+    Example 2:
+
+        Input: 12
+        Output: (4, 6)
+        Explanation:
+        Integer palindrome are 1, 2, 3, 4, 5, 6, 7, 8, 9, 11. four of them are even, and 6 of them are odd.
+
+    Note:
+        1. 1 <= n <= 10^3
+        2. returned tuple has the number of even and odd integer palindromes respectively.
+    """"""
+    def is_palindrome(n):
+        return str(n) == str(n)[::-1]
+
+    even_palindrome_count = sum(1 for i in range(1, n+1) if i % 2 == 0 and is_palindrome(i))
+    odd_palindrome_count = sum(1 for i in range(1, n+1) if i % 2!= 0 and is_palindrome(i))
+    return (even_palindrome_count, odd_palindrome_count)",passed,0.0002709359000003057,True,True,29.0,8.0,6.0,0.0,17.0,6.0,0.0,7.0,6.0,14.0,10.0,19.0,20.0,29.0,68.81274391313339,125.33591475173351,4.071428571428571,510.29622434634354,28.34979024146353,0.041778638250577836,54.744974685448604
+108,openai_humaneval,test,108,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def count_nums(arr):
+    """"""
+    Write a function count_nums which takes an array of integers and returns
+    the number of elements which has a sum of digits > 0.
+    If a number is negative, then its first signed digit will be negative:
+    e.g. -123 has signed digits -1, 2, and 3.
+    >>> count_nums([]) == 0
+    >>> count_nums([-1, 11, -11]) == 1
+    >>> count_nums([1, 1, 2]) == 3
+    """"""
+    def digits_sum(n):
+        neg = 1
+        if n < 0: n, neg = -n, -1
+        return sum(int(digit) * neg for digit in str(n))
+
+    return sum(1 for _ in filter(lambda x: x > 0, (digits_sum(i) for i in arr)))",failed: ,,False,True,16.0,9.0,6.0,0.0,9.0,1.0,0.0,3.0,4.0,7.0,5.0,8.0,11.0,13.0,27.651484454403228,44.97261104228487,2.2857142857142856,102.79453952522255,5.710807751401252,0.01499087034742829,83.80891389742294
+109,openai_humaneval,test,109,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def move_one_ball(arr):
+    """"""We have an array 'arr' of N integers arr[1], arr[2],..., arr[N].The
+    numbers in the array will be randomly ordered. Your task is to determine if
+    it is possible to get an array sorted in non-decreasing order by performing 
+    the following operation on the given array:
+        You are allowed to perform right shift operation any number of times.
+    
+    One right shift operation means shifting all elements of the array by one
+    position in the right direction. The last element of the array will be moved to
+    the starting position in the array i.e. 0th index. 
+
+    If it is possible to obtain the sorted array by performing the above operation
+    then return True else return False.
+    If the given array is empty then return True.
+
+    Note: The given list is guaranteed to have unique elements.
+
+    For Example:
+    
+    move_one_ball([3, 4, 5, 1, 2])==>True
+    Explanation: By performin 2 right shift operations, non-decreasing order can
+                 be achieved for the given array.
+    move_one_ball([3, 5, 4, 1, 2])==>False
+    Explanation:It is not possible to get non-decreasing order for the given
+                array by performing any number of right shift operations.
+                
+    """"""
+    if not arr:
+        return True
+    sorted_array = sorted(arr)
+    my_arr = arr[:]
+    for i in range(len(arr)):
+        while my_arr and my_arr[0] > sorted_array[i]:
+            my_arr = my_arr[1:] + [my_arr[0]]
+    return my_arr == sorted_array",passed,9.585270000040206e-05,True,True,35.0,12.0,9.0,0.0,20.0,6.0,0.0,5.0,5.0,8.0,5.0,9.0,13.0,14.0,35.60964047443681,51.80615605397529,2.8125,145.70481390180552,8.09471188343364,0.01726871868465843,65.32295493003748
+110,openai_humaneval,test,110,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'exchange' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+111,openai_humaneval,test,111,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def histogram(test):
+    """"""Given a string representing a space separated lowercase letters, return a dictionary
+    of the letter with the most repetition and containing the corresponding count.
+    If several letters have the same occurrence, return all of them.
+    
+    Example:
+    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}
+    histogram('a b b a') == {'a': 2, 'b': 2}
+    histogram('a b c a b') == {'a': 2, 'b': 2}
+    histogram('b b b b a') == {'b': 4}
+    histogram('') == {}
+
+    """"""
+    if not test:
+        return {}
+
+    letter_counts = {}
+    max_count = 0
+
+    for letter in test.split():
+        if letter:
+            count = test.count(letter)
+            if count > max_count:
+                max_count = count
+                letter_counts = {letter: count}
+            elif count == max_count:
+                letter_counts[letter] = count
+
+    return letter_counts",passed,0.00016013033333403353,True,True,29.0,16.0,14.0,0.0,10.0,5.0,0.0,6.0,3.0,3.0,3.0,5.0,6.0,8.0,9.509775004326938,20.67970000576925,2.5,51.69925001442312,2.87218055635684,0.006893233335256416,92.48000147969955
+112,openai_humaneval,test,112,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def reverse_delete(s,c):
+    """"""Task
+    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c
+    then check if the result string is palindrome.
+    A string is called palindrome if it reads the same backward as forward.
+    You should return a tuple containing the result string and True/False for the check.
+    Example
+    For s = ""abcde"", c = ""ae"", the result should be ('bcd',False)
+    For s = ""abcdef"", c = ""b""  the result should be ('acdef',False)
+    For s = ""abcdedcba"", c = ""ab"", the result should be ('cdedc',True)
+    """"""
+    s = ''.join([char for char in s if char not in c])
+    return (s, s == s[::-1])",passed,0.00013571656666802785,True,True,13.0,5.0,3.0,0.0,10.0,0.0,0.0,3.0,3.0,5.0,3.0,5.0,8.0,8.0,16.36452797660028,24.0,1.5,36.0,2.0,0.008,57.18819159426501
+113,openai_humaneval,test,113,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def odd_count(lst):
+    """"""Given a list of strings, where each string consists of only digits, return a list.
+    Each element i of the output should be ""the number of odd elements in the
+    string i of the input."" where all the i's should be replaced by the number
+    of odd digits in the i'th string of the input.
+
+    >>> odd_count(['1234567'])
+    [""the number of odd elements 4n the str4ng 4 of the 4nput.""]
+    >>> odd_count(['3',""11111111""])
+    [""the number of odd elements 1n the str1ng 1 of the 1nput."",
+     ""the number of odd elements 8n the str8ng 8 of the 8nput.""]
+    """"""
+    result = []
+    for index, string in enumerate(lst, start=1):
+        odd_count = sum(int(digit) % 2 == 1 for digit in string)
+        result.append(f""the number of odd elements {odd_count}n the str{odd_count}ng {odd_count} of the {odd_count}nput."")
+    return result",passed,8.760716666667001e-05,True,True,17.0,7.0,6.0,0.0,10.0,1.0,0.0,3.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,85.97720507370086
+114,openai_humaneval,test,114,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def minSubArraySum(nums):
+    """"""
+    Given an array of integers nums, find the minimum sum of any non-empty sub-array
+    of nums.
+    Example
+    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1
+    minSubArraySum([-1, -2, -3]) == -6
+    """"""
+    min_sum = float('inf')
+    current_sum = 0
+    for num in nums:
+        current_sum += num
+        min_sum = min(min_sum, current_sum)
+        if current_sum < 0:
+            current_sum = 0
+    return min_sum",failed: This prints if this assert fails 1 (good for debugging!),,False,True,16.0,10.0,9.0,0.0,7.0,0.0,0.0,3.0,2.0,3.0,2.0,4.0,5.0,6.0,6.754887502163469,13.931568569324174,1.3333333333333333,18.575424759098897,1.0319680421721609,0.004643856189774725,98.05459608671322
+115,openai_humaneval,test,115,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def max_fill(grid, capacity):
+    """"""
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets have the same capacity.
+    Your task is to use the buckets to empty the wells.
+    Output the number of times you need to lower the buckets.
+
+    Example 1:
+        Input: 
+            grid : [[0,0,1,0], [0,1,0,0], [1,1,1,1]]
+            bucket_capacity : 1
+        Output: 6
+
+    Example 2:
+        Input: 
+            grid : [[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]]
+            bucket_capacity : 2
+        Output: 5
+    
+    Example 3:
+        Input: 
+            grid : [[0,0,0], [0,0,0]]
+            bucket_capacity : 5
+        Output: 0
+
+    Constraints:
+        * all wells have the same length
+        * 1 <= grid.length <= 10^2
+        * 1 <= grid[:,1].length <= 10^2
+        * grid[i][j] -> 0 | 1
+        * 1 <= capacity <= 10
+    """"""
+    return sum(math.ceil(sum(row) / capacity) for row in grid)",failed: name 'math' is not defined,,False,True,35.0,3.0,2.0,0.0,29.0,4.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,100.0
+116,openai_humaneval,test,116,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sort_array(arr):
+    """"""
+    In this Kata, you have to sort an array of non-negative integers according to
+    number of ones in their binary representation in ascending order.
+    For similar number of ones, sort based on decimal value.
+
+    It must be implemented like this:
+    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]
+    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]
+    >>> sort_array([1, 0, 2, 3, 4]) [0, 1, 2, 3, 4]
+    """"""
+    return sorted(arr, key=lambda x: (bin(x).count('1'), x))",passed,0.00024739869998787373,True,True,12.0,4.0,2.0,0.0,9.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+117,openai_humaneval,test,117,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def select_words(s, n):
+    """"""Given a string s and a natural number n, you have been tasked to implement 
+    a function that returns a list of all words from string s that contain exactly 
+    n consonants, in order these words appear in the string s.
+    If the string s is empty then the function should return an empty list.
+    Note: you may assume the input string contains only letters and spaces.
+    Examples:
+    select_words(""Mary had a little lamb"", 4) ==> [""little""]
+    select_words(""Mary had a little lamb"", 3) ==> [""Mary"", ""lamb""]
+    select_words(""simple white space"", 2) ==> []
+    select_words(""Hello world"", 4) ==> [""world""]
+    select_words(""Uncle sam"", 3) ==> [""Uncle""]
+    """"""
+    result = []
+    for word in s.split():
+        consonants = sum(1 for char in word if char.lower() not in ""aeiou"")
+        if consonants == n:
+            result.append(word)
+    return result",passed,0.00024899906666651835,True,True,19.0,8.0,7.0,0.0,12.0,0.0,0.0,5.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,83.44299037495739
+118,openai_humaneval,test,118,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def get_closest_vowel(word):
+    """"""You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the word (case sensitive).
+    
+    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
+    find any vowel met the above condition. 
+
+    You may assume that the given string contains English letter only.
+
+    Example:
+    get_closest_vowel(""yogurt"") ==> ""u""
+    get_closest_vowel(""FULL"") ==> ""U""
+    get_closest_vowel(""quick"") ==> """"
+    get_closest_vowel(""ab"") ==> """"
+    """"""
+    if len(word) < 3:
+        return """"
+
+    vowels = set(""aeiouAEIOU"")
+    for i in range(len(word) - 2, 0, -1):
+        if word[i] in vowels:
+            if word[i - 1].lower() not in vowels and word[i + 1].lower() not in vowels:
+                return word[i]
+    return """"",passed,0.00013108376666650656,True,True,24.0,10.0,9.0,0.0,11.0,4.0,0.0,6.0,7.0,12.0,9.0,17.0,19.0,26.0,62.67103446305711,110.44611534953322,4.958333333333333,547.6286552747688,30.4238141819316,0.03681537178317774,85.05599982171698
+119,openai_humaneval,test,119,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def match_parens(lst):
+    '''
+    You are given a list of two strings, both strings consist of open
+    parentheses '(' or close parentheses ')' only.
+    Your job is to check if it is possible to concatenate the two strings in
+    some order, that the resulting string will be good.
+    A string S is considered to be good if and only if all parentheses in S
+    are balanced. For example: the string '(())()' is good, while the string
+    '())' is not.
+    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.
+
+    Examples:
+    match_parens(['()(', ')']) == 'Yes'
+    match_parens([')', ')']) == 'No'
+    '''
+    def check(s):
+        val = 0
+        for i in s:
+            if i == '(':
+                val += 1
+            else:
+                val -= 1
+            if val < 0:
+                return False
+        return val == 0
+
+    s1 = lst[0] + lst[1]
+    s2 = lst[1] + lst[0]
+    return 'Yes' if check(s1) or check(s2) else 'No'",passed,0.00016595246665929153,True,True,29.0,15.0,14.0,0.0,13.0,2.0,0.0,3.0,5.0,11.0,8.0,16.0,16.0,24.0,49.663388279447084,96.0,3.6363636363636362,349.09090909090907,19.39393939393939,0.032,86.68898343837269
+120,openai_humaneval,test,120,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def maximum(arr, k):
+    """"""
+    Given an array arr of integers and a positive integer k, return a sorted list 
+    of length k with the maximum k numbers in arr.
+
+    Example 1:
+
+        Input: arr = [-3, -4, 5], k = 3
+        Output: [-4, -3, 5]
+
+    Example 2:
+
+        Input: arr = [4, -4, 4], k = 2
+        Output: [4, 4]
+
+    Example 3:
+
+        Input: arr = [-3, 2, 1, 2, -1, -2, 1], k = 1
+        Output: [2]
+
+    Note:
+        1. The length of the array will be in the range of [1, 1000].
+        2. The elements in the array will be in the range of [-1000, 1000].
+        3. 0 <= k <= len(arr)
+    """"""
+    if k == 0:
+        return []
+    return sorted(arr, reverse=True)[:k]",failed: ,,False,True,28.0,6.0,4.0,0.0,17.0,7.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,51.56895115018582
+121,openai_humaneval,test,121,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def solution(lst):
+    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
+    
+    Examples
+    solution([5, 8, 7, 1]) ==> 12
+    solution([3, 3, 3, 3, 3]) ==> 9
+    solution([30, 13, 24, 321]) ==>0
+    """"""
+    return sum(x for x in lst if (lst.index(x) % 2 == 0) and (x % 2 == 1))",failed: ,,False,True,9.0,3.0,2.0,0.0,6.0,1.0,0.0,4.0,3.0,9.0,5.0,10.0,12.0,15.0,33.28421251514428,53.77443751081735,1.6666666666666667,89.62406251802892,4.9791145843349405,0.017924812503605784,64.28801763794502
+122,openai_humaneval,test,122,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def add_elements(arr, k):
+    """"""
+    Given a non-empty array of integers arr and an integer k, return
+    the sum of the elements with at most two digits from the first k elements of arr.
+
+    Example:
+
+        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4
+        Output: 24 # sum of 21 + 3
+
+    Constraints:
+        1. 1 <= len(arr) <= 100
+        2. 1 <= k <= len(arr)
+    """"""
+    return sum(i for i in arr[:k] if len(str(abs(i))) <= 2)",passed,0.00012983013333117316,True,True,15.0,4.0,2.0,0.0,10.0,3.0,0.0,3.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,52.573445756608464
+123,openai_humaneval,test,123,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def get_odd_collatz(n):
+    """"""
+    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.
+
+    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined
+    as follows: start with any positive integer n. Then each term is obtained from the 
+    previous term as follows: if the previous term is even, the next term is one half of 
+    the previous term. If the previous term is odd, the next term is 3 times the previous
+    term plus 1. The conjecture is that no matter what value of n, the sequence will always reach 1.
+
+    Note: 
+        1. Collatz(1) is [1].
+        2. returned list sorted in increasing order.
+
+    For example:
+    get_odd_collatz(5) returns [1, 5] # The collatz sequence for 5 is [5, 16, 8, 4, 2, 1], so the odd numbers are only 1, and 5.
+    """"""
+    odd_collatz = [n]
+    while n > 1:
+        if n % 2 == 0:
+            n = n / 2
+        else:
+            n = n * 3 + 1
+        if n % 2!= 0:
+            odd_collatz.append(int(n))
+    return sorted(set(odd_collatz))",failed: ,,False,True,26.0,11.0,10.0,0.0,13.0,3.0,0.0,4.0,7.0,8.0,8.0,16.0,15.0,24.0,43.65148445440323,93.76537429460444,7.0,656.357620062231,36.4643122256795,0.03125512476486815,83.48098455524114
+124,openai_humaneval,test,124,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'valid_date' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+125,openai_humaneval,test,125,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the
+    alphabet, ord('a') = 0, ord('b') = 1,... ord('z') = 25
+    Examples
+    split_words(""Hello world!"") ➞ [""Hello"", ""world!""]
+    split_words(""Hello,world!"") ➞ [""Hello"", ""world!""]
+    split_words(""abcdef"") == 3 
+    '''
+    if "" "" in txt:
+        return txt.split()
+    elif "","" in txt:
+        return txt.replace(',','').split()
+    else:
+        return sum(1 for i in txt if i.islower() and ord(i) % 2 == 0)",failed: ,,False,True,16.0,8.0,7.0,0.0,9.0,0.0,0.0,6.0,4.0,9.0,5.0,10.0,13.0,15.0,36.52932501298081,55.506595772116384,2.2222222222222223,123.34799060470309,6.852666144705727,0.01850219859070546,88.09233574032163
+126,openai_humaneval,test,126,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_sorted(lst):
+    '''
+    Given a list of numbers, return whether or not they are sorted
+    in ascending order. If list has more than 1 duplicate of the same
+    number, return False. Assume no negative numbers and only integers.
+
+    Examples
+    is_sorted([5]) ➞ True
+    is_sorted([1, 2, 3, 4, 5]) ➞ True
+    is_sorted([1, 3, 2, 4, 5]) ➞ False
+    is_sorted([1, 2, 3, 4, 5, 6]) ➞ True
+    is_sorted([1, 2, 3, 4, 5, 6, 7]) ➞ True
+    is_sorted([1, 3, 2, 4, 5, 6, 7]) ➞ False
+    is_sorted([1, 2, 2, 3, 3, 4]) ➞ True
+    is_sorted([1, 2, 2, 2, 3, 4]) ➞ False
+    '''
+    count_digit = {i: lst.count(i) for i in set(lst)}
+    if any(count > 1 for count in count_digit.values()):
+        return False
+    return all(lst[i-1] <= lst[i] for i in range(1, len(lst)))",failed: This prints if this assert fails 7 (good for debugging!),,False,True,20.0,7.0,5.0,0.0,14.0,1.0,0.0,5.0,3.0,5.0,3.0,6.0,8.0,9.0,16.36452797660028,27.0,1.8,48.6,2.7,0.009,61.51537129947935
+127,openai_humaneval,test,127,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def intersection(interval1, interval2):
+    """"""You are given two intervals,
+    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).
+    The given intervals are closed which means that the interval (start, end)
+    includes both start and end.
+    For each given interval, it is assumed that its start is less or equal its end.
+    Your task is to determine whether the length of intersection of these two 
+    intervals is a prime number.
+    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)
+    which its length is 1, which not a prime number.
+    If the length of the intersection is a prime number, return ""YES"",
+    otherwise, return ""NO"".
+    If the two intervals don't intersect, return ""NO"".
+
+    [input/output] samples:
+    intersection((1, 2), (2, 3)) ==> ""NO""
+    intersection((-1, 1), (0, 4)) ==> ""NO""
+    intersection((-3, -1), (-5, 5)) ==> ""YES""
+    """"""
+    def is_prime(num):
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    l = max(interval1[0], interval2[0])
+    r = min(interval1[1], interval2[1])
+    length = r - l + 1
+    if length > 0 and is_prime(length):
+        return ""YES""
+    return ""NO""",failed: ,,False,True,33.0,15.0,14.0,0.0,17.0,2.0,0.0,3.0,8.0,16.0,9.0,18.0,24.0,27.0,88.0,123.79398751947124,4.5,557.0729438376206,30.948496879867815,0.04126466250649041,81.41433255217049
+128,openai_humaneval,test,128,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def prod_signs(arr):
+    """"""
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
+    >>> prod_signs([1, 2, 2, -4]) == -9
+    >>> prod_signs([0, 1]) == 0
+    >>> prod_signs([]) == None
+    """"""
+    if not arr:
+        return None
+    sign_product = 1
+    for num in arr:
+        if num < 0:
+            sign_product *= -1
+        elif num == 0:
+            sign_product = 0
+            break
+    return sign_product * sum(abs(num) for num in arr)",passed,0.00015566876666663158,True,True,22.0,12.0,11.0,0.0,10.0,1.0,0.0,6.0,5.0,7.0,6.0,10.0,12.0,16.0,31.26112492884004,57.359400011538504,3.5714285714285716,204.85500004120897,11.38083333562272,0.01911980000384617,90.21401965125516
+129,openai_humaneval,test,129,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def minPath(grid, k):
+    n = len(grid)
+    visited = [[False]*n for _ in range(n)]
+    val = n * n + 1
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] == 1:
+                temp = []
+                if i!= 0 and not visited[i-1][j]:
+                    temp.append(grid[i - 1][j])
+                    visited[i-1][j] = True
+
+                if j!= 0 and not visited[i][j-1]:
+                    temp.append(grid[i][j - 1])
+                    visited[i][j-1] = True
+
+                if i!= n - 1 and not visited[i+1][j]:
+                    temp.append(grid[i + 1][j])
+                    visited[i+1][j] = True
+
+                if j!= n - 1 and not visited[i][j+1]:
+                    temp.append(grid[i][j + 1])
+                    visited[i][j+1] = True
+
+                val = min(temp)
+
+    ans = []
+    for i in range(k):
+        if i % 2 == 0:
+            ans.append(1)
+        else:
+            ans.append(val)
+    return ans",passed,0.0005164734666666634,True,True,33.0,28.0,28.0,0.0,0.0,5.0,0.0,15.0,8.0,24.0,32.0,60.0,32.0,92.0,134.03910001730776,460.0,10.0,4600.0,255.55555555555554,0.15333333333333332,47.76953753792361
+130,openai_humaneval,test,130,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def tri(n):
+    """"""Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in 
+    the last couple centuries. However, what people don't know is Tribonacci sequence.
+    Tribonacci sequence is defined by the recurrence:
+    tri(1) = 3
+    tri(n) = 1 + n / 2, if n is even.
+    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.
+    For example:
+    tri(2) = 1 + (2 / 2) = 2
+    tri(4) = 3
+    tri(3) = tri(2) + tri(1) + tri(4)
+           = 2 + 3 + 3 = 8 
+    You are given a non-negative integer number n, you have to a return a list of the 
+    first n + 1 numbers of the Tribonacci sequence.
+    Examples:
+    tri(3) = [1, 3, 2, 8]
+    """"""
+    if n == 0:
+        return [1]
+    tribonacci_sequence = [1, 3]
+    for i in range(2, n + 1):
+        if i % 2 == 0:
+            tribonacci_sequence.append(1 + i / 2)
+        else:
+            tribonacci_sequence.append(tribonacci_sequence[i - 1] + tribonacci_sequence[i - 2] + 1 + (i - 1) / 2)
+    return tribonacci_sequence",failed: ,,False,True,26.0,11.0,10.0,0.0,16.0,0.0,0.0,4.0,5.0,13.0,13.0,26.0,18.0,39.0,59.715356810271004,162.62707505625016,5.0,813.1353752812508,45.17418751562505,0.05420902501875005,75.80610052247309
+131,openai_humaneval,test,131,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def digits(n):
+    """"""Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """"""
+    product = 1
+    for digit in str(n):
+        int_digit = int(digit)
+        if int_digit % 2 == 1:
+            product *= int_digit
+    return product if any(int_digit % 2 == 1 for int_digit in str(n)) else 0",failed: not all arguments converted during string formatting,,False,True,14.0,8.0,7.0,0.0,7.0,0.0,0.0,5.0,3.0,6.0,5.0,10.0,9.0,15.0,20.264662506490406,47.548875021634686,2.5,118.87218755408671,6.604010419671484,0.01584962500721156,93.526466484429
+132,openai_humaneval,test,132,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_nested(string):
+    '''
+    Create a function that takes a string as input which contains only square brackets.
+    The function should return True if and only if there is a valid subsequence of brackets 
+    where at least one bracket in the subsequence is nested.
+
+    is_nested('[[]]') ➞ True
+    is_nested('[]]]]]]][[[[[]') ➞ False
+    is_nested('[][]') ➞ False
+    is_nested('[]') ➞ False
+    is_nested('[[][]]') ➞ True
+    is_nested('[[]][[') ➞ True
+    '''
+    opening_brackets = [i for i, char in enumerate(string) if char == '[']
+    closing_brackets = [i for i, char in enumerate(string) if char == ']']
+    closing_brackets.reverse()
+    count = 0
+    i = 0
+    for idx in opening_brackets:
+        if i < len(closing_brackets) and idx < closing_brackets[i]:
+            count += 1
+            i += 1
+    return count >= 2",passed,0.00014582916666666296,True,True,23.0,12.0,11.0,0.0,11.0,1.0,0.0,8.0,5.0,12.0,8.0,16.0,17.0,24.0,54.62919048309069,98.09910819000817,3.3333333333333335,326.99702730002724,18.16650151666818,0.03269970273000272,87.07940244364514
+133,openai_humaneval,test,133,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list to the upper int(Ceiling) first.
+    Examples:
+    For lst = [1,2,3] the output should be 14
+    For lst = [1,4,9] the output should be 98
+    For lst = [1,3,5,7] the output should be 84
+    For lst = [1.4,4.2,0] the output should be 29
+    For lst = [-2.4,1,1] the output should be 6
+    """"""
+    import math
+    return sum(math.ceil(i)**2 for i in lst)",passed,0.00020852670000005938,True,True,13.0,4.0,3.0,0.0,10.0,0.0,0.0,2.0,1.0,2.0,1.0,2.0,3.0,3.0,2.0,4.754887502163469,0.5,2.3774437510817346,0.1320802083934297,0.0015849625007211565,64.3595984114544
+134,openai_humaneval,test,134,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def check_if_last_char_is_a_letter(txt):
+    '''
+    Create a function that returns True if the last character
+    of a given string is an alphabetical character and is not
+    a part of a word, and False otherwise.
+    Note: ""word"" is a group of characters separated by space.
+
+    Examples:
+    check_if_last_char_is_a_letter(""apple pie"") False
+    check_if_last_char_is_a_letter(""apple pi e"") True
+    check_if_last_char_is_a_letter(""apple pi e "") False
+    check_if_last_char_is_a_letter("""") False 
+    '''
+    words = txt.split()
+    if not words:
+        return False
+    last_word = words[-1]
+    if len(last_word) > 1:
+        return False
+    return 'a' <= last_word.lower() <= 'z'",failed: ,,False,True,20.0,9.0,8.0,0.0,11.0,1.0,0.0,3.0,4.0,6.0,5.0,7.0,10.0,12.0,23.509775004326936,39.863137138648355,2.3333333333333335,93.01398665684617,5.167443703158121,0.013287712379549451,86.67424712781254
+135,openai_humaneval,test,135,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def can_arrange(arr):
+    """"""Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately preceding it. If
+    no such element exists then return -1. The given array will not contain
+    duplicate values.
+
+    Examples:
+    can_arrange([1,2,4,3,5]) = 3
+    can_arrange([1,2,3]) = -1
+    """"""
+    for i in range(1, len(arr)):
+        if arr[i] < arr[i - 1]:
+            return i
+    return -1",failed: ,,False,True,14.0,6.0,5.0,0.0,8.0,1.0,0.0,3.0,3.0,4.0,3.0,5.0,7.0,8.0,12.75488750216347,22.458839376460833,1.875,42.11032383086406,2.3394624350480036,0.007486279792153611,87.70331234758407
+136,openai_humaneval,test,136,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def largest_smallest_integers(lst):
+    '''
+    Create a function that returns a tuple (a, b), where 'a' is
+    the largest of negative integers, and 'b' is the smallest
+    of positive integers in a list.
+    If there is no negative or positive integers, return them as None.
+
+    Examples:
+    largest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)
+    largest_smallest_integers([]) == (None, None)
+    largest_smallest_integers([0]) == (None, None)
+    '''
+    negatives = [x for x in lst if x < 0]
+    positives = [x for x in lst if x > 0]
+    return (max(negatives) if negatives else None, min(positives) if positives else None)",passed,0.00022992963333333302,True,True,15.0,5.0,4.0,0.0,10.0,1.0,0.0,7.0,2.0,2.0,2.0,4.0,4.0,6.0,4.0,12.0,2.0,24.0,1.3333333333333333,0.004,72.3294438667746
+137,openai_humaneval,test,137,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def compare_one(a, b):
+    """"""
+    Create a function that takes integers, floats, or strings representing
+    real numbers, and returns the larger variable in its given variable type.
+    Return None if the values are equal.
+    Note: If a real number is represented as a string, the floating point might be. or,
+
+    compare_one(1, 2.5) ➞ 2.5
+    compare_one(1, ""2,3"") ➞ ""2,3""
+    compare_one(""5,1"", ""6"") ➞ ""6""
+    compare_one(""1"", 1) ➞ None
+    """"""
+    if isinstance(a, str):
+        a = a.replace(',', '.')
+    if isinstance(b, str):
+        b = b.replace(',', '.')
+
+    if a == b:
+        return None
+    return a if float(a) > float(b) else b",failed: ,,False,True,20.0,9.0,8.0,0.0,10.0,2.0,0.0,5.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,91.65181911407645
+138,openai_humaneval,test,138,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def is_equal_to_sum_even(n):
+    """"""
+    Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers
+    Example
+    is_equal_to_sum_even(4) == False
+    is_equal_to_sum_even(6) == False
+    is_equal_to_sum_even(8) == True
+    """"""
+    return n % 2 == 0 and 2 * 2 <= n",failed: ,,False,True,9.0,3.0,2.0,0.0,7.0,0.0,0.0,2.0,5.0,7.0,5.0,10.0,12.0,15.0,31.26112492884004,53.77443751081735,3.5714285714285716,192.0515625386334,10.6695312521463,0.017924812503605784,57.59968023925005
+139,openai_humaneval,test,139,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def special_factorial(n):
+    """"""The Brazilian factorial is defined as:
+    brazilian_factorial(n) = n! * (n-1)! * (n-2)! *... * 1!
+    where n > 0
+
+    For example:
+    >>> special_factorial(4)
+    288
+
+    The function will receive an integer as input and should return the special
+    factorial of this integer.
+    """"""
+    result = 1
+    for i in range(1, n + 1):
+        result *= math.factorial(i)
+    return result",failed: name 'math' is not defined,,False,True,16.0,6.0,5.0,0.0,9.0,2.0,0.0,2.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,84.7641858178755
+140,openai_humaneval,test,140,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def fix_spaces(text):
+    """"""
+    Given a string text, replace all spaces in it with underscores, 
+    and if a string has more than 2 consecutive spaces, 
+    then replace all consecutive spaces with - 
+    
+    fix_spaces(""Example"") == ""Example""
+    fix_spaces(""Example 1"") == ""Example_1""
+    fix_spaces("" Example 2"") == ""_Example_2""
+    fix_spaces("" Example   3"") == ""_Example-3""
+    """"""
+    new_text = """"
+    space_count = 0
+    for char in text:
+        if char == "" "":
+            if space_count > 2:
+                new_text += ""-""
+            elif space_count > 0:
+                new_text += ""_""
+            space_count = 0
+        else:
+            if space_count > 0:
+                new_text += ""_"" * space_count
+            new_text += char
+            space_count = 0
+        space_count += 1
+    if space_count > 2:
+        new_text += ""-""
+    elif space_count > 0:
+        new_text += ""_"" * space_count
+    return new_text",failed: This prints if this assert fails 1 (good for debugging!),,False,True,31.0,22.0,21.0,0.0,9.0,1.0,0.0,8.0,4.0,11.0,15.0,30.0,15.0,45.0,46.053747805010275,175.81007680238335,5.454545454545454,958.9640552857273,53.275780849207074,0.05860335893412778,82.49149646857187
+141,openai_humaneval,test,141,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and returns 'No' otherwise.
+    A file's name is considered to be valid if and only if all the following conditions 
+    are met:
+    - There should not be more than three digits ('0'-'9') in the file's name.
+    - The file's name contains exactly one dot '.'
+    - The substring before the dot should not be empty, and it starts with a letter from 
+    the latin alphapet ('a'-'z' and 'A'-'Z').
+    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']
+    Examples:
+    file_name_check(""example.txt"") # => 'Yes'
+    file_name_check(""1example.dll"") # => 'No' (the name should start with a latin alphapet letter)
+    """"""
+    suffixes = ['txt', 'exe', 'dll']
+    parts = file_name.split('.')
+    if len(parts)!= 2:
+        return 'No'
+    if parts[1] not in suffixes:
+        return 'No'
+    if not parts[0]:
+        return 'No'
+    if not parts[0][0].isalpha():
+        return 'No'
+    if len([x for x in parts[0] if x.isdigit()]) > 3:
+        return 'No'
+    return 'Yes'",passed,0.00023867166664786054,True,True,27.0,15.0,14.0,0.0,13.0,0.0,0.0,8.0,4.0,8.0,5.0,8.0,12.0,13.0,32.0,46.604512509375034,2.0,93.20902501875007,5.178279167708337,0.015534837503125011,88.21400347597994
+142,openai_humaneval,test,142,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sum_squares(lst):
+    """"""
+    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a 
+    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not 
+    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries. 
+    
+    Examples:
+    For lst = [1,2,3] the output should be 6
+    For lst = []  the output should be 0
+    For lst = [-1,-5,2,-1,-5]  the output should be -126
+    """"""
+    return sum((x**2 if i % 3 == 0 else x**3 if i % 4 == 0 and i % 3!= 0 else x for i, x in enumerate(lst)))",passed,0.00024886383333324604,True,True,12.0,3.0,2.0,0.0,9.0,1.0,0.0,5.0,5.0,11.0,9.0,18.0,16.0,27.0,49.663388279447084,108.0,4.090909090909091,441.8181818181818,24.545454545454547,0.036,46.897229498070345
+143,openai_humaneval,test,143,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def words_in_sentence(sentence):
+    """"""
+    You are given a string representing a sentence,
+    the sentence contains some words separated by a space,
+    and you have to return a string that contains the words from the original sentence,
+    whose lengths are prime numbers,
+    the order of the words in the new string should be the same as the original one.
+
+    Example 1:
+        Input: sentence = ""This is a test""
+        Output: ""is""
+
+    Example 2:
+        Input: sentence = ""lets go for swimming""
+        Output: ""go for""
+
+    Constraints:
+        * 1 <= len(sentence) <= 100
+        * sentence contains only letters
+    """"""
+    new_lst = []
+    for word in sentence.split():
+        if all(word[i] % j for j in range(2, int(word[i] ** 0.5) + 1)) and len(word) > 2:
+            new_lst.append(word)
+    return "" "".join(new_lst)",failed: name 'i' is not defined,,False,True,25.0,7.0,6.0,0.0,16.0,3.0,0.0,5.0,5.0,10.0,5.0,10.0,15.0,15.0,44.82892142331043,58.60335893412778,2.5,146.50839733531944,8.139355407517748,0.019534452978042596,61.503600543194906
+144,openai_humaneval,test,144,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def simplify(x, n):
+    """"""Your task is to implement a function that will simplify the expression
+    x * n. The function returns True if x * n evaluates to a whole number and False
+    otherwise. Both x and n, are string representation of a fraction, and have the following format,
+    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.
+
+    You can assume that x, and n are valid fractions, and do not have zero as denominator.
+
+    simplify(""1/5"", ""5/1"") = True
+    simplify(""1/6"", ""2/1"") = False
+    simplify(""7/10"", ""10/2"") = False
+    """"""
+    a, b = map(int, x.split(""/""))
+    c, d = map(int, n.split(""/""))
+    numerator = a * c
+    denom = b * d
+    gcd = lambda x, y: y if x == 0 else gcd(y % x, x)
+    numerator //= gcd(numerator, denom)
+    denom //= gcd(numerator, denom)
+    return numerator == denom",failed: test1,,False,True,20.0,11.0,9.0,0.0,9.0,2.0,0.0,2.0,4.0,11.0,7.0,14.0,15.0,21.0,46.053747805010275,82.0447025077789,2.5454545454545454,208.84106092889172,11.602281162716206,0.02734823416925963,89.25419614794988
+145,openai_humaneval,test,145,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'order_by_points' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+146,openai_humaneval,test,146,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'specialFilter' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+147,openai_humaneval,test,147,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def get_max_triples(n):
+    """"""
+    You are given a positive integer n. You have to create an integer array a of length n.
+        For each i (1 ≤ i ≤ n), the value of a[i] = i * i - i + 1.
+        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k, 
+    and a[i] + a[j] + a[k] is a multiple of 3.
+
+    Example :
+        Input: n = 5
+        Output: 1
+        Explanation: 
+        a = [1, 3, 7, 13, 21]
+        The only valid triple is (1, 7, 13).
+    """"""
+    A = [i*i - i + 1 for i in range(1,n+1)]
+    count = 0
+    for i in range(n):
+        for j in range(i+1, n):
+            for k in range(j+1, n):
+                if (A[i]+A[j]+A[k]) % 3 == 0:
+                    count += 1
+    return count",passed,0.018693050433334215,True,True,22.0,10.0,9.0,0.0,12.0,1.0,0.0,6.0,5.0,15.0,11.0,22.0,20.0,33.0,70.2129994085646,142.62362713128297,3.6666666666666665,522.9532994813709,29.05296108229838,0.04754120904376099,82.20408783815449
+148,openai_humaneval,test,148,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def bf(planet1, planet2):
+    '''
+    There are eight planets in our solar system: the closerst to the Sun 
+    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, 
+    Uranus, Neptune.
+    Write a function that takes two planet names as strings planet1 and planet2. 
+    The function should return a tuple containing all planets whose orbits are 
+    located between the orbit of planet1 and the orbit of planet2, sorted by 
+    the proximity to the sun. 
+    The function should return an empty tuple if planet1 or planet2
+    are not correct planet names. 
+    Examples
+    bf(""Jupiter"", ""Neptune"") ==> (""Saturn"", ""Uranus"")
+    bf(""Earth"", ""Mercury"") ==> (""Venus"")
+    bf(""Mercury"", ""Uranus"") ==> (""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"")
+    '''
+    planet_names = (""Mercury"", ""Venus"", ""Earth"", ""Mars"", ""Jupiter"", ""Saturn"", ""Uranus"", ""Neptune"")
+    if planet1 not in planet_names or planet2 not in planet_names or planet1 == planet2:
+        return ()
+    planet1_index = planet_names.index(planet1)
+    planet2_index = planet_names.index(planet2)
+    if planet1_index < planet2_index:
+        return tuple(planet_names[i] for i in range(planet1_index + 1, planet2_index + 1))
+    else:
+        return tuple(planet_names[i] for i in range(planet2_index + 1, planet1_index + 1))",failed: First test error: 3,,False,True,25.0,11.0,10.0,0.0,15.0,0.0,0.0,7.0,5.0,9.0,9.0,19.0,14.0,28.0,40.13896548741762,106.6059378176129,5.277777777777778,562.642449592957,31.257913866275388,0.035535312605870964,78.74522376172877
+149,openai_humaneval,test,149,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def sorted_list_sum(lst):
+    """"""Write a function that accepts a list of strings as a parameter,
+    deletes the strings that have odd lengths from it,
+    and returns the resulted list with a sorted order,
+    The list is always a list of strings and never an array of numbers,
+    and it may contain duplicates.
+    The order of the list should be ascending by length of each word, and you
+    should return the list sorted by that rule.
+    If two words have the same length, sort the list alphabetically.
+    The function should return a list of strings in sorted order.
+    You may assume that all words will have the same length.
+    For example:
+    assert list_sort([""aa"", ""a"", ""aaa""]) => [""aa""]
+    assert list_sort([""ab"", ""a"", ""aaa"", ""cd""]) => [""ab"", ""cd""]
+    """"""
+    return sorted([i for i in sorted(lst) if len(i) % 2 == 0], key=lambda x: (len(x), x))",passed,0.00014679476666591048,True,True,16.0,4.0,2.0,0.0,14.0,0.0,0.0,3.0,2.0,4.0,2.0,4.0,6.0,6.0,10.0,15.509775004326936,1.0,15.509775004326936,0.861654166907052,0.005169925001442312,57.13125269146675
+150,openai_humaneval,test,150,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def x_or_y(n, x, y):
+    """"""A simple program which should return the value of x if n is 
+    a prime number and should return the value of y otherwise.
+
+    Examples:
+    for x_or_y(7, 34, 12) == 34
+    for x_or_y(15, 8, 5) == 5
+    
+    """"""
+    if n <= 1:
+        return y
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return y
+    return x",passed,0.00013524506666726666,True,True,15.0,8.0,7.0,0.0,6.0,2.0,0.0,4.0,5.0,7.0,5.0,10.0,12.0,15.0,31.26112492884004,53.77443751081735,3.5714285714285716,192.0515625386334,10.6695312521463,0.017924812503605784,95.13576463654928
+151,openai_humaneval,test,151,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def double_the_difference(lst):
+    '''
+    Given a list of numbers, return the sum of squares of the numbers
+    in the list that are odd. Ignore numbers that are negative or not integers.
+    
+    double_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10
+    double_the_difference([-1, -2, 0]) == 0
+    double_the_difference([9, -2]) == 81
+    double_the_difference([0]) == 0  
+   
+    If the input list is empty, return 0.
+    '''
+    return sum((i**2 for i in lst if isinstance(i, int) and i > 0 and i % 2!= 0))",passed,0.00020332036665422494,True,True,13.0,3.0,2.0,0.0,9.0,2.0,0.0,5.0,5.0,7.0,5.0,11.0,12.0,16.0,31.26112492884004,57.359400011538504,3.9285714285714284,225.34050004532983,12.518916669184991,0.01911980000384617,48.82151683893276
+152,openai_humaneval,test,152,llama3_0_shot_finetuned_smaller_LR_3_epoch,,failed: name 'compare' is not defined,,False,True,,,,,,,,,,,,,,,,,,,,,
+153,openai_humaneval,test,153,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def Strongest_Extension(class_name, extensions):
+    strongest = extensions[0]
+    max_strength = (sum(1 for c in strongest if c.isupper()) - sum(1 for c in strongest if c.islower()))
+    for extension in extensions:
+        strength = (sum(1 for c in extension if c.isupper()) - sum(1 for c in extension if c.islower()))
+        if strength > max_strength:
+            strongest = extension
+            max_strength = strength
+    return f""{class_name}.{strongest}""",passed,0.00022853163333333242,True,True,9.0,9.0,9.0,0.0,0.0,0.0,0.0,11.0,2.0,6.0,3.0,6.0,8.0,9.0,17.509775004326936,27.0,1.0,27.0,1.5,0.009,67.68222815434547
+154,openai_humaneval,test,154,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def cycpattern_check(a, b):
+    """"""You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word
+    cycpattern_check(""abcd"",""abd"") => False
+    cycpattern_check(""hello"",""ell"") => True
+    cycpattern_check(""whassup"",""psus"") => False
+    cycpattern_check(""abab"",""baa"") => True
+    cycpattern_check(""efef"",""eeff"") => False
+    cycpattern_check(""himenss"",""simen"") => True
+
+    """"""
+    b_len = len(b)
+    pattern = b + b
+    for i in range(len(a) - b_len + 1):
+        if a[i:i+b_len] in [pattern[j:j+b_len] for j in range(b_len)]:
+            return True
+    return False",passed,0.00010471696666627394,True,True,16.0,8.0,7.0,0.0,8.0,1.0,0.0,4.0,3.0,9.0,6.0,12.0,12.0,18.0,33.28421251514428,64.52932501298082,2.0,129.05865002596164,7.169925001442313,0.02150977500432694,90.46700297510141
+155,openai_humaneval,test,155,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def even_odd_count(num):
+    """"""Given an integer. return a tuple that has the number of even and odd digits respectively.
+
+     Example:
+        even_odd_count(-12) ==> (1, 1)
+        even_odd_count(123) ==> (1, 2)
+    """"""
+    num = abs(num)
+    return (str(num).count('2'), str(num).count('1'), str(num).count('3'), str(num).count('4'), str(num).count('5'), str(num).count('6'), str(num).count('7'), str(num).count('8'), str(num).count('9'), str(num).count('0'))",failed: ,,False,True,9.0,4.0,3.0,0.0,5.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+156,openai_humaneval,test,156,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def int_to_mini_roman(number):
+    """"""
+    Given a positive integer, obtain its roman numeral equivalent as a string,
+    and return it in lowercase.
+    Restrictions: 1 <= num <= 1000
+
+    Examples:
+    >>> int_to_mini_roman(19) == 'xix'
+    >>> int_to_mini_roman(152) == 'clii'
+    >>> int_to_mini_roman(426) == 'cdxxvi'
+    """"""
+    roman_numerals = [
+        (1000, ""M""),
+        (900, ""CM""),
+        (500, ""D""),
+        (400, ""CD""),
+        (100, ""C""),
+        (90, ""XC""),
+        (50, ""L""),
+        (40, ""XL""),
+        (10, ""X""),
+        (9, ""IX""),
+        (5, ""V""),
+        (4, ""IV""),
+        (1, ""I"")
+    ]
+
+    result = """"
+    for value, symbol in roman_numerals:
+        while number >= value:
+            result += symbol
+            number -= value
+    return result.lower()",passed,0.00012699310000006866,True,True,33.0,9.0,22.0,0.0,9.0,2.0,0.0,3.0,3.0,4.0,3.0,6.0,7.0,9.0,12.75488750216347,25.26619429851844,2.25,56.848937171666485,3.158274287314805,0.008422064766172813,97.32318433027548
+157,openai_humaneval,test,157,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def right_angle_triangle(a, b, c):
+    '''
+    Given the lengths of the three sides of a triangle. Return True if the three
+    sides form a right-angled triangle, False otherwise.
+    A right-angled triangle is a triangle in which one angle is right angle or 
+    90 degree.
+    Example:
+    right_angle_triangle(3, 4, 5) == True
+    right_angle_triangle(1, 2, 3) == False
+    '''
+    return (a**2 == b**2 + c**2) or (b**2 == a**2 + c**2) or (c**2 == a**2 + b**2)",passed,0.0001315847333333379,True,True,11.0,3.0,2.0,0.0,9.0,0.0,0.0,3.0,4.0,19.0,16.0,33.0,23.0,49.0,88.71062275542812,221.65453584679364,3.473684210526316,769.9578613625464,42.77543674236369,0.07388484528226455,44.979836662464045
+158,openai_humaneval,test,158,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def find_max(words):
+    """"""Write a function that accepts a list of strings.
+    The list contains different words. Return the word with maximum number
+    of unique characters. If multiple strings have maximum number of unique
+    characters, return the one which comes first in lexicographical order.
+
+    find_max([""name"", ""of"", ""string""]) == ""string""
+    find_max([""name"", ""enam"", ""game""]) == ""enam""
+    find_max([""aaaaaaa"", ""bb"",""cc""]) == ""aaaaaaa""
+    """"""
+    return max(words, key=lambda x: (len(set(x)), x))",failed: t2,,False,True,11.0,4.0,2.0,0.0,8.0,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,100.0
+159,openai_humaneval,test,159,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def eat(number, need, remaining):
+    """"""
+    You're a hungry rabbit, and you already have eaten a certain number of carrots,
+    but now you need to eat more carrots to complete the day's meals.
+    you should return an array of [ total number of eaten carrots after your meals,
+                                    the number of carrots left after your meals ]
+    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.
+    
+    Example:
+    * eat(5, 6, 10) -> [11, 4]
+    * eat(4, 8, 9) -> [12, 1]
+    * eat(1, 10, 10) -> [11, 0]
+    * eat(2, 11, 5) -> [7, 0]
+    
+    Variables:
+    @number : integer
+        the number of carrots that you have eaten.
+    @need : integer
+        the number of carrots that you need to eat.
+    @remaining : integer
+        the number of remaining carrots thet exist in stock
+    
+    Constrain:
+    * 0 <= number <= 1000
+    * 0 <= need <= 1000
+    * 0 <= remaining <= 1000
+
+    Have fun :)
+    """"""
+    if need <= remaining:
+        eaten = number + need
+        remaining -= need
+    else:
+        eaten = number + remaining
+        remaining = 0
+    return [eaten, remaining]",passed,0.00011387736666771768,True,True,36.0,9.0,8.0,0.0,24.0,4.0,0.0,2.0,3.0,3.0,4.0,8.0,6.0,12.0,9.509775004326938,31.019550008653873,4.0,124.07820003461549,6.893233335256416,0.010339850002884624,55.822181296331216
+160,openai_humaneval,test,160,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def do_algebra(operator, operand):
+    """"""
+    Given two lists operator, and operand. The first list has basic algebra operations, and 
+    the second list is a list of integers. Use the two given lists to build the algebric 
+    expression and return the evaluation of this expression.
+
+    The basic algebra operations:
+    Addition ( + ) 
+    Subtraction ( - ) 
+    Multiplication ( * ) 
+    Floor division ( // ) 
+    Exponentiation ( ** ) 
+
+    Example:
+    operator['+', '*', '-']
+    array = [2, 3, 4, 5]
+    result = 2 + 3 * 4 - 5
+    => result = 9
+
+    Note:
+        The length of operator list is equal to the length of operand list minus one.
+        Operand is a list of of non-negative integers.
+        Operator list has at least one operator, and operand list has at least two operands.
+
+    """"""
+    expression = str(operand[0])
+    for oprt, oprn in zip(operator, operand[1:]):
+        expression +='' + oprt +'' + str(oprn)
+    return eval(''+ expression +'')",passed,0.00011094853333333265,True,True,29.0,6.0,5.0,0.0,20.0,4.0,0.0,2.0,1.0,8.0,6.0,12.0,9.0,18.0,24.0,57.058650025961626,0.75,42.793987519471216,2.377443751081734,0.019019550008653876,45.81379347794432
+161,openai_humaneval,test,161,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def solve(s):
+    """"""You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve(""1234"") = ""4321""
+    solve(""ab"") = ""AB""
+    solve(""#a@C"") = ""#A@c""
+    """"""
+    result = []
+    for char in s:
+        if char.isalpha():
+            result.append(char.swapcase())
+        else:
+            result.append(char)
+    return ''.join(result) if any(char.isalpha() for char in s) else result[::-1]",failed: ,,False,True,18.0,10.0,8.0,0.0,10.0,0.0,0.0,5.0,1.0,1.0,1.0,1.0,2.0,2.0,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,96.88248622197814
+162,openai_humaneval,test,162,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """"""
+    import hashlib
+    if not text:
+        return None
+    return hashlib.md5(text.encode('ascii')).hexdigest()",passed,6.405153333327955e-05,True,True,11.0,6.0,5.0,0.0,5.0,1.0,0.0,2.0,1.0,1.0,1.0,1.0,2.0,2.0,0.0,2.0,0.5,1.0,0.05555555555555555,0.0006666666666666666,100.0
+163,openai_humaneval,test,163,llama3_0_shot_finetuned_smaller_LR_3_epoch,"def generate_integers(a, b):
+    """"""
+    Given two positive integers a and b, return the even digits between a
+    and b, in ascending order.
+
+    For example:
+    generate_integers(2, 8) => [2, 4, 6, 8]
+    generate_integers(8, 2) => [2, 4, 6, 8]
+    generate_integers(10, 14) => []
+    """"""
+    lower = max(2, min(a, b))
+    upper = min(8, max(a, b))
+
+    return [i for i in range(lower, upper+1) if i % 2 == 0]",passed,8.744510000013861e-05,True,True,14.0,5.0,4.0,0.0,8.0,2.0,0.0,3.0,3.0,6.0,3.0,6.0,9.0,9.0,20.264662506490406,28.529325012980813,1.5,42.793987519471216,2.377443751081734,0.009509775004326938,80.28972953631143
