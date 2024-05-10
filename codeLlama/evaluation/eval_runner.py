@@ -145,7 +145,7 @@ def mbpp_zero_eval():
 
 def model_format():
     #changes csv format for results collation
-    for file_path in ["./mbpp_few_metrics.csv", "./humaneval_few_metrics.csv","./mbpp_zero_metrics.csv", "./humaneval_zero_metrics.csv"]:
+    for file_path in ["./mbpp_few_metrics.csv", "./humaneval_few_metrics.csv"]:
         # Load the CSV file
         df = pd.read_csv(file_path)
         print(file_path)
@@ -156,3 +156,16 @@ def model_format():
 
         # Save the updated DataFrame back to the CSV file
         df.to_csv(file_path, index=False)
+
+    for file_path in ["./mbpp_zero_metrics.csv", "./humaneval_zero_metrics.csv"]:
+        # Load the CSV file
+        df = pd.read_csv(file_path)
+        print(file_path)
+
+        # Add a new column with a constant value
+        df['model'] = "codeLLama_0_shot"
+
+
+        # Save the updated DataFrame back to the CSV file
+        df.to_csv(file_path, index=False)
+    
