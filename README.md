@@ -21,7 +21,7 @@ For all generations we used the following system prompt:
 `starcoder2/starcode_instruct.ipynb` generates the refactored outputs using StarCoder2. `starcoder2/eval-starcoder.ipynb` runs the evaluation metrics on the refactored outputs. 
 
 ### CodeLLama
-`codellama/codellama_zero.py` and `codellama/codellama_fewshot.py` provide all the necessary code and functions to generate both the zero-shot refactoring outputs and the iterative few-shot outputs according to our refactoring method. The evaluations folder includes all results over all processing stages as well as all relevant files to carry out the sandbox evaluation. Previous files for the midterm report are now housed in the 'deprecated' folder. As an open source model, codeLlama requires downloading and locally running the model on a GPU.
+`codellama/codellama_zero.py` and `codellama/codellama_fewshot.py` provide all the necessary code and functions to generate both the zero-shot refactoring outputs and the iterative few-shot outputs according to our refactoring method. The evaluations folder includes all results over all processing stages as well as all relevant files to carry out the sandbox evaluation. The files must be run by calling functions in the file, but each function runs an independent workflow. Previous files for the midterm report are now housed in the 'deprecated' folder. As an open source model, codeLlama requires downloading and locally running the model on a GPU.
 
 ## Fine-Tuning
 
